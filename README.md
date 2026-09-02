@@ -24,7 +24,7 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 87 open contest(s) · 92 grant(s) listed · updated 2026-09-02 18:17 EDT
+### 📡 87 open contest(s) · 92 grant(s) listed · updated 2026-09-02 18:18 EDT
 
 _Format (in-person/remote/hybrid) is known for 20/179 listings below; a participant count is known for 18/179 -- both only ever come from what the source page itself states, never a guess. "Unknown" means the page didn't say._
 
