@@ -201,16 +201,17 @@ def check_calendar(conn, calendar_entries, report, today=None):
         ).fetchone()
         already_alerted = row is not None and row["last_alerted_for"] == target.isoformat()
 
-        alert = {
-            "name": entry["name"],
-            "target_date": target.isoformat(),
-            "days_until": days_until,
-            "lead_days": entry["lead_days"],
-            "confirmed": entry["confirmed"],
-            "link": entry["link"],
-            "already_alerted": already_alerted,
-        }
-        report["calendar_alerts"].append(alert)
+        if not already_alerted:
+            report["calendar_alerts"].append(
+                {
+                    "name": entry["name"],
+                    "target_date": target.isoformat(),
+                    "days_until": days_until,
+                    "lead_days": entry["lead_days"],
+                    "confirmed": entry["confirmed"],
+                    "link": entry["link"],
+                }
+            )
 
         conn.execute(
             "INSERT INTO calendar_state (id, last_alerted_for) VALUES (?, ?) "

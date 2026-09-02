@@ -15,7 +15,7 @@ How it works: `.github/workflows/monitor.yml` runs `monitor.py` weekly (new item
 
 <!-- BEGIN AUTOGEN -->
 
-**Last updated: 2026-09-02 21:34 UTC**
+**Last updated: 2026-09-02 21:38 UTC**
 
 ## Open contests
 - **[Next Gen Hackathon 2026 -Bengaluru](https://next-gen-hackathon.devpost.com/)** -- prize: n/a, team size: n/a, deadline: 2026-10-23
@@ -103,6 +103,7 @@ How it works: `.github/workflows/monitor.yml` runs `monitor.py` weekly (new item
 - **[LA Hacks 27](https://lahacks.com)** -- prize: $60,000, team size: n/a, deadline: rolling/unknown
 - **[FLOSS Weekly Episode 880: The Two Wolves](https://hackaday.com/2026/09/02/floss-weekly-episode-880-the-two-wolves/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
 - **[Creating the Greenest Possible Clothing with Living Fungi](https://hackaday.com/2026/09/02/creating-the-greenest-possible-clothing-with-living-fungi/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Many Small Steps for Robots, One Giant Leap for Mankind](https://www.notboring.co/p/robot-steps)** -- prize: $25, team size: individual, deadline: rolling/unknown
 - **[Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353)** -- prize: $250, team size: solo, deadline: rolling/unknown
 
 ## Available grants
@@ -209,23 +210,23 @@ _Nothing closing in the next 14 days._
 - [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) -- next: 2027-06-25 (296 days away), alert 60d out (date unconfirmed, inferred from prior years)
 
 ## Needs review
-- [Ask HN: Protecting the elderly from scam callers with GPT AI?](https://news.ycombinator.com/item?id=35174337) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
-- [Furby: Toy giant Hasbro brings back iconic robotic creature](https://www.bbc.com/news/business-65994859) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
-- [Ask HN: Is front end a dead-end career track?](https://news.ycombinator.com/item?id=37310591) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
-- [Bionic Woman Makes History Merging Robotic Limb with Bone and Her Mind](https://www.giantfreakinrobot.com/sci/bionic-woman-karin-sweden.html) -- source: hn-robotics-grant, contest score: 1.0, grant score: 0.0
-- [Why Should Founders Team Up to Raise Money from Investors](https://news.ycombinator.com/item?id=40695978) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
-- [SpaceX launches Starship rocket and catches booster in giant metal arms](https://www.theguardian.com/science/2024/oct/13/spacex-elon-musk-launches-and-lands-starship-rocket-in-first-test-of-giant-robotic-arms) -- source: hn-robotics-grant, contest score: 1.0, grant score: 0.0
-- [Human-Computer Symbiosis](https://news.ycombinator.com/item?id=42082369) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
-- [Robotics News 03-05-2025](https://news.ycombinator.com/item?id=43265804) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Tell HN: TIL Notion's TOS makes using it for MCP illegal](https://news.ycombinator.com/item?id=43325133) -- source: hn-robotics-grant, contest score: 0.0, grant score: 1.0
+- [Determinism, Free Will, and Computational Irreducibility](https://news.ycombinator.com/item?id=43526818) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
 - [Lessons Learned Writing a Book Collaboratively with LLMs](https://news.ycombinator.com/item?id=43758459) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
 - [Giant Robotic Bugs Are Headed to Farms](https://spectrum.ieee.org/ground-control-robot-insects) -- source: hn-robotics-grant, contest score: 2.0, grant score: 1.0
+- [Show HN: Aura – Like robots.txt, but for AI actions](https://github.com/osmandkitay/aura) -- source: hn-robotics-grant, contest score: 0.0, grant score: 1.0
+- [Tell HN: Out the door price for Unitree R1 ($5900) Robot to USA](https://news.ycombinator.com/item?id=45021743) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [The Genie's Car Factories](https://news.ycombinator.com/item?id=45297229) -- source: hn-robotics-grant, contest score: 0.0, grant score: 1.0
+- [Show HN: Granola to Obsidian Sync Plugin](https://obsidian.md/plugins?search=granola) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
 - [Show HN: I built an automated AI lab that generates and publishes inventions](https://unpatentable.org/innovation/) -- source: hn-robotics-grant, contest score: 0.0, grant score: 1.0
 - [Show HN: Fighting the War Against Expensive Reinforcement Learning](https://cadenza-landing-qtu7gbjwb-akshparekh123-3457s-projects.vercel.app/) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
 - [Show HN: Job Extinction Index – automation risk scores for 700 U.S. occupations](https://jobs.voxos.ai) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Robots, Grannies and Meaning-Adjusted Work Days](https://twitter.com/notevenwrongg/status/2025656572458746156) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
 - [Show HN: A Hacker News–style site focused on European tech](https://techposts.eu) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
 - [OpenClaw stats don't add up](https://news.ycombinator.com/item?id=47859207) -- source: hn-robotics-grant, contest score: 0.0, grant score: 1.0
-- [Robotics giant Figure AI demonstrates its robots to the world](https://forgeglobal.com/insights/figure-ai-robotics-growth-2026/) -- source: hn-robotics-grant, contest score: 1.0, grant score: 1.0
+- [Robotics giant Figure AI demonstrates its robots to the world](https://forgeglobal.com/insights/figure-ai-robotics-growth-2026/) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
 - [Show HN: Modeloop – A modern model-based design tool](https://www.modeloop.app/) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Robots will replace 700K delivery workers, warns head of e-commerce giant](https://www.computerworld.com/article/4188535/robots-will-replace-700000-delivery-workers-warns-head-of-e-commerce-giant.html) -- source: hn-robotics-grant, contest score: 1.0, grant score: 0.0
 - [A Defrag Simulator In Your Browser](https://hackaday.com/2026/09/01/a-defrag-simulator-in-your-browser/) -- source: hackaday, contest score: 2.0, grant score: 1.0
 - [HDMI For the Color Computer 2](https://hackaday.com/2026/09/02/hdmi-for-the-color-computer-2/) -- source: hackaday, contest score: 2.0, grant score: 1.0
 - [“I’m Not Dead Yet!” Reverse Polish Notation Calculators You Can Still Buy](https://hackaday.com/2026/09/02/im-not-dead-yet-reverse-polish-notation-calculators-you-can-still-buy/) -- source: hackaday, contest score: 2.0, grant score: 1.0
