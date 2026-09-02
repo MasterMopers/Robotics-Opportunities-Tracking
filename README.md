@@ -14,4 +14,245 @@ This repo is **public**, so its GitHub Actions minutes are unlimited (a private 
 How it works: `.github/workflows/monitor.yml` runs `monitor.py` weekly (new items -> opens a GitHub issue) and rebuilds this README monthly. See `sources.yaml` for every tracked source and the watch calendar, and `rules.yaml` for the classification rules -- tune both without touching code.
 
 <!-- BEGIN AUTOGEN -->
+
+**Last updated: 2026-09-02 21:34 UTC**
+
+## Open contests
+- **[Next Gen Hackathon 2026 -Bengaluru](https://next-gen-hackathon.devpost.com/)** -- prize: n/a, team size: n/a, deadline: 2026-10-23
+- **[Modern Java In The Wild](https://www.hackster.io/contests/modern-java-in-the-wild)** -- prize: $4,000, team size: n/a, deadline: rolling/unknown
+- **[Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product)** -- prize: $4,000, team size: n/a, deadline: rolling/unknown
+- **[Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html)** -- prize: $2,500, team size: n/a, deadline: rolling/unknown
+- **[ARMduino UNO (PY32F030) – Ultra Low-Cost 32-Bit ARM Development Board](https://www.pcbway.com/project/sponsor/ARMduino_UNO_PY32F030_Ultra_Low_Cost_32_Bit_ARM_Development_Board_f340c903.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Rocket Avionics STM32H743ZIT6](https://www.pcbway.com/project/sponsor/Rocket_Avionics_STM32H743ZIT6_d8cb6f80.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[NERVA Ring](https://www.pcbway.com/project/sponsor/NERVA_Ring_b0359f0c.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Custom Gearbox | SAE Baja | CCNY Racing](https://www.pcbway.com/project/sponsor/Custom_Gearbox_SAE_Baja_CCNY_Racing_36a9712c.html)** -- prize: $3,145, team size: n/a, deadline: rolling/unknown
+- **[BB1 Prototype 3 (BB1-3)](https://www.pcbway.com/project/sponsor/BB1_Prototype_3_BB1_3_e796da89.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html)** -- prize: $110, team size: n/a, deadline: rolling/unknown
+- **[Knight Neuronix Ryxen](https://www.pcbway.com/project/sponsor/Knight_Neuronix_Ryxen_d002a8c3.html)** -- prize: $3,500, team size: n/a, deadline: rolling/unknown
+- **[PulsePhone](https://www.pcbway.com/project/sponsor/PulsePhone_ea2dc2c7.html)** -- prize: n/a, team size: solo, deadline: rolling/unknown
+- **[AeroGroundStation](https://www.pcbway.com/project/sponsor/AeroGroundStation_02c4ab80.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Esp32 based MP3 player](https://www.pcbway.com/project/sponsor/Esp32_based_MP3_player_268f1740.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[ZOREX DRIVE 30](https://www.pcbway.com/project/sponsor/ZOREX_DRIVE_30_8800755b.html)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Rainbow Six Siege-Inspired Airsoft Drone](https://www.pcbway.com/project/sponsor/Rainbow_Six_Siege_Inspired_Airsoft_Drone_6f9ff7b0.html)** -- prize: n/a, team size: individual, deadline: rolling/unknown
+- **[Global Hack Week: Data](https://events.mlh.io/events/14416-global-hack-week-data)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[HackRice](https://hackrice.com/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[HackMTY 2026](https://hackmty.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[HackWesTX 26](https://hackwestx.gdgttu.com/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[HackHers @GSU](https://hackhers.club/)** -- prize: $7, team size: n/a, deadline: rolling/unknown
+- **[Hack the North](https://hackthenorth.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[VTHacks 14](https://vthacks.com/)** -- prize: $12K, team size: solo, deadline: rolling/unknown
+- **[HopHacks](https://www.hophacks.com/)** -- prize: $1, team size: individual, deadline: rolling/unknown
+- **[SteelHacks XIII](https://steelhacks.org/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[&HACKS XII](https://andhacks.cs.wm.edu/)** -- prize: n/a, team size: solo, deadline: rolling/unknown
+- **[HackNex Season 2](https://innovocon.online/events/hacknex)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[HackGT 13](http://hack.gt/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[ShellHacks](https://shellhacks.net/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Hack the Hill](https://hackthehill.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[hackUMBC](https://hackumbc.tech/)** -- prize: $1, team size: up to 4 members, deadline: rolling/unknown
+- **[BigRed//Hacks 2026](https://www.bigredhacks.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Gator Quant Hacks](https://www.gqhacks.com)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Rowdy Hacks](https://rowdyhacks.org)** -- prize: $19, team size: n/a, deadline: rolling/unknown
+- **[Hack Dearborn 5: Conjure Reality](https://www.hackdearborn.org/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[MHacks](https://www.mhacks.org/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[WolfHacks by ACM at NC State](https://wolfhacks.org/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[StormHacks](https://www.stormhacks.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[GirlHacks](https://www.njitgirlhacks.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[HackNC](https://hacknc.com/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[Hack Knight](https://hackknight.org/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Knight Hacks IX](https://2026.knighthacks.org/)** -- prize: $60,000, team size: n/a, deadline: rolling/unknown
+- **[CodeRED Orion](https://uhcode.red/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Innohacks 4.0](https://innohacks.live)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[SwampHacks XII](https://swamphacks.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Hack the Valley](https://hackthevalley.io/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[LA Hacks AI Hackathon 2026](https://ai.lahacks.com)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[IKU Womxn in STEM Hackathon](https://ikuwomxninstemhackathon.co.uk/)** -- prize: n/a, team size: solo, deadline: rolling/unknown
+- **[SBUHacks](https://hack.sbcs.io/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[HackTX 26](https://hacktx.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Hack at Penn State](https://hackpsu.org)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[hackCBS 9.O](https://hackcbs.tech)** -- prize: $220,000, team size: individual, deadline: rolling/unknown
+- **[HackUTD](https://zeroday.hackutd.co)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[HackRPI 2026](https://hackrpi.com/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[MakeCU](https://v0-curc-makecu.vercel.app/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[HackUMass](https://www.hackumass.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[DurHack](https://durhack.com)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[DeltaHacks](https://www.deltahacks.com/)** -- prize: $1, team size: solo, deadline: rolling/unknown
+- **[UofTHacks](https://uofthacks.com/)** -- prize: $1, team size: individual, deadline: rolling/unknown
+- **[uOttaHack 9](https://2027.uottahack.ca/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[nwHacks](https://nwhacks.io/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Hackville 2027](https://hackville.io/)** -- prize: $390, team size: n/a, deadline: rolling/unknown
+- **[Hoya Hacks](https://www.hoyahacks.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[ElleHacks](https://ellehacks.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Hack@Brown 2027](https://hackatbrown.org/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[UGAHacks](https://ugahacks.com/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[SpartaHack](https://www.spartahack.com/)** -- prize: $2, team size: n/a, deadline: rolling/unknown
+- **[Hack_NCState](https://hackncstate.org/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[InnovateHer](https://innovateherhacks.org/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[MakeUofT](http://makeuoft.ca/)** -- prize: n/a, team size: team of 2, deadline: rolling/unknown
+- **[SF Hacks](https://sfhacks.io)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[CUhackit](https://cuhack.it/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[HackIllinois](https://www.hackillinois.org/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Hacklytics 2027](https://hacklytics2027.web.app/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[WiCHacks](https://wichacks.io/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[HenHacks](https://www.henhackshackathon.com/)** -- prize: $1, team size: n/a, deadline: rolling/unknown
+- **[Kent Hack Enough](https://khe.io/)** -- prize: $0.00, team size: Solo, deadline: rolling/unknown
+- **[Diamondhacks](https://diamondhacks.acmucsd.com/)** -- prize: $500, team size: n/a, deadline: rolling/unknown
+- **[HackKU27](https://www.hackku.org/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[MariHacks](https://www.marihacks.com/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[WEHack](https://www.wehackutd.com/)** -- prize: $1, team size: up to 4 members, deadline: rolling/unknown
+- **[LA Hacks 27](https://lahacks.com)** -- prize: $60,000, team size: n/a, deadline: rolling/unknown
+- **[FLOSS Weekly Episode 880: The Two Wolves](https://hackaday.com/2026/09/02/floss-weekly-episode-880-the-two-wolves/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Creating the Greenest Possible Clothing with Living Fungi](https://hackaday.com/2026/09/02/creating-the-greenest-possible-clothing-with-living-fungi/)** -- prize: n/a, team size: n/a, deadline: rolling/unknown
+- **[Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353)** -- prize: $250, team size: solo, deadline: rolling/unknown
+
+## Available grants
+- **[Schmidt Science Fellows](https://sologrants.com/guide/schmidt-science-fellows)** -- amount: $110k, eligibility: rolling/see link, deadline: rolling
+- **[776 Fellowship](https://sologrants.com/guide/776)** -- amount: $100k, eligibility: rolling/see link, deadline: rolling
+- **[OSV Fellowship](https://sologrants.com/guide/osv)** -- amount: $100k, eligibility: rolling/see link, deadline: rolling
+- **[ACX Grants](https://sologrants.com/guide/acx-grants)** -- amount: $1,000-100,000, eligibility: rolling/see link, deadline: rolling
+- **[Sui Foundation Grants](https://sologrants.com/guide/sui-grants)** -- amount: $10 - $100K, eligibility: rolling/see link, deadline: rolling
+- **[Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship)** -- amount: $100k, eligibility: rolling/see link, deadline: rolling
+- **[Emergent Ventures](https://sologrants.com/guide/emergentventures)** -- amount: $1k-$50k, eligibility: rolling/see link, deadline: rolling
+- **[Protostars](https://sologrants.com/guide/blackbird)** -- amount: $50k, eligibility: rolling/see link, deadline: rolling
+- **[Soma Scholars](https://sologrants.com/guide/soma-scholars)** -- amount: $30,000, eligibility: rolling/see link, deadline: rolling
+- **[Kothari Fellowship](https://sologrants.com/guide/kothari)** -- amount: $15k, eligibility: rolling/see link, deadline: rolling
+- **[Magnificent Grants](https://sologrants.com/guide/magnificent)** -- amount: $10k, eligibility: rolling/see link, deadline: rolling
+- **[Non-Trivial Fellowship](https://sologrants.com/guide/nontrivial)** -- amount: $2k-$10k, eligibility: rolling/see link, deadline: rolling
+- **[OSV Grants](https://sologrants.com/guide/osv-grants)** -- amount: $10,000, eligibility: rolling/see link, deadline: rolling
+- **[Dojo Grants](https://sologrants.com/guide/dojo-grants)** -- amount: $8k, eligibility: rolling/see link, deadline: rolling
+- **[Time Initiative Fellowship](https://sologrants.com/guide/time-initiative-fellowship)** -- amount: $8k, eligibility: rolling/see link, deadline: rolling
+- **[Compound Reverie Grants](https://sologrants.com/guide/compound-reverie-grants)** -- amount: $500 - $7,500, eligibility: rolling/see link, deadline: rolling
+- **[Eclipse Grants](https://sologrants.com/guide/eclipse-grants)** -- amount: $5k, eligibility: rolling/see link, deadline: rolling
+- **[Atomic Fellowship](https://sologrants.com/guide/atomic-fellowship)** -- amount: $4,000, eligibility: rolling/see link, deadline: rolling
+- **[Unitary](https://sologrants.com/guide/unitary)** -- amount: $4,000, eligibility: rolling/see link, deadline: rolling
+- **[Inflection Grants](https://sologrants.com/guide/inflection-grants)** -- amount: $2k, eligibility: rolling/see link, deadline: rolling
+- **[1517 Fund Medici Grant](https://sologrants.com/guide/1517fund)** -- amount: $1k, eligibility: rolling/see link, deadline: rolling
+- **[Adamnite Microgrants](https://sologrants.com/guide/adamnite-microgrants)** -- amount: $1k, eligibility: rolling/see link, deadline: rolling
+- **[Awesome Foundation Grants](https://sologrants.com/guide/awesome-foundation-grants)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Narisetti Grants](https://sologrants.com/guide/narisettigrants)** -- amount: $100-$1,000, eligibility: rolling/see link, deadline: rolling
+- **[Nautilus](https://sologrants.com/guide/nautilus)** -- amount: $100 to $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Sean's Grant](https://sologrants.com/guide/seangrant)** -- amount: $1k, eligibility: rolling/see link, deadline: rolling
+- **[Conservation and Climate](https://www.awesomefoundation.org/en/chapters/conservationandclimate)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Disability](https://www.awesomefoundation.org/en/chapters/disability)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Dragon Dreaming](https://www.awesomefoundation.org/en/chapters/dragondreaming)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[On the Water](https://www.awesomefoundation.org/en/chapters/onthewater)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Javakhk](https://www.awesomefoundation.org/en/chapters/javakhk)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Yerevan](https://www.awesomefoundation.org/en/chapters/yerevan)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Fleurieu](https://www.awesomefoundation.org/en/chapters/fleurieu)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Lake Mac](https://www.awesomefoundation.org/en/chapters/lakemac)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Lower Hunter](https://www.awesomefoundation.org/en/chapters/lowerhunter)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Sydney](https://www.awesomefoundation.org/en/chapters/sydney)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Amherstburg](https://www.awesomefoundation.org/en/chapters/amherstburg)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Kitchener-Waterloo](https://www.awesomefoundation.org/en/chapters/kitchener-waterloo)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[New Glasgow](https://www.awesomefoundation.org/en/chapters/newglasgow)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[South Shore](https://www.awesomefoundation.org/en/chapters/southshore)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Toronto](https://www.awesomefoundation.org/en/chapters/toronto)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Kuala Lumpur](https://www.awesomefoundation.org/en/chapters/kualalumpur)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Leiden](https://www.awesomefoundation.org/en/chapters/leiden)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Rotterdam](https://www.awesomefoundation.org/en/chapters/rotterdam)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Utrecht](https://www.awesomefoundation.org/en/chapters/utrecht)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Qatar](https://www.awesomefoundation.org/en/chapters/qatar)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Glasgow](https://www.awesomefoundation.org/en/chapters/glasgow)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Austin, TX](https://www.awesomefoundation.org/en/chapters/austin)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Baltimore, MD](https://www.awesomefoundation.org/en/chapters/baltimore)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Boston, MA](https://www.awesomefoundation.org/en/chapters/boston)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Burlingame-San Mateo, CA](https://www.awesomefoundation.org/en/chapters/burlingamesanmateo)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Chicago, IL](https://www.awesomefoundation.org/en/chapters/chicago)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Cleveland, OH](https://www.awesomefoundation.org/en/chapters/cleveland)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Durham, NC](https://www.awesomefoundation.org/en/chapters/durham)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Gainesville, FL](https://www.awesomefoundation.org/en/chapters/gainesville)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Georgetown, MA](https://www.awesomefoundation.org/en/chapters/georgetown)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Hamilton-Wenham, MA](https://www.awesomefoundation.org/en/chapters/hamilton-wenham)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Ipswich, MA](https://www.awesomefoundation.org/en/chapters/ipswich)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Key West, FL](https://www.awesomefoundation.org/en/chapters/keywest)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Los Angeles, CA](https://www.awesomefoundation.org/en/chapters/los-angeles)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Miami, FL](https://www.awesomefoundation.org/en/chapters/miami)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[New York City, NY](https://www.awesomefoundation.org/en/chapters/nyc)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Newburgh, NY](https://www.awesomefoundation.org/en/chapters/newburgh)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Newburyport, MA](https://www.awesomefoundation.org/en/chapters/newburyport)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[North Minneapolis, MN](https://www.awesomefoundation.org/en/chapters/northminneapolis)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Oahu, HI](https://www.awesomefoundation.org/en/chapters/oahu)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Orlando, FL](https://www.awesomefoundation.org/en/chapters/orlando)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Peekskill, NY](https://www.awesomefoundation.org/en/chapters/peekskill)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Philadelphia, PA](https://www.awesomefoundation.org/en/chapters/philadelphia)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Rhode Island](https://www.awesomefoundation.org/en/chapters/rhodeisland)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Rockport, MA](https://www.awesomefoundation.org/en/chapters/rockport)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[San Antonio, TX](https://www.awesomefoundation.org/en/chapters/sanantonio)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[San Jose, CA](https://www.awesomefoundation.org/en/chapters/sanjose)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Santa Cruz, CA](https://www.awesomefoundation.org/en/chapters/santacruz)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Seattle, WA](https://www.awesomefoundation.org/en/chapters/seattle)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[South Bend, IN](https://www.awesomefoundation.org/en/chapters/southbend)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[St. Paul, MN](https://www.awesomefoundation.org/en/chapters/stpaul)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[State College, PA](https://www.awesomefoundation.org/en/chapters/statecollege)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Washington, DC](https://www.awesomefoundation.org/en/chapters/dc)** -- amount: $1,000, eligibility: rolling/see link, deadline: 2026-10-18
+- **[Westminster, MD](https://www.awesomefoundation.org/en/chapters/westminster)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[Tashkent](https://www.awesomefoundation.org/en/chapters/tashkent)** -- amount: $1,000, eligibility: rolling/see link, deadline: rolling
+- **[EVM Capital](https://sologrants.com/guide/evmcapital)** -- amount: $100-$600, eligibility: rolling/see link, deadline: rolling
+- **[Alya Capital](https://sologrants.com/guide/alyacapital)** -- amount: $100-$500, eligibility: rolling/see link, deadline: rolling
+- **[Bagel Fund](https://sologrants.com/guide/bagelfund)** -- amount: $100-$500, eligibility: rolling/see link, deadline: rolling
+- **[Éire Ventures](https://sologrants.com/guide/eire-ventures)** -- amount: $500, eligibility: rolling/see link, deadline: rolling
+- **[Feather Grants](https://sologrants.com/guide/feather-grants)** -- amount: $200, eligibility: rolling/see link, deadline: rolling
+- **[Cactus Capital](https://sologrants.com/guide/cactuscapital)** -- amount: $100, eligibility: rolling/see link, deadline: rolling
+- **[Lift Off Grant](https://sologrants.com/guide/liftoff)** -- amount: $100, eligibility: rolling/see link, deadline: rolling
+
+## Closing soon
+_Nothing closing in the next 14 days._
+
+## Watch calendar
+- [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) -- next: 2026-09-25 (23 days away), alert 45d out (date unconfirmed, inferred from prior years)
+- [NHRL Open Registration](https://www.nhrl.io/) -- next: 2026-10-01 (29 days away), alert 21d out
+- [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) -- next: 2026-11-01 (60 days away), alert 30d out (date unconfirmed, inferred from prior years)
+- [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) -- next: 2027-06-25 (296 days away), alert 60d out (date unconfirmed, inferred from prior years)
+
+## Needs review
+- [Ask HN: Protecting the elderly from scam callers with GPT AI?](https://news.ycombinator.com/item?id=35174337) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Furby: Toy giant Hasbro brings back iconic robotic creature](https://www.bbc.com/news/business-65994859) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Ask HN: Is front end a dead-end career track?](https://news.ycombinator.com/item?id=37310591) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Bionic Woman Makes History Merging Robotic Limb with Bone and Her Mind](https://www.giantfreakinrobot.com/sci/bionic-woman-karin-sweden.html) -- source: hn-robotics-grant, contest score: 1.0, grant score: 0.0
+- [Why Should Founders Team Up to Raise Money from Investors](https://news.ycombinator.com/item?id=40695978) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [SpaceX launches Starship rocket and catches booster in giant metal arms](https://www.theguardian.com/science/2024/oct/13/spacex-elon-musk-launches-and-lands-starship-rocket-in-first-test-of-giant-robotic-arms) -- source: hn-robotics-grant, contest score: 1.0, grant score: 0.0
+- [Human-Computer Symbiosis](https://news.ycombinator.com/item?id=42082369) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Robotics News 03-05-2025](https://news.ycombinator.com/item?id=43265804) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Lessons Learned Writing a Book Collaboratively with LLMs](https://news.ycombinator.com/item?id=43758459) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Giant Robotic Bugs Are Headed to Farms](https://spectrum.ieee.org/ground-control-robot-insects) -- source: hn-robotics-grant, contest score: 2.0, grant score: 1.0
+- [Show HN: I built an automated AI lab that generates and publishes inventions](https://unpatentable.org/innovation/) -- source: hn-robotics-grant, contest score: 0.0, grant score: 1.0
+- [Show HN: Fighting the War Against Expensive Reinforcement Learning](https://cadenza-landing-qtu7gbjwb-akshparekh123-3457s-projects.vercel.app/) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Show HN: Job Extinction Index – automation risk scores for 700 U.S. occupations](https://jobs.voxos.ai) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [Show HN: A Hacker News–style site focused on European tech](https://techposts.eu) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [OpenClaw stats don't add up](https://news.ycombinator.com/item?id=47859207) -- source: hn-robotics-grant, contest score: 0.0, grant score: 1.0
+- [Robotics giant Figure AI demonstrates its robots to the world](https://forgeglobal.com/insights/figure-ai-robotics-growth-2026/) -- source: hn-robotics-grant, contest score: 1.0, grant score: 1.0
+- [Show HN: Modeloop – A modern model-based design tool](https://www.modeloop.app/) -- source: hn-robotics-grant, contest score: 0.0, grant score: 0.0
+- [A Defrag Simulator In Your Browser](https://hackaday.com/2026/09/01/a-defrag-simulator-in-your-browser/) -- source: hackaday, contest score: 2.0, grant score: 1.0
+- [HDMI For the Color Computer 2](https://hackaday.com/2026/09/02/hdmi-for-the-color-computer-2/) -- source: hackaday, contest score: 2.0, grant score: 1.0
+- [“I’m Not Dead Yet!” Reverse Polish Notation Calculators You Can Still Buy](https://hackaday.com/2026/09/02/im-not-dead-yet-reverse-polish-notation-calculators-you-can-still-buy/) -- source: hackaday, contest score: 2.0, grant score: 1.0
+- [How a 1981 RAM Expansion Worked](https://hackaday.com/2026/09/02/how-a-1981-ram-expansion-worked/) -- source: hackaday, contest score: 2.0, grant score: 1.0
+- [Harvesting Namib Desert Fog with High Voltage](https://hackaday.com/2026/09/02/harvesting-namib-desert-fog-with-high-voltage/) -- source: hackaday, contest score: 2.0, grant score: 1.0
+- [README.md updated: add line break](https://github.com/nayafia/microgrants/commit/7f028efa953b0e9cc033e3daa349ed18445715ae) -- source: nayafia-microgrants, contest score: 0.0, grant score: 3.0
+- [README.md updated: update contribution section](https://github.com/nayafia/microgrants/commit/4f4c2d6766fc33f113deebeeda60d00416023050) -- source: nayafia-microgrants, contest score: 0.0, grant score: 3.0
+- [README.md updated: Added the just announced Patch Grants](https://github.com/nayafia/microgrants/commit/ad586e06eace1a4ecc6be6bb844f0e9bb200a5bd) -- source: nayafia-microgrants, contest score: 0.0, grant score: 3.0
+- [README.md updated: add merge grant](https://github.com/nayafia/microgrants/commit/7859a3d875ff1c20917bc3579d5bca14b3cf2095) -- source: nayafia-microgrants, contest score: 0.0, grant score: 5.0
+- [README.md updated: order of magnitude reduction](https://github.com/nayafia/microgrants/commit/da222145ca42ededab766c54ad7c1e987f4279ea) -- source: nayafia-microgrants, contest score: 0.0, grant score: 5.0
+- [README.md updated: remove climate grants, site is dead](https://github.com/nayafia/microgrants/commit/85c6e1e12efd2a06b0dd4c554698776fef222cf6) -- source: nayafia-microgrants, contest score: 1.0, grant score: 7.0
+- [README.md updated: remove dead project](https://github.com/nayafia/microgrants/commit/76b01ba692e1a984b0d4286f87569102dbd50f28) -- source: nayafia-microgrants, contest score: 0.0, grant score: 3.0
+- [README.md updated: add grant](https://github.com/nayafia/microgrants/commit/bb8528e6396f385da2322b5292b4538790a0875e) -- source: nayafia-microgrants, contest score: 0.0, grant score: 6.0
+- [README.md updated: Add Da Vinci Fellowship](https://github.com/nayafia/microgrants/commit/45b218e0fbbca3522d45691d7b301f4ffab813e6) -- source: nayafia-microgrants, contest score: 1.0, grant score: 5.0
+- [README.md updated: Farnsworth fund renamed, updated link](https://github.com/nayafia/microgrants/commit/bfac1a9466e3c6c95a4359cc6ab5303c414094ac) -- source: nayafia-microgrants, contest score: 0.0, grant score: 4.0
+- [README.md updated: update patch grants url](https://github.com/nayafia/microgrants/commit/fdd2625259ff27b24e718b768cf00cd48da40300) -- source: nayafia-microgrants, contest score: 0.0, grant score: 3.0
+- [README.md updated: Update README.md](https://github.com/nayafia/microgrants/commit/2fc2ee0410e496c01458a078e7e994c8e85dce9b) -- source: nayafia-microgrants, contest score: 0.0, grant score: 4.0
+- [README.md updated: Merge pull request #98 from rbnyng/patch-1](https://github.com/nayafia/microgrants/commit/2da8bf4023352a4bb1d8c5866e5085d898a018b3) -- source: nayafia-microgrants, contest score: 0.0, grant score: 4.0
+- [README.md updated: remove Project Cover](https://github.com/nayafia/microgrants/commit/78f5b0350499a3332eb04b985ac96d8a1e9c7809) -- source: nayafia-microgrants, contest score: 0.0, grant score: 3.0
+- [README.md updated: Add Forge Grants](https://github.com/nayafia/microgrants/commit/e8a6100284d253164cdceee908811b878ea057e6) -- source: nayafia-microgrants, contest score: 0.0, grant score: 4.0
+- [README.md updated: Update README.md](https://github.com/nayafia/microgrants/commit/5349987e89a880fa3a32b296f8c1103d11e7db8b) -- source: nayafia-microgrants, contest score: 0.0, grant score: 4.0
+- [README.md updated: Add Arraig Grants (formerly Éire Ventures)](https://github.com/nayafia/microgrants/commit/bc86a5505d513c6cc4651003c7eaffadc85c6055) -- source: nayafia-microgrants, contest score: 1.0, grant score: 5.0
+- [README.md updated: remove inactive grants](https://github.com/nayafia/microgrants/commit/374d1a2fd37d16262053e358476dec777bd237f4) -- source: nayafia-microgrants, contest score: 0.0, grant score: 7.0
+- [README.md updated: remove inactive grant](https://github.com/nayafia/microgrants/commit/f571fd5bcc1b6109dba4bc8251e73b1350db8ab5) -- source: nayafia-microgrants, contest score: 0.0, grant score: 4.0
+- [README.md updated: Merge pull request #105 from olivcho/master](https://github.com/nayafia/microgrants/commit/e214bd5402d9f88c8ffda3149a4d9626bc09d207) -- source: nayafia-microgrants, contest score: 1.0, grant score: 4.0
+
+## Sources needing attention
+_All sources healthy as of last run._
+
 <!-- END AUTOGEN -->
