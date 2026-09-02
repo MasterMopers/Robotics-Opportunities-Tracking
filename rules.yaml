@@ -1,0 +1,124 @@
+# All classification tuning lives here. Adding a phrase after a
+# misclassification should be a one-line edit to this file, never to code.
+
+thresholds:
+  # Minimum score to be eligible for ACCEPT at all.
+  floor: 2
+  # Winning score must beat the runner-up by at least this much to ACCEPT
+  # outright; anything closer goes to REVIEW.
+  margin: 2
+
+signals:
+  contest:
+    - phrase: "competition"
+      weight: 1
+    - phrase: "contest"
+      weight: 1
+    - phrase: "challenge"
+      weight: 1
+    - phrase: "hackathon"
+      weight: 2
+    - phrase: "compete"
+      weight: 1
+    - phrase: "prize pool"
+      weight: 2
+    - phrase: "finalists"
+      weight: 2
+    - phrase: "judges"
+      weight: 1
+    - phrase: "leaderboard"
+      weight: 1
+    - phrase: "entry deadline"
+      weight: 2
+    - phrase: "submit your entry"
+      weight: 2
+  grant:
+    - phrase: "grant"
+      weight: 1
+    - phrase: "microgrant"
+      weight: 2
+    - phrase: "funding"
+      weight: 1
+    - phrase: "no strings attached"
+      weight: 2
+    - phrase: "non-dilutive"
+      weight: 2
+    - phrase: "apply for funding"
+      weight: 2
+    - phrase: "we fund"
+      weight: 2
+    - phrase: "stipend"
+      weight: 1
+    - phrase: "fellowship"
+      weight: 1
+    - phrase: "rolling applications"
+      weight: 2
+
+reject_rules:
+  contest:
+    - pattern: 'team of (4|5|6|7|8|9|1[0-9])'
+      label: "team size too large"
+    - pattern: 'minimum of \d+ members'
+      label: "minimum team size too large"
+    - pattern: 'faculty advisor'
+      label: "requires faculty advisor"
+    - pattern: 'faculty sponsor'
+      label: "requires faculty sponsor"
+    - pattern: 'must be nominated by'
+      label: "requires nomination"
+    - pattern: 'institutional entry'
+      label: "institutional entry only"
+    - pattern: 'company entry'
+      label: "company entry only"
+    - pattern: 'grades K-12'
+      label: "K-12 only"
+    - pattern: 'high school students only'
+      label: "high school only"
+  grant:
+    - pattern: 'incorporated'
+      label: "requires incorporation"
+    - pattern: 'C-corp'
+      label: "requires C-corp"
+    - pattern: 'LLC required'
+      label: "requires LLC"
+    - pattern: 'equity'
+      label: "takes equity"
+    - pattern: 'SAFE note'
+      label: "takes a SAFE note"
+    - pattern: 'business plan'
+      label: "requires business plan"
+    - pattern: 'pitch deck required'
+      label: "requires pitch deck"
+    - pattern: 'accelerator'
+      label: "is an accelerator program"
+    - pattern: 'cohort program'
+      label: "is a cohort program"
+    - pattern: 'demo day'
+      label: "is a demo-day program"
+    - pattern: 'tuition'
+      label: "tuition-related"
+    - pattern: 'scholarship for tuition'
+      label: "tuition scholarship"
+
+# Deadline phrase patterns, tried in order. %DATE% is replaced with a
+# dateutil-parseable date fragment matcher at runtime.
+deadline_patterns:
+  explicit:
+    - 'deadline:?\s+%DATE%'
+    - 'entries close\s+%DATE%'
+    - 'submissions? due\s+%DATE%'
+    - 'closes?\s+%DATE%'
+    - 'ends?\s+%DATE%'
+  relative:
+    - 'ends in (\d+)\s+days?'
+    - 'closes in (\d+)\s+days?'
+    - '(\d+)\s+days? (?:left|remaining)'
+
+money_pattern: '(?:up to\s+)?\$\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?(?:\s*(?:to|-|–)\s*\$?\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?)?'
+
+team_size_patterns:
+  - 'team of\s+(\d+)'
+  - 'up to\s+(\d+)\s+members?'
+  - '(\d+)-person'
+  - '\bindividual\b'
+  - '\bsolo\b'

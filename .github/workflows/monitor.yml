@@ -1,0 +1,50 @@
+name: Monitor robotics opportunities
+
+on:
+  schedule:
+    # Off-the-hour minutes on purpose -- GitHub delays/drops scheduled runs
+    # under load, and jobs at minute 0 get hit hardest. Do not "tidy" these.
+    - cron: "37 13 * * 1"   # weekly: discovery run (Monday)
+    - cron: "37 13 1 * *"   # monthly: rebuild README from state.db
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Weekly discovery run
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '37 13 * * 1'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python monitor.py
+
+      - name: Monthly README rebuild
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '37 13 1 * *'
+        run: python render_readme.py
+
+      - name: Commit state.db / README.md if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add state.db README.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: automated update ($(date -u +%F))"
+            git push
+          fi

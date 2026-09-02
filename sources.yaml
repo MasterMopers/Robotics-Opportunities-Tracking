@@ -1,0 +1,206 @@
+# Discovery sources and the Watch calendar.
+#
+# Every extraction method below was verified against the live page/endpoint
+# before being written here (see FINAL SUMMARY in the PR/commit message for
+# per-source notes). Nothing here is a guessed CSS selector.
+#
+# method values: rss | html | json | json_embedded | github
+
+sources:
+  - id: hackster
+    name: "Hackster.io Contests"
+    class: contest
+    trust: high
+    method: html
+    url: "https://www.hackster.io/contests"
+    min_expected: 1
+    parse:
+      # Card CSS-module class names (contest_card__...__<hash>) are rebuilt
+      # per deploy and are NOT stable. The stable anchor is the routing
+      # pattern itself: every contest links to /contests/<slug>.
+      link_href_prefix: "/contests/"
+      exclude_href_contains: ["#", "/submissions"]
+    notes: >
+      Verified live: server-rendered HTML, 3 real contest slugs present
+      (autodesk-university-2027-product, invent-the-future-with-arduino-uno-q-and-app-lab,
+      modern-java-in-the-wild). Selector keys off href prefix, not hashed
+      classnames. min_expected set to 1, not 3: Hackster's active-contest
+      count is small and genuinely fluctuates, so 1 catches total selector
+      breakage without false-alarming on a normal quiet week.
+
+  - id: pcbway
+    name: "PCBWay Sponsored Projects"
+    class: contest
+    trust: high
+    method: html
+    url: "https://www.pcbway.com/project/sponsor/"
+    min_expected: 5
+    parse:
+      item_container_class: "box-item"
+      link_selector: "a.img-cover"
+    notes: >
+      Verified live: 16 div.box-item cards, each with a.img-cover -> project
+      page, image alt text carries the project title.
+
+  - id: devpost
+    name: "Devpost Hackathons (hardware/robotics filtered)"
+    class: contest
+    trust: high
+    method: json
+    url: "https://devpost.com/api/hackathons?order_by=recently-added"
+    request_headers:
+      Referer: "https://devpost.com/hackathons"
+      Accept: "application/json"
+    json_items_path: "hackathons"
+    # Spec requires this source filtered to hardware/robotics. Server-side
+    # theme/search query params (?themes[]=Hardware, ?search=robotics) were
+    # tested live and triggered a 403 from Devpost's WAF on the very next
+    # request, so filtering happens client-side in the adapter instead.
+    filter_keywords_any:
+      - robot
+      - robotics
+      - hardware
+      - embedded
+      - iot
+      - firmware
+      - "maker "
+      - drone
+      - pcb
+    min_expected: 0
+    notes: >
+      Real JSON API confirmed live (not guessed) -- requires a Referer
+      header or Devpost returns 403. The endpoint sits behind an AWS WAF
+      that blocked a second identical request within seconds during
+      verification, so this source is flaky in practice: min_expected is
+      set to 0 so a WAF block reports as a quiet week, not BROKEN. Treat
+      persistent zero-item weeks as a signal to check the source by hand.
+
+  - id: mlh
+    name: "Major League Hacking Events"
+    class: contest
+    trust: high
+    method: json_embedded
+    url: "https://mlh.io/events"
+    embedded_script_selector: 'script[data-page="app"]'
+    json_path: "props.upcomingEvents"
+    min_expected: 5
+    notes: >
+      Spec URL https://mlh.io/seasons returns HTTP 404 live; corrected to
+      https://mlh.io/events (the current canonical listing, confirmed via
+      the site's own nav links). The page embeds the full event list as
+      JSON inside <script data-page="app">, so it is parsed directly --
+      no DOM scraping, nothing to rot. Live check returned 70 events.
+
+  - id: nayafia-microgrants
+    name: "nayafia/microgrants (GitHub, README watch)"
+    class: grant
+    trust: high
+    method: github
+    repo: "nayafia/microgrants"
+    watch_path: "README.md"
+    min_expected: 1
+    notes: >
+      Verified live via GitHub REST API commits endpoint. Items here are
+      commits, not opportunities -- a commit message ("add grant", "remove
+      dead project") is not a submittable grant listing, so monitor.py
+      always routes github-sourced items to REVIEW regardless of trust,
+      rather than rendering a commit message as a fake "grant" row.
+
+  - id: sologrants
+    name: "Solo Grants -- The Grant Guide"
+    class: grant
+    trust: high
+    method: html
+    url: "https://sologrants.com/guide"
+    min_expected: 10
+    parse:
+      row_selector: "table tbody tr"
+      name_selector: "span.font-semibold"
+      link_selector: "a"
+      amount_cell_index: 1
+      eligibility_cell_index: 2
+    notes: >
+      Verified live: real HTML <table>, ~40 <tr> rows, each with
+      <a href="/guide/<slug>"><span class="font-semibold">Name</span></a>
+      followed by an amount-range cell and an eligibility cell.
+
+  - id: awesomefoundation
+    name: "Awesome Foundation Chapters"
+    class: grant
+    trust: high
+    method: html
+    url: "https://www.awesomefoundation.org/en/chapters"
+    min_expected: 30
+    parse:
+      item_selector: "article.country p a"
+    notes: >
+      Spec URL (bare homepage) does not list chapters; used the verified
+      /en/chapters index instead (69 chapter links live, grouped under
+      <article class="country">). Each chapter is modeled as one standing,
+      rolling $1,000 microgrant -- that flat amount is Awesome Foundation's
+      well-known, foundation-wide model, not something scraped per chapter.
+
+  - id: hackaday
+    name: "Hackaday (mixed feed)"
+    class: both
+    trust: low
+    method: rss
+    url: "https://hackaday.com/feed/"
+    min_expected: 3
+    notes: "Verified live: standard RSS, 7 <item> entries on last fetch."
+
+  - id: hn-robotics-grant
+    name: "HN Algolia: robotics grant"
+    class: both
+    trust: low
+    method: json
+    url: "https://hn.algolia.com/api/v1/search_by_date?tags=story&query=robotics%20grant"
+    json_items_path: "hits"
+    min_expected: 1
+    notes: "Verified live: public Algolia HN search API, 72 hits on last fetch."
+
+# Watch calendar: annual/monthly programs whose page is static for eleven
+# months. We do NOT scrape these for a deadline -- we alert `lead_days`
+# before the known/inferred date instead.
+calendar:
+  - id: lemelson-mit
+    name: "Lemelson-MIT Student Prize"
+    class: contest
+    month: 9
+    day: 25
+    lead_days: 45
+    confirmed: false
+    link: "https://lemelson.mit.edu/"
+    note: "Date inferred from prior years, not confirmed by a current CFP page."
+
+  - id: collegiate-inventors
+    name: "Collegiate Inventors Competition"
+    class: contest
+    month: 6
+    day: 25
+    lead_days: 60
+    confirmed: false
+    link: "https://www.invent.org/collegiate-inventors"
+    note: "~late June per spec; exact day inferred, not confirmed."
+
+  - id: nhrl-open
+    name: "NHRL Open Registration"
+    class: contest
+    month: 0
+    day: 1
+    lead_days: 21
+    confirmed: true
+    link: "https://www.nhrl.io/"
+    note: "Monthly recurrence (month: 0)."
+
+  - id: icra-competitions
+    name: "ICRA Competition Track Announcements"
+    class: contest
+    month: 11
+    day: 1
+    lead_days: 30
+    confirmed: false
+    link: "https://www.ieee-ras.org/conferences-workshops"
+    note: >
+      IEEE RAS's own conference calendar is the most stable link available;
+      ICRA itself changes domain every year (icra20XX.org).
