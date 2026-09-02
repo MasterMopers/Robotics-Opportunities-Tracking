@@ -153,8 +153,11 @@ def extract_location(text: str, rules: dict):
     """City/venue + format (In-person / Remote / Hybrid), only ever from text
     the page actually states -- default is Unknown, never inferred from
     class/source. Returns (location, format, confidence) with confidence in
-    {explicit, inferred, none} -- explicit means a specific city/venue was
-    captured, inferred means only a format phrase (no venue) was found."""
+    {explicit, inferred, llm, none} -- explicit means a specific city/venue
+    was captured, inferred means only a format phrase (no venue) was found.
+    "llm" is never set by this function -- it's added only by the separate,
+    opt-in lib/llm_enrich.py fallback when this function leaves the field as
+    "none"."""
     location = None
     for pat in rules.get("location_city_patterns", []):
         for m in re.finditer(pat, text, re.DOTALL if "@type" in pat else 0):
@@ -193,7 +196,9 @@ def extract_location(text: str, rules: dict):
 
 def extract_participants(text: str, rules: dict):
     """A real participant/attendee count the page states, never an invented
-    estimate. Returns (count, confidence) with confidence in {explicit, none}."""
+    estimate. Returns (count, confidence) with confidence in
+    {explicit, llm, none} -- "llm" is never set by this function, see
+    lib/llm_enrich.py."""
     for pat in rules.get("participant_count_patterns", []):
         m = re.search(pat, text, re.IGNORECASE)
         if m:

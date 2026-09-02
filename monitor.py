@@ -27,6 +27,7 @@ from adapters._http import get as http_get
 from lib import classify as classify_lib
 from lib import db
 from lib import enrich as enrich_lib
+from lib import llm_enrich
 from lib import normalize
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -55,7 +56,7 @@ def new_report():
     }
 
 
-def process_item(conn, source, raw, rules, init_mode, report):
+def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
     if not raw.get("url") or not raw.get("title"):
         return
     iid = normalize.item_id(raw["url"])
@@ -86,6 +87,11 @@ def process_item(conn, source, raw, rules, init_mode, report):
         # commit message, not a grant name) -- always route to review so it
         # surfaces without being misrepresented as a live grant row.
         decision = {"status": "review", "final_class": None, "reject_phrase": None}
+
+    # LLM fallback runs strictly after classification -- it can only ever
+    # touch enrichment["location"/"participants_count"], never scores/reject,
+    # so it structurally cannot influence accept/review/reject either way.
+    enrichment = llm_enrich.apply_llm_fallback(enrichment, combined_text, llm_budget)
 
     conn.execute(
         """INSERT INTO items
@@ -122,7 +128,7 @@ def process_item(conn, source, raw, rules, init_mode, report):
     ].append(row)
 
 
-def run_source(conn, source, rules, init_mode, report):
+def run_source(conn, source, rules, init_mode, report, llm_budget):
     source_id = source["id"]
     error = None
     try:
@@ -165,20 +171,23 @@ def run_source(conn, source, rules, init_mode, report):
         )
 
     for raw in raw_items:
-        process_item(conn, source, raw, rules, init_mode, report)
+        process_item(conn, source, raw, rules, init_mode, report, llm_budget)
 
 
-def backfill_location_participants(conn, rules):
+def backfill_location_participants(conn, rules, llm_budget):
     """One-time pass: re-fetch each currently accepted item's own page once
-    to fill in location/participants for rows enriched before those fields
-    existed. Not part of the recurring weekly/monthly jobs -- those already
-    enrich every new diff item for these fields at no extra request cost, via
-    the same page fetch process_item always did."""
+    to fill in location/participants for rows still unresolved -- regex
+    first, then the same opt-in LLM fallback used by the normal run for
+    whatever regex still can't find. Not part of the recurring weekly/
+    monthly jobs -- those already enrich every new diff item for these
+    fields at no extra request cost, via the same page fetch process_item
+    always did."""
     rows = conn.execute(
         "SELECT id, url, title, snippet FROM items WHERE status='accepted' "
-        "AND location_confidence IS NULL"
+        "AND (location_confidence IS NULL OR location_confidence='none' "
+        "OR participants_confidence IS NULL OR participants_confidence='none')"
     ).fetchall()
-    updated, failed = 0, 0
+    updated, failed, llm_used = 0, 0, 0
     for r in rows:
         try:
             page_text = http_get(r["url"]).text
@@ -189,13 +198,22 @@ def backfill_location_participants(conn, rules):
         combined = f"{r['title']} {r['snippet'] or ''} {page_text}"
         location, fmt, loc_conf = enrich_lib.extract_location(combined, rules)
         count, count_conf = enrich_lib.extract_participants(combined, rules)
+        enrichment = {
+            "location": location, "location_format": fmt, "location_confidence": loc_conf,
+            "participants_count": count, "participants_confidence": count_conf,
+        }
+        before = (loc_conf, count_conf)
+        enrichment = llm_enrich.apply_llm_fallback(enrichment, combined, llm_budget)
+        if (enrichment["location_confidence"], enrichment["participants_confidence"]) != before:
+            llm_used += 1
         conn.execute(
             """UPDATE items SET location=?, location_format=?, location_confidence=?,
                participants_count=?, participants_confidence=? WHERE id=?""",
-            (location, fmt, loc_conf, count, count_conf, r["id"]),
+            (enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
+             enrichment["participants_count"], enrichment["participants_confidence"], r["id"]),
         )
         updated += 1
-    print(f"Backfill: {updated} item(s) updated, {failed} fetch failure(s).")
+    print(f"Backfill: {updated} item(s) updated ({llm_used} via LLM fallback), {failed} fetch failure(s).")
 
 
 def _next_occurrence(month, day, today, monthly=False):
@@ -363,15 +381,17 @@ def main():
     db.init_db(DB_PATH)
 
     if args.backfill:
+        llm_budget = llm_enrich.LLMCallBudget(llm_enrich.MAX_LLM_CALLS_PER_BACKFILL)
         with db.connect(DB_PATH) as conn:
-            backfill_location_participants(conn, rules)
+            backfill_location_participants(conn, rules, llm_budget)
         return
 
+    llm_budget = llm_enrich.LLMCallBudget(llm_enrich.MAX_LLM_CALLS_PER_RUN)
     report = new_report()
 
     with db.connect(DB_PATH) as conn:
         for source in sources_cfg["sources"]:
-            run_source(conn, source, rules, args.init, report)
+            run_source(conn, source, rules, args.init, report, llm_budget)
 
         check_calendar(conn, sources_cfg.get("calendar", []), report)
         expire_stale_items(conn)

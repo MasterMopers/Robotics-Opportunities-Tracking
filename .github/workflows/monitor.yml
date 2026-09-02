@@ -6,7 +6,13 @@ on:
     # under load, and jobs at minute 0 get hit hardest. Do not "tidy" these.
     - cron: "37 13 * * 1"   # weekly: discovery run (Monday)
     - cron: "37 13 1 * *"   # monthly: rebuild README from state.db
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Run monitor.py --backfill (re-check accepted items still missing location/participants; uses OPENAI_API_KEY if the secret is set)"
+        type: boolean
+        default: false
+        required: false
 
 permissions:
   contents: write
@@ -31,7 +37,13 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '37 13 * * 1'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python monitor.py
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ "${{ github.event_name == 'workflow_dispatch' && inputs.backfill }}" = "true" ]; then
+            python monitor.py --backfill
+          else
+            python monitor.py
+          fi
 
       - name: Monthly README rebuild
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '37 13 1 * *'
