@@ -122,3 +122,49 @@ team_size_patterns:
   - '(\d+)-person'
   - '\bindividual\b'
   - '\bsolo\b'
+
+# Location/format extraction. Only ever fills in a city or format when the
+# page itself states it -- default is "Unknown", never a guess. Tried in
+# order; first match wins. The JSON-LD pattern is bounded to text following
+# an "@type": "Event" tag specifically so it can't pick up an unrelated
+# Organization/publisher address elsewhere on the same page (verified this
+# false positive is real: Hackster's contest pages carry Hackster's own HQ
+# address in an Organization block with no Event block at all).
+location_city_patterns:
+  - '"@type":\s*"Event".{0,500}?"addressLocality":\s*"([^"]+)"(?:,\s*"addressRegion":\s*"([^"]*)")?'
+  - 'lv-hero-location">([^<]{2,60})<'
+  - 'In-Person:</strong>\s*([^<\n]{2,80})'
+  - 'in person at\s+([^,<."=\n]{2,60}(?:,\s*[^,<."=\n]{2,40})?)'
+  - 'held at\s+([^,<."=\n]{2,60})'
+  - '\bVenue:\s*([^<\n"=]{2,60})'
+
+location_format_phrases:
+  in_person:
+    - 'in-person event'
+    - 'in-person only'
+    - 'on-site'
+    - 'must attend in person'
+  remote:
+    - 'fully remote'
+    - 'remote-friendly'
+    - 'virtual event'
+    - 'held online'
+    - 'online hackathon'
+    - 'virtual hackathon'
+    - 'apply from anywhere'
+    - 'anywhere in the world'
+    - '(?:eligib\w*|open to|apply)[^.\n]{0,60}\bworldwide\b'
+  hybrid:
+    - 'hybrid event'
+    - 'in-person and virtual'
+    - 'virtual and in-person'
+    - 'in-person or virtual'
+
+# Only ever a real number the page states (e.g. "9 participants", "141
+# Participants"), never an invented estimate. Tried in order; first match
+# wins.
+participant_count_patterns:
+  - 'Participants \((\d[\d,]*)\)'
+  - 'Participants</span><span[^>]*>(\d[\d,]*)</span>'
+  - '<strong>(\d[\d,]*)</strong>\s*participants'
+  - '(\d[\d,]*)\+?\s*(?:participants|attendees|hackers|applicants|teams (?:competed|registered|applied))\b'

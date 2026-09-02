@@ -60,6 +60,22 @@ def connect(path: str):
         conn.close()
 
 
+# SQLite's ALTER TABLE has no "ADD COLUMN IF NOT EXISTS" -- check
+# PRAGMA table_info first so re-running init_db on an already-migrated
+# state.db is a no-op instead of a "duplicate column" error.
+NEW_COLUMNS = [
+    ("location", "TEXT"),
+    ("location_format", "TEXT"),
+    ("location_confidence", "TEXT"),
+    ("participants_count", "INTEGER"),
+    ("participants_confidence", "TEXT"),
+]
+
+
 def init_db(path: str) -> None:
     with connect(path) as conn:
         conn.executescript(SCHEMA)
+        existing = {row["name"] for row in conn.execute("PRAGMA table_info(items)")}
+        for name, coltype in NEW_COLUMNS:
+            if name not in existing:
+                conn.execute(f"ALTER TABLE items ADD COLUMN {name} {coltype}")

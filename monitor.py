@@ -91,8 +91,10 @@ def process_item(conn, source, raw, rules, init_mode, report):
         """INSERT INTO items
            (id, source_id, class, title, url, snippet, first_seen, last_seen, status,
             final_class, contest_score, grant_score, matched_signals, reject_phrase,
-            deadline_date, deadline_confidence, money_raw, team_size, enriched, reported)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,?)""",
+            deadline_date, deadline_confidence, money_raw, team_size,
+            location, location_format, location_confidence,
+            participants_count, participants_confidence, enriched, reported)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,?)""",
         (
             iid, source["id"], source["class"], raw["title"], raw["url"], snippet, ts, ts,
             decision["status"], decision["final_class"],
@@ -100,6 +102,8 @@ def process_item(conn, source, raw, rules, init_mode, report):
             json.dumps(enrichment["matched_signals"]), decision["reject_phrase"],
             enrichment["deadline_date"], enrichment["deadline_confidence"],
             enrichment["money_raw"], enrichment["team_size"],
+            enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
+            enrichment["participants_count"], enrichment["participants_confidence"],
             1 if init_mode else 0,
         ),
     )
@@ -162,6 +166,36 @@ def run_source(conn, source, rules, init_mode, report):
 
     for raw in raw_items:
         process_item(conn, source, raw, rules, init_mode, report)
+
+
+def backfill_location_participants(conn, rules):
+    """One-time pass: re-fetch each currently accepted item's own page once
+    to fill in location/participants for rows enriched before those fields
+    existed. Not part of the recurring weekly/monthly jobs -- those already
+    enrich every new diff item for these fields at no extra request cost, via
+    the same page fetch process_item always did."""
+    rows = conn.execute(
+        "SELECT id, url, title, snippet FROM items WHERE status='accepted' "
+        "AND location_confidence IS NULL"
+    ).fetchall()
+    updated, failed = 0, 0
+    for r in rows:
+        try:
+            page_text = http_get(r["url"]).text
+        except Exception as e:
+            print(f"  backfill fetch failed for {r['url']}: {type(e).__name__}: {e}", file=sys.stderr)
+            failed += 1
+            continue
+        combined = f"{r['title']} {r['snippet'] or ''} {page_text}"
+        location, fmt, loc_conf = enrich_lib.extract_location(combined, rules)
+        count, count_conf = enrich_lib.extract_participants(combined, rules)
+        conn.execute(
+            """UPDATE items SET location=?, location_format=?, location_confidence=?,
+               participants_count=?, participants_confidence=? WHERE id=?""",
+            (location, fmt, loc_conf, count, count_conf, r["id"]),
+        )
+        updated += 1
+    print(f"Backfill: {updated} item(s) updated, {failed} fetch failure(s).")
 
 
 def _next_occurrence(month, day, today, monthly=False):
@@ -315,12 +349,24 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--init", action="store_true", help="Seed state.db without notifying.")
     parser.add_argument("--show-rejects", action="store_true", help="Print the full reject list.")
+    parser.add_argument(
+        "--backfill",
+        action="store_true",
+        help="One-time: re-fetch accepted items missing location/participants fields, then exit. "
+             "Not run by the recurring workflow.",
+    )
     args = parser.parse_args()
 
     sources_cfg = load_yaml(SOURCES_PATH)
     rules = load_yaml(RULES_PATH)
 
     db.init_db(DB_PATH)
+
+    if args.backfill:
+        with db.connect(DB_PATH) as conn:
+            backfill_location_participants(conn, rules)
+        return
+
     report = new_report()
 
     with db.connect(DB_PATH) as conn:

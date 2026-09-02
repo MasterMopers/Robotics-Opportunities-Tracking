@@ -5,6 +5,7 @@ state.db. Everything outside that block is hand-written and survives."""
 import os
 import re
 from datetime import date, datetime, timezone
+from zoneinfo import ZoneInfo
 
 import yaml
 
@@ -38,22 +39,56 @@ def money_sort_key(money_raw):
     return value
 
 
+def esc(cell):
+    """Escape a table cell: pipes break markdown tables, newlines break rows."""
+    return str(cell).replace("|", "\\|").replace("\n", " ").strip() if cell else cell
+
+
+def location_cell(item):
+    fmt = item["location_format"] or "Unknown"
+    place = item["location"]
+    if fmt == "Unknown":
+        return "Unknown"
+    if place:
+        return f"{fmt} ({esc(place)})"
+    return fmt
+
+
+def participants_cell(item):
+    n = item["participants_count"]
+    return f"{n:,}" if n is not None else "Unknown"
+
+
+def table(headers, rows):
+    if not rows:
+        return None
+    lines = ["| " + " | ".join(headers) + " |", "| " + " | ".join(["---"] * len(headers)) + " |"]
+    lines.extend(rows)
+    return "\n".join(lines)
+
+
 def render_contest_row(item):
     deadline = item["deadline_date"] or "rolling/unknown"
     team = item["team_size"] or "n/a"
     money = item["money_raw"] or "n/a"
-    return f"- **[{item['title']}]({item['url']})** -- prize: {money}, team size: {team}, deadline: {deadline}"
+    return (
+        f"| [{esc(item['title'])}]({item['url']}) | {esc(money)} | {esc(team)} | "
+        f"{location_cell(item)} | {participants_cell(item)} | {deadline} |"
+    )
 
 
 def render_grant_row(item):
     money = item["money_raw"] or "amount not extracted"
     deadline = item["deadline_date"] or "rolling"
-    return f"- **[{item['title']}]({item['url']})** -- amount: {money}, eligibility: rolling/see link, deadline: {deadline}"
+    return (
+        f"| [{esc(item['title'])}]({item['url']}) | {esc(money)} | {location_cell(item)} | {deadline} |"
+    )
 
 
 def build_autogen_block(conn):
     today = date.today()
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    now_est = datetime.now(ZoneInfo("America/New_York"))
+    now = now_est.strftime("%Y-%m-%d %H:%M %Z")
 
     contests = conn.execute(
         "SELECT * FROM items WHERE final_class='contest' AND status='accepted' ORDER BY "
@@ -84,67 +119,101 @@ def build_autogen_block(conn):
 
     calendar_entries = yaml.safe_load(open(SOURCES_PATH)).get("calendar", [])
 
+    with_location = sum(1 for c in list(contests) + list(grants) if c["location_format"] and c["location_format"] != "Unknown")
+    with_count = sum(1 for c in list(contests) + list(grants) if c["participants_count"] is not None)
+    total_items = len(contests) + len(grants)
+
     lines = [BEGIN_MARKER, ""]
-    lines.append(f"**Last updated: {now}**")
+    lines.append(f"### 📡 {len(contests)} open contest(s) · {len(grants)} grant(s) listed · updated {now}")
     lines.append("")
+    if total_items:
+        lines.append(
+            f"_Format (in-person/remote/hybrid) is known for {with_location}/{total_items} listings below; "
+            f"a participant count is known for {with_count}/{total_items} -- both only ever come from what the "
+            f"source page itself states, never a guess. \"Unknown\" means the page didn't say._"
+        )
+        lines.append("")
 
     lines.append("## Open contests")
+    lines.append(
+        "_Sorted by deadline. \"Team size\" and \"Format\" come straight from each contest's own page._"
+    )
+    lines.append("")
     if contests:
-        for c in contests:
-            lines.append(render_contest_row(c))
+        rows = [render_contest_row(c) for c in contests]
+        lines.append(table(["Contest", "Prize", "Team size", "Format", "Participants (last count)", "Deadline"], rows))
     else:
         lines.append("_None currently open._")
     lines.append("")
 
     lines.append("## Available grants")
+    lines.append("_Sorted by amount (highest first). Most microgrant programs are rolling, not deadline-based._")
+    lines.append("")
     if grants:
-        for g in grants:
-            lines.append(render_grant_row(g))
+        rows = [render_grant_row(g) for g in grants]
+        lines.append(table(["Grant", "Amount", "Format / eligibility area", "Deadline"], rows))
     else:
         lines.append("_None currently listed._")
     lines.append("")
 
     lines.append("## Closing soon")
+    lines.append(f"_Contests inside {CLOSING_SOON_DAYS} days of their deadline._")
+    lines.append("")
     if closing_soon:
-        for days_left, c in sorted(closing_soon, key=lambda t: t[0]):
-            lines.append(f"- **[{c['title']}]({c['url']})** -- {days_left} day(s) left (deadline {c['deadline_date']})")
+        rows = [
+            f"| [{esc(c['title'])}]({c['url']}) | {c['deadline_date']} | {days_left} |"
+            for days_left, c in sorted(closing_soon, key=lambda t: t[0])
+        ]
+        lines.append(table(["Contest", "Deadline", "Days left"], rows))
     else:
-        lines.append("_Nothing closing in the next {} days._".format(CLOSING_SOON_DAYS))
+        lines.append(f"_Nothing closing in the next {CLOSING_SOON_DAYS} days._")
     lines.append("")
 
     lines.append("## Watch calendar")
+    lines.append("_Annual/monthly programs tracked by date instead of scraping a page that's static for 11 months._")
+    lines.append("")
     if calendar_entries:
+        rows = []
         for entry in sorted(
             calendar_entries,
             key=lambda e: _next_occurrence(e["month"], e["day"], today, monthly=(e["month"] == 0)),
         ):
             target = _next_occurrence(entry["month"], entry["day"], today, monthly=(entry["month"] == 0))
             days_until = (target - today).days
-            flag = "" if entry.get("confirmed", True) else " (date unconfirmed, inferred from prior years)"
-            lines.append(
-                f"- [{entry['name']}]({entry['link']}) -- next: {target.isoformat()} "
-                f"({days_until} days away), alert {entry['lead_days']}d out{flag}"
+            flag = "" if entry.get("confirmed", True) else " *(date unconfirmed, inferred from prior years)*"
+            rows.append(
+                f"| [{esc(entry['name'])}]({entry['link']}) | {target.isoformat()}{flag} | "
+                f"{days_until} | alert {entry['lead_days']}d out |"
             )
+        lines.append(table(["Program", "Next occurrence", "Days away", "Alert window"], rows))
     else:
         lines.append("_No calendar entries configured._")
     lines.append("")
 
     lines.append("## Needs review")
+    lines.append(
+        "_The classifier couldn't confidently call these contest vs. grant vs. neither -- "
+        "worth a quick human look rather than being silently dropped._"
+    )
+    lines.append("")
     if review_items:
-        for r in review_items:
-            lines.append(
-                f"- [{r['title']}]({r['url']}) -- source: {r['source_id']}, "
-                f"contest score: {r['contest_score']}, grant score: {r['grant_score']}"
-            )
+        rows = [
+            f"| [{esc(r['title'])}]({r['url']}) | {r['source_id']} | {r['contest_score']} | {r['grant_score']} |"
+            for r in review_items
+        ]
+        lines.append(table(["Item", "Source", "Contest score", "Grant score"], rows))
     else:
         lines.append("_Nothing pending review._")
     lines.append("")
 
     lines.append("## Sources needing attention")
+    lines.append("")
     if broken_sources:
-        for s in broken_sources:
-            err = f" -- {s['last_error']}" if s["last_error"] else ""
-            lines.append(f"- **{s['source_id']}**: {s['last_status']} (last count: {s['last_count']}){err}")
+        rows = [
+            f"| {s['source_id']} | {s['last_status']} | {s['last_count']} | {esc(s['last_error']) or ''} |"
+            for s in broken_sources
+        ]
+        lines.append(table(["Source", "Status", "Last count", "Error"], rows))
     else:
         lines.append("_All sources healthy as of last run._")
     lines.append("")

@@ -5,6 +5,7 @@ This only ever runs on items that are new in this diff -- never the whole
 page list -- per the cost constraint in the spec.
 """
 
+import html
 import re
 from datetime import date
 
@@ -111,11 +112,105 @@ def _negated(text: str, match_start: int, window: int = 20) -> bool:
     return bool(_NEGATION_WORDS.search(preceding))
 
 
+_PLACE_JUNK_TOKENS = (
+    '"', "=", "<", ">", "\\", "{", "}", "[", "]", "$", "px;", "aria-", "svg",
+    "children", "fetchpriority", "class=", "panel-label", "-title",
+)
+# Cut a capture at the first sign it has run on into a time/date/filler
+# clause rather than staying a place name, e.g. "...held at 530pm on Aug
+# 21st" or "Johns Hopkins University in the fall".
+_PLACE_TRIM_TRIGGER = re.compile(
+    r"\b(?:in the|during|this fall|this spring|this summer|this winter|where|for|"
+    r"mon|tue|tues|wed|thu|thurs|fri|sat|sun|"
+    r"monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b"
+    r"|\d{1,4}(?::\d{2})?\s*(?:am|pm)\b",
+    re.IGNORECASE,
+)
+
+
+def _clean_place(candidate: str):
+    """Reject regex captures that are HTML/JS noise rather than a real place
+    name (e.g. a bare 'venue' match landing inside an aria-labelledby
+    attribute), and trim an obviously real capture's trailing filler clause."""
+    if not candidate:
+        return None
+    candidate = html.unescape(candidate).strip()
+    m = _PLACE_TRIM_TRIGGER.search(candidate)
+    if m:
+        candidate = candidate[: m.start()].strip()
+    candidate = candidate.rstrip(",.;:- ")
+    if not (2 <= len(candidate) <= 80):
+        return None
+    if not re.search(r"[A-Za-z]", candidate):
+        return None
+    low = candidate.lower()
+    if any(tok in low for tok in _PLACE_JUNK_TOKENS):
+        return None
+    return candidate
+
+
+def extract_location(text: str, rules: dict):
+    """City/venue + format (In-person / Remote / Hybrid), only ever from text
+    the page actually states -- default is Unknown, never inferred from
+    class/source. Returns (location, format, confidence) with confidence in
+    {explicit, inferred, none} -- explicit means a specific city/venue was
+    captured, inferred means only a format phrase (no venue) was found."""
+    location = None
+    for pat in rules.get("location_city_patterns", []):
+        for m in re.finditer(pat, text, re.DOTALL if "@type" in pat else 0):
+            groups = [g for g in m.groups() if g]
+            candidate = ", ".join(dict.fromkeys(g.strip() for g in groups))
+            cleaned = _clean_place(candidate)
+            if cleaned:
+                location = cleaned
+                break
+        if location:
+            break
+
+    phrases = rules.get("location_format_phrases", {})
+    has_in_person = any(re.search(p, text, re.IGNORECASE) for p in phrases.get("in_person", []))
+    has_remote = any(re.search(p, text, re.IGNORECASE) for p in phrases.get("remote", []))
+    has_hybrid = any(re.search(p, text, re.IGNORECASE) for p in phrases.get("hybrid", []))
+
+    if has_hybrid or (has_in_person and has_remote):
+        fmt = "Hybrid"
+    elif location or has_in_person:
+        fmt = "In-person"
+    elif has_remote:
+        fmt = "Remote"
+    else:
+        fmt = "Unknown"
+
+    if location:
+        confidence = "explicit"
+    elif fmt != "Unknown":
+        confidence = "inferred"
+    else:
+        confidence = "none"
+
+    return location, fmt, confidence
+
+
+def extract_participants(text: str, rules: dict):
+    """A real participant/attendee count the page states, never an invented
+    estimate. Returns (count, confidence) with confidence in {explicit, none}."""
+    for pat in rules.get("participant_count_patterns", []):
+        m = re.search(pat, text, re.IGNORECASE)
+        if m:
+            try:
+                return int(m.group(1).replace(",", "")), "explicit"
+            except ValueError:
+                continue
+    return None, "none"
+
+
 def enrich_item(text: str, rules: dict):
     deadline_date, deadline_confidence = extract_deadline(text, rules)
     money_raw = extract_money(text, rules)
     team_size = extract_team_size(text, rules)
     matched, scores, reject = extract_signals(text, rules)
+    location, location_format, location_confidence = extract_location(text, rules)
+    participants_count, participants_confidence = extract_participants(text, rules)
     return {
         "deadline_date": deadline_date,
         "deadline_confidence": deadline_confidence,
@@ -124,4 +219,9 @@ def enrich_item(text: str, rules: dict):
         "matched_signals": matched,
         "scores": scores,
         "reject": reject,
+        "location": location,
+        "location_format": location_format,
+        "location_confidence": location_confidence,
+        "participants_count": participants_count,
+        "participants_confidence": participants_confidence,
     }
