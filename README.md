@@ -15,7 +15,7 @@ How it works: `.github/workflows/monitor.yml` runs `monitor.py` weekly (new item
 
 <!-- BEGIN AUTOGEN -->
 
-**Last updated: 2026-09-02 21:38 UTC**
+**Last updated: 2026-09-02 21:39 UTC**
 
 ## Open contests
 - **[Next Gen Hackathon 2026 -Bengaluru](https://next-gen-hackathon.devpost.com/)** -- prize: n/a, team size: n/a, deadline: 2026-10-23
