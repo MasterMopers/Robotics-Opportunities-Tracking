@@ -10,7 +10,8 @@ from zoneinfo import ZoneInfo
 import yaml
 
 from lib import db
-from monitor import SOURCES_PATH, _next_occurrence
+from lib.geo import classify_country
+from monitor import RULES_PATH, SOURCES_PATH, _next_occurrence
 
 # --- tunable constants -----------------------------------------------------
 CLOSING_SOON_DAYS = 14          # discovered contests inside this many days of
@@ -90,14 +91,24 @@ def build_autogen_block(conn):
     now_est = datetime.now(ZoneInfo("America/New_York"))
     now = now_est.strftime("%Y-%m-%d %H:%M %Z")
 
-    contests = conn.execute(
+    contests_all = conn.execute(
         "SELECT * FROM items WHERE final_class='contest' AND status='accepted' ORDER BY "
         "(deadline_date IS NULL), deadline_date ASC"
     ).fetchall()
-    grants = conn.execute(
+    grants_all = conn.execute(
         "SELECT * FROM items WHERE final_class='grant' AND status='accepted'"
     ).fetchall()
-    grants = sorted(grants, key=lambda r: money_sort_key(r["money_raw"]), reverse=True)
+    grants_all = sorted(grants_all, key=lambda r: money_sort_key(r["money_raw"]), reverse=True)
+
+    # US-only filter: excludes only items whose resolved location string
+    # confidently names a non-US place. An item with no resolved location
+    # (status "Unknown") is left visible -- excluding it would be a guess,
+    # and this project never guesses. Rows stay 'accepted' in state.db either
+    # way; this is a render-time filter only, fully auditable there.
+    rules_for_geo = yaml.safe_load(open(RULES_PATH))
+    contests = [c for c in contests_all if classify_country(c["location"], rules_for_geo) != "non-US"]
+    grants = [g for g in grants_all if classify_country(g["location"], rules_for_geo) != "non-US"]
+    non_us_excluded = (len(contests_all) - len(contests)) + (len(grants_all) - len(grants))
     review_items = conn.execute(
         "SELECT * FROM items WHERE status='review' ORDER BY first_seen DESC"
     ).fetchall()
@@ -126,6 +137,14 @@ def build_autogen_block(conn):
     lines = [BEGIN_MARKER, ""]
     lines.append(f"### 📡 {len(contests)} open contest(s) · {len(grants)} grant(s) listed · updated {now}")
     lines.append("")
+    if non_us_excluded:
+        lines.append(
+            f"_{non_us_excluded} item(s) excluded from the tables below as confidently non-US "
+            f"(location text names a specific non-US place). Items whose location is still "
+            f"Unknown are kept visible, not excluded -- this filter only removes what we can "
+            f"actually tell is outside the US, never a guess._"
+        )
+        lines.append("")
     if total_items:
         lines.append(
             f"_Format (in-person/remote/hybrid) is known for {with_location}/{total_items} listings below; "

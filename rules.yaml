@@ -168,3 +168,201 @@ participant_count_patterns:
   - 'Participants</span><span[^>]*>(\d[\d,]*)</span>'
   - '<strong>(\d[\d,]*)</strong>\s*participants'
   - '(\d[\d,]*)\+?\s*(?:participants|attendees|hackers|applicants|teams (?:competed|registered|applied))\b'
+
+# Country classification for the resolved `location` string (lib/geo.py),
+# used only to exclude confidently non-US items from the rendered README --
+# never to exclude something whose location is still unknown. Matching is
+# case-insensitive, word-boundary, against the short resolved location
+# string (e.g. "Austin, TX" / "Bengaluru, Karnataka"), not raw page text.
+geo:
+  us_markers:
+    - "usa"
+    - "u.s.a"
+    - "u.s."
+    - "united states"
+    - "washington dc"
+    - "washington, d.c."
+    # US state names + postal abbreviations (abbreviations require a
+    # preceding comma+space, e.g. ", TX", to avoid matching inside words)
+    - "alabama"
+    - "alaska"
+    - "arizona"
+    - "arkansas"
+    - "california"
+    - "colorado"
+    - "connecticut"
+    - "delaware"
+    - "florida"
+    - "georgia"
+    - "hawaii"
+    - "idaho"
+    - "illinois"
+    - "indiana"
+    - "iowa"
+    - "kansas"
+    - "kentucky"
+    - "louisiana"
+    - "maine"
+    - "maryland"
+    - "massachusetts"
+    - "michigan"
+    - "minnesota"
+    - "mississippi"
+    - "missouri"
+    - "montana"
+    - "nebraska"
+    - "nevada"
+    - "new hampshire"
+    - "new jersey"
+    - "new mexico"
+    - "new york"
+    - "north carolina"
+    - "north dakota"
+    - "ohio"
+    - "oklahoma"
+    - "oregon"
+    - "pennsylvania"
+    - "rhode island"
+    - "south carolina"
+    - "south dakota"
+    - "tennessee"
+    - "texas"
+    - "utah"
+    - "vermont"
+    - "virginia"
+    - "west virginia"
+    - "wisconsin"
+    - "wyoming"
+  us_state_abbrevs:
+    - AL
+    - AK
+    - AZ
+    - AR
+    - CA
+    - CO
+    - CT
+    - DE
+    - FL
+    - GA
+    - HI
+    - ID
+    - IL
+    - IN
+    - IA
+    - KS
+    - KY
+    - LA
+    - ME
+    - MD
+    - MA
+    - MI
+    - MN
+    - MS
+    - MO
+    - MT
+    - NE
+    - NV
+    - NH
+    - NJ
+    - NM
+    - NY
+    - NC
+    - ND
+    - OH
+    - OK
+    - OR
+    - PA
+    - RI
+    - SC
+    - SD
+    - TN
+    - TX
+    - UT
+    - VT
+    - VA
+    - WA
+    - WV
+    - WI
+    - WY
+    - DC
+  non_us_markers:
+    # Country names
+    - "india"
+    - "united kingdom"
+    - "u.k."
+    - "england"
+    - "scotland"
+    - "wales"
+    - "northern ireland"
+    - "canada"
+    - "germany"
+    - "france"
+    - "australia"
+    - "china"
+    - "japan"
+    - "brazil"
+    - "nigeria"
+    - "mexico"
+    - "spain"
+    - "italy"
+    - "netherlands"
+    - "singapore"
+    - "south korea"
+    - "korea"
+    - "pakistan"
+    - "bangladesh"
+    - "indonesia"
+    - "vietnam"
+    - "philippines"
+    - "kenya"
+    - "egypt"
+    - "south africa"
+    - "ireland"
+    - "poland"
+    - "sweden"
+    - "norway"
+    - "denmark"
+    - "switzerland"
+    - "austria"
+    - "belgium"
+    - "portugal"
+    - "greece"
+    - "turkey"
+    - "israel"
+    - "united arab emirates"
+    - "saudi arabia"
+    - "new zealand"
+    - "russia"
+    - "ukraine"
+    - "argentina"
+    - "chile"
+    - "colombia"
+    # Indian states/union territories (common in hackathon location strings)
+    - "karnataka"
+    - "maharashtra"
+    - "delhi"
+    - "tamil nadu"
+    - "telangana"
+    - "uttar pradesh"
+    - "west bengal"
+    - "gujarat"
+    - "kerala"
+    - "punjab"
+    - "rajasthan"
+    - "bengaluru"
+    - "bangalore"
+    - "mumbai"
+    - "hyderabad"
+    - "chennai"
+    - "pune"
+    - "kolkata"
+    - "new delhi"
+    # Canadian provinces
+    - "ontario"
+    - "quebec"
+    - "british columbia"
+    - "alberta"
+    - "manitoba"
+    - "toronto"
+    - "vancouver"
+    - "montreal"

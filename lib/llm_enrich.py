@@ -119,9 +119,15 @@ def apply_llm_fallback(enrichment: dict, text: str, budget: LLMCallBudget) -> di
         return enrichment
 
     filled = dict(enrichment)
-    if needs_location and result.location:
-        filled["location"] = result.location
-        filled["location_format"] = result.location_format or enrichment["location_format"]
+    if needs_location and (result.location or result.location_format):
+        # location and location_format are independently fillable -- a
+        # remote/hybrid event with no stated city must still get its format
+        # (previously both were gated on result.location being truthy, which
+        # silently dropped the format for any event with no named venue).
+        if result.location:
+            filled["location"] = result.location
+        if result.location_format:
+            filled["location_format"] = result.location_format
         filled["location_confidence"] = "llm"
     if needs_participants and result.participants_count is not None:
         filled["participants_count"] = result.participants_count

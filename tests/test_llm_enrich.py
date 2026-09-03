@@ -62,6 +62,19 @@ class TestApplyLLMFallback(unittest.TestCase):
 
     @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
     @patch("lib.llm_enrich._call_llm")
+    def test_format_only_fills_even_with_no_named_city(self, mock_call):
+        # Regression: a remote/hybrid event with no stated venue must still
+        # get its format applied -- previously gated on result.location
+        # being truthy, which silently dropped a known format when there
+        # was no city to go with it.
+        mock_call.return_value = _FakeParsed(location=None, location_format="Remote", participants_count=None)
+        result = llm_enrich.apply_llm_fallback(_enrichment(), "text", self.budget)
+        self.assertIsNone(result["location"])
+        self.assertEqual(result["location_format"], "Remote")
+        self.assertEqual(result["location_confidence"], "llm")
+
+    @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
+    @patch("lib.llm_enrich._call_llm")
     def test_api_failure_leaves_fields_unresolved(self, mock_call):
         mock_call.return_value = None  # _call_llm already swallowed the exception
         e = _enrichment()

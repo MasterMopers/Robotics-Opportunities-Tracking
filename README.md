@@ -26,16 +26,17 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 87 open contest(s) · 92 grant(s) listed · updated 2026-09-02 20:05 EDT
+### 📡 79 open contest(s) · 91 grant(s) listed · updated 2026-09-02 20:20 EDT
 
-_Format (in-person/remote/hybrid) is known for 29/179 listings below; a participant count is known for 18/179 -- both only ever come from what the source page itself states, never a guess. "Unknown" means the page didn't say._
+_9 item(s) excluded from the tables below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
+
+_Format (in-person/remote/hybrid) is known for 27/170 listings below; a participant count is known for 16/170 -- both only ever come from what the source page itself states, never a guess. "Unknown" means the page didn't say._
 
 ## Open contests
 _Sorted by deadline. "Team size" and "Format" come straight from each contest's own page._
 
 | Contest | Prize | Team size | Format | Participants (last count) | Deadline |
 | --- | --- | --- | --- | --- | --- |
-| [Next Gen Hackathon 2026 -Bengaluru](https://next-gen-hackathon.devpost.com/) | n/a | n/a | In-person (Bengaluru, Karnataka) | 9 | 2026-10-23 |
 | [Modern Java In The Wild](https://www.hackster.io/contests/modern-java-in-the-wild) | $4,000 | n/a | Unknown | 141 | rolling/unknown |
 | [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | $4,000 | n/a | Unknown | 265 | rolling/unknown |
 | [Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
@@ -57,12 +58,10 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 | [HackMTY 2026](https://hackmty.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [HackWesTX 26](https://hackwestx.gdgttu.com/) | $1 | n/a | In-person (Lubbock, Texas) | Unknown | rolling/unknown |
 | [HackHers @GSU](https://hackhers.club/) | $7 | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack the North](https://hackthenorth.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [VTHacks 14](https://vthacks.com/) | $12K | solo | In-person (Virginia Tech) | 550 | rolling/unknown |
 | [HopHacks](https://www.hophacks.com/) | $1 | individual | In-person (Johns Hopkins University) | Unknown | rolling/unknown |
 | [SteelHacks XIII](https://steelhacks.org/) | n/a | n/a | In-person (University of Pittsburgh) | Unknown | rolling/unknown |
 | [&HACKS XII](https://andhacks.cs.wm.edu/) | n/a | solo | Unknown | Unknown | rolling/unknown |
-| [HackNex Season 2](https://innovocon.online/events/hacknex) | n/a | n/a | In-person (JIS College of Engineering, Block A, Phase III, Kalyani, West Bengal, India) | Unknown | rolling/unknown |
 | [HackGT 13](http://hack.gt/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [ShellHacks](https://shellhacks.net/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack the Hill](https://hackthehill.com/) | n/a | n/a | In-person (Ottawa, ON) | 4 | rolling/unknown |
@@ -93,19 +92,15 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 | [MakeCU](https://v0-curc-makecu.vercel.app/) | n/a | n/a | In-person (Carleton Commons) | 2,025 | rolling/unknown |
 | [HackUMass](https://www.hackumass.com/) | n/a | n/a | Unknown | 600 | rolling/unknown |
 | [DurHack](https://durhack.com) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [DeltaHacks](https://www.deltahacks.com/) | $1 | solo | Unknown | 600 | rolling/unknown |
 | [UofTHacks](https://uofthacks.com/) | $1 | individual | In-person | 500 | rolling/unknown |
 | [uOttaHack 9](https://2027.uottahack.ca/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [nwHacks](https://nwhacks.io/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hackville 2027](https://hackville.io/) | $390 | n/a | Hybrid | 150 | rolling/unknown |
 | [Hoya Hacks](https://www.hoyahacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [ElleHacks](https://ellehacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack@Brown 2027](https://hackatbrown.org/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [UGAHacks](https://ugahacks.com/) | $1 | n/a | Hybrid | 200 | rolling/unknown |
 | [SpartaHack](https://www.spartahack.com/) | $2 | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack_NCState](https://hackncstate.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [InnovateHer](https://innovateherhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [MakeUofT](http://makeuoft.ca/) | n/a | team of 2 | Unknown | Unknown | rolling/unknown |
 | [SF Hacks](https://sfhacks.io) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [CUhackit](https://cuhack.it/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [HackIllinois](https://www.hackillinois.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
@@ -115,7 +110,6 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 | [Kent Hack Enough](https://khe.io/) | $0.00 | Solo | Unknown | 4 | rolling/unknown |
 | [Diamondhacks](https://diamondhacks.acmucsd.com/) | $500 | n/a | Unknown | Unknown | rolling/unknown |
 | [HackKU27](https://www.hackku.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [MariHacks](https://www.marihacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [WEHack](https://www.wehackutd.com/) | $1 | up to 4 members | Unknown | Unknown | rolling/unknown |
 | [LA Hacks 27](https://lahacks.com) | $60,000 | n/a | Unknown | 1,400 | rolling/unknown |
 | [FLOSS Weekly Episode 880: The Two Wolves](https://hackaday.com/2026/09/02/floss-weekly-episode-880-the-two-wolves/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
@@ -171,7 +165,6 @@ _Sorted by amount (highest first). Most microgrant programs are rolling, not dea
 | [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | $1,000 | Unknown | rolling |
 | [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | $1,000 | Unknown | rolling |
 | [South Shore](https://www.awesomefoundation.org/en/chapters/southshore) | $1,000 | Unknown | rolling |
-| [Toronto](https://www.awesomefoundation.org/en/chapters/toronto) | $1,000 | Unknown | rolling |
 | [Kuala Lumpur](https://www.awesomefoundation.org/en/chapters/kualalumpur) | $1,000 | Unknown | rolling |
 | [Leiden](https://www.awesomefoundation.org/en/chapters/leiden) | $1,000 | Unknown | rolling |
 | [Rotterdam](https://www.awesomefoundation.org/en/chapters/rotterdam) | $1,000 | Unknown | rolling |
@@ -231,10 +224,10 @@ _Annual/monthly programs tracked by date instead of scraping a page that's stati
 
 | Program | Next occurrence | Days away | Alert window |
 | --- | --- | --- | --- |
-| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 22 | alert 45d out |
-| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 28 | alert 21d out |
-| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 59 | alert 30d out |
-| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 295 | alert 60d out |
+| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 23 | alert 45d out |
+| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 29 | alert 21d out |
+| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 60 | alert 30d out |
+| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 296 | alert 60d out |
 
 ## Needs review
 _The classifier couldn't confidently call these contest vs. grant vs. neither -- worth a quick human look rather than being silently dropped._
