@@ -26,11 +26,11 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 79 open contest(s) · 91 grant(s) listed · updated 2026-09-02 20:20 EDT
+### 📡 77 open contest(s) · 91 grant(s) listed · updated 2026-09-02 20:37 EDT
 
-_9 item(s) excluded from the tables below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
+_11 item(s) excluded from the tables below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
 
-_Format (in-person/remote/hybrid) is known for 27/170 listings below; a participant count is known for 16/170 -- both only ever come from what the source page itself states, never a guess. "Unknown" means the page didn't say._
+_Format (in-person/remote/hybrid) is known for 28/168 listings below; a participant count is known for 16/168 -- both only ever come from what the source page itself states, never a guess. "Unknown" means the page didn't say._
 
 ## Open contests
 _Sorted by deadline. "Team size" and "Format" come straight from each contest's own page._
@@ -52,11 +52,10 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 | [AeroGroundStation](https://www.pcbway.com/project/sponsor/AeroGroundStation_02c4ab80.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Esp32 based MP3 player](https://www.pcbway.com/project/sponsor/Esp32_based_MP3_player_268f1740.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [ZOREX DRIVE 30](https://www.pcbway.com/project/sponsor/ZOREX_DRIVE_30_8800755b.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Rainbow Six Siege-Inspired Airsoft Drone](https://www.pcbway.com/project/sponsor/Rainbow_Six_Siege_Inspired_Airsoft_Drone_6f9ff7b0.html) | n/a | individual | Unknown | Unknown | rolling/unknown |
-| [Global Hack Week: Data](https://events.mlh.io/events/14416-global-hack-week-data) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [Global Hack Week: Data](https://events.mlh.io/events/14416-global-hack-week-data) | n/a | n/a | Remote (Everywhere, Worldwide) | Unknown | rolling/unknown |
 | [HackRice](https://hackrice.com/) | $1 | n/a | In-person (Houston, Texas) | Unknown | rolling/unknown |
 | [HackMTY 2026](https://hackmty.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackWesTX 26](https://hackwestx.gdgttu.com/) | $1 | n/a | In-person (Lubbock, Texas) | Unknown | rolling/unknown |
+| [HackWesTX 26](https://hackwestx.gdgttu.com/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [HackHers @GSU](https://hackhers.club/) | $7 | n/a | Unknown | Unknown | rolling/unknown |
 | [VTHacks 14](https://vthacks.com/) | $12K | solo | In-person (Virginia Tech) | 550 | rolling/unknown |
 | [HopHacks](https://www.hophacks.com/) | $1 | individual | In-person (Johns Hopkins University) | Unknown | rolling/unknown |
@@ -65,18 +64,18 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 | [HackGT 13](http://hack.gt/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [ShellHacks](https://shellhacks.net/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack the Hill](https://hackthehill.com/) | n/a | n/a | In-person (Ottawa, ON) | 4 | rolling/unknown |
-| [hackUMBC](https://hackumbc.tech/) | $1 | up to 4 members | In-person (ITE and Engineering Buildings, UMBC, Baltimore, MD) | Unknown | rolling/unknown |
+| [hackUMBC](https://hackumbc.tech/) | $1 | up to 4 members | In-person (ITE and Engineering Buildings) | Unknown | rolling/unknown |
 | [BigRed//Hacks 2026](https://www.bigredhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Gator Quant Hacks](https://www.gqhacks.com) | n/a | n/a | In-person (Gainesville, Florida) | Unknown | rolling/unknown |
+| [Gator Quant Hacks](https://www.gqhacks.com) | n/a | n/a | In-person (University of Florida) | Unknown | rolling/unknown |
 | [Rowdy Hacks](https://rowdyhacks.org) | $19 | n/a | Unknown | 4 | rolling/unknown |
 | [Hack Dearborn 5: Conjure Reality](https://www.hackdearborn.org/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [MHacks](https://www.mhacks.org/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [WolfHacks by ACM at NC State](https://wolfhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [WolfHacks by ACM at NC State](https://wolfhacks.org/) | n/a | n/a | In-person (Raleigh, NC) | Unknown | rolling/unknown |
 | [StormHacks](https://www.stormhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [GirlHacks](https://www.njitgirlhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [HackNC](https://hacknc.com/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack Knight](https://hackknight.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Knight Hacks IX](https://2026.knighthacks.org/) | $60,000 | n/a | In-person (University of Central Florida) | Unknown | rolling/unknown |
+| [Knight Hacks IX](https://2026.knighthacks.org/) | $60,000 | n/a | In-person (University of Central Florida, Orlando, FL, US) | Unknown | rolling/unknown |
 | [CodeRED Orion](https://uhcode.red/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Innohacks 4.0](https://innohacks.live) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [SwampHacks XII](https://swamphacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
@@ -88,17 +87,16 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 | [Hack at Penn State](https://hackpsu.org) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [hackCBS 9.O](https://hackcbs.tech) | $220,000 | individual | Remote | Unknown | rolling/unknown |
 | [HackUTD](https://zeroday.hackutd.co) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [HackRPI 2026](https://hackrpi.com/) | $1 | n/a | In-person (Troy, New York) | Unknown | rolling/unknown |
+| [HackRPI 2026](https://hackrpi.com/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [MakeCU](https://v0-curc-makecu.vercel.app/) | n/a | n/a | In-person (Carleton Commons) | 2,025 | rolling/unknown |
 | [HackUMass](https://www.hackumass.com/) | n/a | n/a | Unknown | 600 | rolling/unknown |
 | [DurHack](https://durhack.com) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [UofTHacks](https://uofthacks.com/) | $1 | individual | In-person | 500 | rolling/unknown |
-| [uOttaHack 9](https://2027.uottahack.ca/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hackville 2027](https://hackville.io/) | $390 | n/a | Hybrid | 150 | rolling/unknown |
 | [Hoya Hacks](https://www.hoyahacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack@Brown 2027](https://hackatbrown.org/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
 | [UGAHacks](https://ugahacks.com/) | $1 | n/a | Hybrid | 200 | rolling/unknown |
-| [SpartaHack](https://www.spartahack.com/) | $2 | n/a | Unknown | Unknown | rolling/unknown |
+| [SpartaHack](https://www.spartahack.com/) | $2 | n/a | In-person (MSU STEM Building) | Unknown | rolling/unknown |
 | [Hack_NCState](https://hackncstate.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [InnovateHer](https://innovateherhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [SF Hacks](https://sfhacks.io) | $1 | n/a | Unknown | Unknown | rolling/unknown |
@@ -224,10 +222,10 @@ _Annual/monthly programs tracked by date instead of scraping a page that's stati
 
 | Program | Next occurrence | Days away | Alert window |
 | --- | --- | --- | --- |
-| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 23 | alert 45d out |
-| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 29 | alert 21d out |
-| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 60 | alert 30d out |
-| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 296 | alert 60d out |
+| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 22 | alert 45d out |
+| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 28 | alert 21d out |
+| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 59 | alert 30d out |
+| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 295 | alert 60d out |
 
 ## Needs review
 _The classifier couldn't confidently call these contest vs. grant vs. neither -- worth a quick human look rather than being silently dropped._
