@@ -176,16 +176,17 @@ def run_source(conn, source, rules, init_mode, report, llm_budget):
 
 def backfill_location_participants(conn, rules, llm_budget):
     """One-time pass: re-fetch each currently accepted item's own page once
-    to fill in location/participants for rows still unresolved -- regex
-    first, then the same opt-in LLM fallback used by the normal run for
-    whatever regex still can't find. Not part of the recurring weekly/
-    monthly jobs -- those already enrich every new diff item for these
-    fields at no extra request cost, via the same page fetch process_item
-    always did."""
+    to fill in location/participants/deadline for rows still unresolved --
+    regex/JSON-LD first, then the same opt-in LLM fallback used by the
+    normal run for whatever that still can't find. Not part of the
+    recurring weekly/monthly jobs -- those already enrich every new diff
+    item for these fields at no extra request cost, via the same page
+    fetch process_item always did."""
     rows = conn.execute(
         "SELECT id, url, title, snippet FROM items WHERE status='accepted' "
         "AND (location_confidence IS NULL OR location_confidence='none' "
-        "OR participants_confidence IS NULL OR participants_confidence='none')"
+        "OR participants_confidence IS NULL OR participants_confidence='none' "
+        "OR deadline_confidence IS NULL OR deadline_confidence='none')"
     ).fetchall()
     updated, failed, llm_used = 0, 0, 0
     for r in rows:
@@ -198,19 +199,24 @@ def backfill_location_participants(conn, rules, llm_budget):
         combined = f"{r['title']} {r['snippet'] or ''} {page_text}"
         location, fmt, loc_conf = enrich_lib.extract_location(combined, rules)
         count, count_conf = enrich_lib.extract_participants(combined, rules)
+        deadline_date, deadline_conf = enrich_lib.extract_deadline(combined, rules)
         enrichment = {
             "location": location, "location_format": fmt, "location_confidence": loc_conf,
             "participants_count": count, "participants_confidence": count_conf,
+            "deadline_date": deadline_date, "deadline_confidence": deadline_conf,
         }
-        before = (loc_conf, count_conf)
+        before = (loc_conf, count_conf, deadline_conf)
         enrichment = llm_enrich.apply_llm_fallback(enrichment, combined, llm_budget)
-        if (enrichment["location_confidence"], enrichment["participants_confidence"]) != before:
+        if (enrichment["location_confidence"], enrichment["participants_confidence"],
+                enrichment["deadline_confidence"]) != before:
             llm_used += 1
         conn.execute(
             """UPDATE items SET location=?, location_format=?, location_confidence=?,
-               participants_count=?, participants_confidence=? WHERE id=?""",
+               participants_count=?, participants_confidence=?,
+               deadline_date=?, deadline_confidence=? WHERE id=?""",
             (enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
-             enrichment["participants_count"], enrichment["participants_confidence"], r["id"]),
+             enrichment["participants_count"], enrichment["participants_confidence"],
+             enrichment["deadline_date"], enrichment["deadline_confidence"], r["id"]),
         )
         updated += 1
     print(f"Backfill: {updated} item(s) updated ({llm_used} via LLM fallback), {failed} fetch failure(s).")
