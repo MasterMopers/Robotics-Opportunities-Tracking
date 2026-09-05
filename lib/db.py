@@ -99,6 +99,16 @@ NEW_COLUMNS = [
     # NULL/absent means "never enriched at all" -- see monitor.py's
     # re-enrichment trigger condition.
     ("last_enriched", "TEXT"),
+    # Phase 6: the second, separate LLM assessment call (lib/llm_assess.py).
+    # Labels only -- never feeds status/final_class/contest_score/
+    # grant_score/relevance_score. llm_robotics_relevant is for
+    # ranking/calibration; eligibility_llm_evidence records the one quote
+    # that justified whichever eligibility_* fields got confidence "llm"
+    # from this call (the 8 eligibility columns themselves already exist
+    # from Phase 3 and are reused here, not duplicated).
+    ("llm_robotics_relevant", "INTEGER"),
+    ("llm_relevance_evidence", "TEXT"),
+    ("eligibility_llm_evidence", "TEXT"),
 ]
 
 

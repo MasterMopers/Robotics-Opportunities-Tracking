@@ -20,7 +20,9 @@ specifically -- still hard-capped by MAX_LLM_CALLS_PER_RUN either way.
 
 import os
 
-MAX_LLM_CALLS_PER_RUN = 25          # weekly discovery run
+MAX_LLM_CALLS_PER_RUN = 200         # weekly discovery run -- raised in Phase 6 to also
+                                     # cover lib/llm_assess.py's second call (shares this
+                                     # same budget object; see monitor.py)
 MAX_LLM_CALLS_PER_BACKFILL = 250    # one-off --backfill catch-up pass
 MAX_LLM_INPUT_CHARS = 8000          # bound tokens/cost per call; page_text is raw HTML
 

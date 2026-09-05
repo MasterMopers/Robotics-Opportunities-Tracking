@@ -28,6 +28,7 @@ from lib import classify as classify_lib
 from lib import db
 from lib import eligibility as eligibility_lib
 from lib import enrich as enrich_lib
+from lib import llm_assess
 from lib import llm_enrich
 from lib import normalize
 from lib.extract import Document, extract_document
@@ -191,6 +192,26 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
         )
         enriched_flag = 0
 
+    # Phase 6: a second, separate LLM call -- invoked ONLY for items that
+    # already passed the deterministic relevance gate (never for an item
+    # the deterministic layer didn't already consider in-scope; this is
+    # the "cannot promote an item that failed the deterministic gate"
+    # requirement, enforced at the call site, not just inside
+    # lib/llm_assess.py). It writes only to its own columns
+    # (llm_robotics_relevant/llm_relevance_evidence/eligibility_llm_evidence
+    # plus whichever eligibility_* fields it fills), all tagged confidence
+    # "llm" -- never to status/final_class/contest_score/grant_score/
+    # relevance_score, which this dict update never even names.
+    if enrichment.get("relevance_eligible"):
+        llm_updates = llm_assess.assess_item(combined_doc, rules, enrichment, llm_budget)
+        if llm_updates:
+            enrichment = dict(enrichment)
+            enrichment.update(llm_updates)
+
+    # Eligibility verdict is computed last, after any Phase 6 LLM gap-fill,
+    # so a field the LLM resolved (confidence "llm") counts the same as a
+    # deterministically resolved one -- lib.eligibility.evaluate() treats
+    # explicit/llm identically and only "none" as unresolved.
     eligibility_verdict, eligibility_reason = eligibility_lib.evaluate(enrichment, profile)
 
     # Shared between the INSERT (brand-new item) and UPDATE (Phase 5
@@ -213,6 +234,7 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
         "requires_enrollment", "requires_enrollment_confidence",
         "equity_required", "equity_required_confidence",
         "eligibility", "enriched",
+        "llm_robotics_relevant", "llm_relevance_evidence", "eligibility_llm_evidence",
     ]
     enrichment_values = (
         source["id"], source["class"], raw["title"], raw["url"], snippet, decision["status"],
@@ -234,6 +256,8 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
         enrichment["requires_enrollment"], enrichment["requires_enrollment_confidence"],
         enrichment["equity_required"], enrichment["equity_required_confidence"],
         eligibility_verdict, enriched_flag,
+        enrichment.get("llm_robotics_relevant"), enrichment.get("llm_relevance_evidence"),
+        enrichment.get("eligibility_llm_evidence"),
     )
     assert len(enrichment_columns) == len(enrichment_values), (
         f"{len(enrichment_columns)} columns vs {len(enrichment_values)} values"
