@@ -59,14 +59,51 @@ def new_report():
     }
 
 
+def needs_reenrichment(existing_row, today=None) -> bool:
+    """Phase 5: replaces the old "if it exists, only touch last_seen"
+    short-circuit, which meant a row enriched from a JS shell on day one
+    (or simply never enriched because it predates a given extractor) stayed
+    Unknown forever. Re-run the full pipeline on an existing row whenever
+    any of:
+      - deadline_confidence = 'none' (never resolved)
+      - relevance_score IS NULL (predates the relevance axis, or was never
+        scored for some other reason)
+      - enriched = 0 (explicitly marked as not really enriched -- e.g. the
+        JS-shell case from Phase 1)
+      - last_enriched is more than 14 days old (routine refresh -- a page
+        that was a JS shell when first crawled may not be one anymore, a
+        rolling deadline may have been posted since, etc.)
+    `--backfill` remains a manual escape hatch (lib/db.py docstring), but
+    stops being the only repair mechanism."""
+    today = today or datetime.now(timezone.utc)
+
+    if existing_row["deadline_confidence"] in (None, "none"):
+        return True
+    if existing_row["relevance_score"] is None:
+        return True
+    if not existing_row["enriched"]:
+        return True
+
+    last_enriched = existing_row["last_enriched"]
+    if not last_enriched:
+        return True
+    try:
+        last = datetime.fromisoformat(last_enriched)
+    except ValueError:
+        return True
+    if last.tzinfo is None:
+        last = last.replace(tzinfo=timezone.utc)
+    return (today - last) > timedelta(days=14)
+
+
 def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profile):
     if not raw.get("url") or not raw.get("title"):
         return
     iid = normalize.item_id(raw["url"])
-    existing = conn.execute("SELECT id FROM items WHERE id = ?", (iid,)).fetchone()
+    existing = conn.execute("SELECT * FROM items WHERE id = ?", (iid,)).fetchone()
     ts = now_iso()
 
-    if existing:
+    if existing and not needs_reenrichment(existing):
         conn.execute(
             "UPDATE items SET last_seen = ?, title = ? WHERE id = ?",
             (ts, raw["title"], iid),
@@ -156,8 +193,12 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
 
     eligibility_verdict, eligibility_reason = eligibility_lib.evaluate(enrichment, profile)
 
-    columns = [
-        "id", "source_id", "class", "title", "url", "snippet", "first_seen", "last_seen", "status",
+    # Shared between the INSERT (brand-new item) and UPDATE (Phase 5
+    # re-enrichment of an existing row) paths -- everything except the
+    # identity/bookkeeping columns (id, first_seen, last_seen,
+    # last_enriched, reported), which are handled per-path below.
+    enrichment_columns = [
+        "source_id", "class", "title", "url", "snippet", "status",
         "final_class", "contest_score", "grant_score", "matched_signals", "reject_phrase",
         "deadline_date", "deadline_confidence", "money_raw", "team_size",
         "location", "location_format", "location_confidence",
@@ -171,12 +212,11 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
         "max_team_size", "max_team_size_confidence",
         "requires_enrollment", "requires_enrollment_confidence",
         "equity_required", "equity_required_confidence",
-        "eligibility", "enriched", "reported",
+        "eligibility", "enriched",
     ]
-    values = (
-        iid, source["id"], source["class"], raw["title"], raw["url"], snippet, ts, ts,
-        decision["status"], decision["final_class"],
-        enrichment["scores"]["contest"], enrichment["scores"]["grant"],
+    enrichment_values = (
+        source["id"], source["class"], raw["title"], raw["url"], snippet, decision["status"],
+        decision["final_class"], enrichment["scores"]["contest"], enrichment["scores"]["grant"],
         json.dumps(enrichment["matched_signals"]), decision["reject_phrase"],
         enrichment["deadline_date"], enrichment["deadline_confidence"],
         enrichment["money_raw"], enrichment["team_size"],
@@ -193,11 +233,28 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
         enrichment["max_team_size"], enrichment["max_team_size_confidence"],
         enrichment["requires_enrollment"], enrichment["requires_enrollment_confidence"],
         enrichment["equity_required"], enrichment["equity_required_confidence"],
-        eligibility_verdict,
-        enriched_flag,
-        1 if init_mode else 0,
+        eligibility_verdict, enriched_flag,
     )
-    assert len(columns) == len(values), f"{len(columns)} columns vs {len(values)} values"
+    assert len(enrichment_columns) == len(enrichment_values), (
+        f"{len(enrichment_columns)} columns vs {len(enrichment_values)} values"
+    )
+
+    if existing:
+        # Re-enrichment of a row that already exists (Phase 5): overwrite
+        # everything the pipeline just recomputed, including status/
+        # final_class (a row can be reclassified once a gap is filled --
+        # that's the point), but never first_seen, and never reported
+        # (re-enrichment is not "this is new," so it must not trigger a
+        # duplicate GitHub issue mention for an item already reported).
+        set_clause = ", ".join(f"{c} = ?" for c in enrichment_columns)
+        conn.execute(
+            f"UPDATE items SET {set_clause}, last_seen = ?, last_enriched = ? WHERE id = ?",
+            enrichment_values + (ts, ts, iid),
+        )
+        return
+
+    columns = ["id"] + enrichment_columns + ["first_seen", "last_seen", "last_enriched", "reported"]
+    values = (iid,) + enrichment_values + (ts, ts, ts, 1 if init_mode else 0)
     placeholders = ",".join("?" * len(columns))
     conn.execute(f"INSERT INTO items ({','.join(columns)}) VALUES ({placeholders})", values)
 
@@ -500,6 +557,14 @@ def main():
         help="One-time: re-fetch accepted items missing location/participants fields, then exit. "
              "Not run by the recurring workflow.",
     )
+    parser.add_argument(
+        "--cadence",
+        choices=("daily", "weekly"),
+        default=None,
+        help="Phase 5: only run sources whose sources.yaml `cadence` matches (API-shaped sources are "
+             "daily, HTML scrapers are weekly -- absent cadence defaults to weekly). Omit to run every "
+             "source regardless of cadence (used by --init and any ad-hoc manual run).",
+    )
     args = parser.parse_args()
 
     sources_cfg = load_yaml(SOURCES_PATH)
@@ -517,8 +582,12 @@ def main():
     llm_budget = llm_enrich.LLMCallBudget(llm_enrich.MAX_LLM_CALLS_PER_RUN)
     report = new_report()
 
+    sources_to_run = sources_cfg["sources"]
+    if args.cadence:
+        sources_to_run = [s for s in sources_to_run if s.get("cadence", "weekly") == args.cadence]
+
     with db.connect(DB_PATH) as conn:
-        for source in sources_cfg["sources"]:
+        for source in sources_to_run:
             run_source(conn, source, rules, args.init, report, llm_budget, profile)
 
         check_calendar(conn, sources_cfg.get("calendar", []), report)

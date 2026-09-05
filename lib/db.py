@@ -95,6 +95,10 @@ NEW_COLUMNS = [
     ("equity_required", "INTEGER"),
     ("equity_required_confidence", "TEXT"),
     ("eligibility", "TEXT"),   # eligible|ineligible|unknown -- lib/eligibility.py's verdict
+    # Phase 5: when a row was last actually re-enriched (not just re-seen).
+    # NULL/absent means "never enriched at all" -- see monitor.py's
+    # re-enrichment trigger condition.
+    ("last_enriched", "TEXT"),
 ]
 
 
