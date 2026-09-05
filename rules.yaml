@@ -163,37 +163,31 @@ signals:
     - phrase: "rolling applications"
       weight: 2
 
+# Phase 3: equity/incorporation/faculty-sponsor/team-size used to be hard
+# REJECT rules here -- but "rejected outright" was always the wrong shape
+# for these: they're eligibility facts about a specific operator profile
+# (profile.yaml), not universal disqualifiers, and collapsing them into a
+# reject meant losing the actual fact (e.g. "team of 4" rejected the row
+# instead of recording max_team_size=4). They're migrated to structured
+# extractors in eligibility_patterns below and lib/eligibility.py; the
+# reject_rules entries for them are deleted here, not duplicated.
+#
+# K-12-only / high-school-only are migrated the same way, into max_age
+# extractors (see eligibility_patterns.max_age below) instead of a reject,
+# per the same reasoning.
+#
+# `institutional entry`/`company entry` stay here as hard REJECTs: this
+# project's operator is a solo, unincorporated individual, and there is no
+# eligibility column that would make "requires an institution/company as
+# the entrant" anything other than a flat disqualifier -- unlike team size
+# or incorporation, there's no profile value that ever satisfies it.
 reject_rules:
   contest:
-    - pattern: 'team of (4|5|6|7|8|9|1[0-9])'
-      label: "team size too large"
-    - pattern: 'minimum of \d+ members'
-      label: "minimum team size too large"
-    - pattern: 'faculty advisor'
-      label: "requires faculty advisor"
-    - pattern: 'faculty sponsor'
-      label: "requires faculty sponsor"
-    - pattern: 'must be nominated by'
-      label: "requires nomination"
     - pattern: 'institutional entry'
       label: "institutional entry only"
     - pattern: 'company entry'
       label: "company entry only"
-    - pattern: 'grades K-12'
-      label: "K-12 only"
-    - pattern: 'high school students only'
-      label: "high school only"
   grant:
-    - pattern: 'incorporated'
-      label: "requires incorporation"
-    - pattern: 'C-corp'
-      label: "requires C-corp"
-    - pattern: 'LLC required'
-      label: "requires LLC"
-    - pattern: 'equity'
-      label: "takes equity"
-    - pattern: 'SAFE note'
-      label: "takes a SAFE note"
     - pattern: 'business plan'
       label: "requires business plan"
     - pattern: 'pitch deck required'
@@ -208,6 +202,74 @@ reject_rules:
       label: "tuition-related"
     - pattern: 'scholarship for tuition'
       label: "tuition scholarship"
+
+# Phase 3: structured eligibility extractors (lib/eligibility.py). Each
+# produces one of the *_confidence values in {"explicit", "none"} (never a
+# guess) -- confidence "llm" is added only by the Phase 6 LLM assessment
+# fallback, for whatever these patterns leave unresolved. Negation-aware
+# via the same _negated() window lib/enrich.py already uses (e.g. "no
+# equity required" must not set equity_required=true).
+eligibility_patterns:
+  requires_incorporation:
+    - 'incorporated'
+    - 'C-corp'
+    - 'LLC required'
+  requires_faculty_sponsor:
+    - 'faculty advisor'
+    - 'faculty sponsor'
+    - 'must be nominated by'
+  requires_us_person:
+    - 'U\.S\. citizen'
+    - 'US citizens? only'
+    - 'must be a (?:U\.S\.|US) (?:citizen|permanent resident)'
+    - 'open only to (?:U\.S\.|US) residents'
+  # An explicit statement that a US-person restriction does NOT apply --
+  # only ever sets requires_us_person=false when the page itself says so,
+  # never inferred from silence.
+  requires_us_person_false:
+    - 'open to (?:applicants |entrants )?worldwide'
+    - 'open to international (?:applicants|entrants|teams)'
+    - 'no citizenship (?:requirement|restriction)'
+  equity_required:
+    - 'equity'
+    - 'SAFE note'
+  requires_enrollment:
+    - 'must be (?:a )?currently enrolled'
+    - 'current(?:ly)? enrolled student'
+    - 'enrolled full-time'
+    - 'proof of enrollment'
+  # K-12/high-school-only pages state an upper age bound implicitly rather
+  # than a number -- 18 is the conventional US high-school-senior ceiling,
+  # recorded explicitly as a real extracted fact (confidence "explicit"),
+  # not a silent guess: the page's own "K-12"/"high school" wording is the
+  # literal evidence for it.
+  max_age:
+    - pattern: 'grades? K-12'
+      value: 18
+    - pattern: 'high school students? only'
+      value: 18
+  # Free-text age bounds the page states outright.
+  min_age_numeric:
+    - 'must be (?:at least |)(\d{1,2}) (?:years? old|or older)'
+    - 'ages? (\d{1,2})\+'
+    - 'minimum age:?\s*(\d{1,2})'
+  age_range_numeric:
+    - 'ages? (\d{1,2})\s*(?:-|to|–)\s*(\d{1,2})'
+  entry_fee_free:
+    - 'no entry fee'
+    - 'free to enter'
+    - 'no application fee'
+    - '\$0 (?:entry|application) fee'
+  entry_fee_numeric:
+    - 'entry fee(?: of)?:?\s*\$(\d[\d,]*(?:\.\d+)?)'
+    - 'application fee:?\s*\$(\d[\d,]*(?:\.\d+)?)'
+  max_team_size_numeric:
+    - 'teams? of (?:up to )?(\d{1,2})'
+    - 'up to (\d{1,2})[- ]person teams?'
+    - 'maximum(?: team size)? of (\d{1,2})'
+  max_team_size_solo:
+    - '\bindividual entries only\b'
+    - '\bsolo entries only\b'
 
 # Deadline phrase patterns, tried in order. %DATE% is replaced with a
 # dateutil-parseable date fragment matcher at runtime.

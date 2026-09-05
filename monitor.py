@@ -26,6 +26,7 @@ from adapters import fetch_source
 from adapters._http import get as http_get
 from lib import classify as classify_lib
 from lib import db
+from lib import eligibility as eligibility_lib
 from lib import enrich as enrich_lib
 from lib import llm_enrich
 from lib import normalize
@@ -35,6 +36,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(ROOT, "state.db")
 SOURCES_PATH = os.path.join(ROOT, "sources.yaml")
 RULES_PATH = os.path.join(ROOT, "rules.yaml")
+PROFILE_PATH = os.path.join(ROOT, "profile.yaml")
 
 
 def load_yaml(path):
@@ -57,7 +59,7 @@ def new_report():
     }
 
 
-def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
+def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profile):
     if not raw.get("url") or not raw.get("title"):
         return
     iid = normalize.item_id(raw["url"])
@@ -126,31 +128,52 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
         )
         enriched_flag = 0
 
-    conn.execute(
-        """INSERT INTO items
-           (id, source_id, class, title, url, snippet, first_seen, last_seen, status,
-            final_class, contest_score, grant_score, matched_signals, reject_phrase,
-            deadline_date, deadline_confidence, money_raw, team_size,
-            location, location_format, location_confidence,
-            participants_count, participants_confidence,
-            relevance_score, relevance_core_hits, relevance_buckets, relevance_terms,
-            enriched, reported)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-        (
-            iid, source["id"], source["class"], raw["title"], raw["url"], snippet, ts, ts,
-            decision["status"], decision["final_class"],
-            enrichment["scores"]["contest"], enrichment["scores"]["grant"],
-            json.dumps(enrichment["matched_signals"]), decision["reject_phrase"],
-            enrichment["deadline_date"], enrichment["deadline_confidence"],
-            enrichment["money_raw"], enrichment["team_size"],
-            enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
-            enrichment["participants_count"], enrichment["participants_confidence"],
-            enrichment["relevance_score"], enrichment["relevance_core_hits"],
-            json.dumps(enrichment["relevance_buckets"]), json.dumps(enrichment["relevance_terms"]),
-            enriched_flag,
-            1 if init_mode else 0,
-        ),
+    eligibility_verdict, eligibility_reason = eligibility_lib.evaluate(enrichment, profile)
+
+    columns = [
+        "id", "source_id", "class", "title", "url", "snippet", "first_seen", "last_seen", "status",
+        "final_class", "contest_score", "grant_score", "matched_signals", "reject_phrase",
+        "deadline_date", "deadline_confidence", "money_raw", "team_size",
+        "location", "location_format", "location_confidence",
+        "participants_count", "participants_confidence",
+        "relevance_score", "relevance_core_hits", "relevance_buckets", "relevance_terms",
+        "requires_incorporation", "requires_incorporation_confidence",
+        "requires_faculty_sponsor", "requires_faculty_sponsor_confidence",
+        "requires_us_person", "requires_us_person_confidence",
+        "min_age", "min_age_confidence", "max_age", "max_age_confidence",
+        "entry_fee_usd", "entry_fee_usd_confidence",
+        "max_team_size", "max_team_size_confidence",
+        "requires_enrollment", "requires_enrollment_confidence",
+        "equity_required", "equity_required_confidence",
+        "eligibility", "enriched", "reported",
+    ]
+    values = (
+        iid, source["id"], source["class"], raw["title"], raw["url"], snippet, ts, ts,
+        decision["status"], decision["final_class"],
+        enrichment["scores"]["contest"], enrichment["scores"]["grant"],
+        json.dumps(enrichment["matched_signals"]), decision["reject_phrase"],
+        enrichment["deadline_date"], enrichment["deadline_confidence"],
+        enrichment["money_raw"], enrichment["team_size"],
+        enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
+        enrichment["participants_count"], enrichment["participants_confidence"],
+        enrichment["relevance_score"], enrichment["relevance_core_hits"],
+        json.dumps(enrichment["relevance_buckets"]), json.dumps(enrichment["relevance_terms"]),
+        enrichment["requires_incorporation"], enrichment["requires_incorporation_confidence"],
+        enrichment["requires_faculty_sponsor"], enrichment["requires_faculty_sponsor_confidence"],
+        enrichment["requires_us_person"], enrichment["requires_us_person_confidence"],
+        enrichment["min_age"], enrichment["min_age_confidence"],
+        enrichment["max_age"], enrichment["max_age_confidence"],
+        enrichment["entry_fee_usd"], enrichment["entry_fee_usd_confidence"],
+        enrichment["max_team_size"], enrichment["max_team_size_confidence"],
+        enrichment["requires_enrollment"], enrichment["requires_enrollment_confidence"],
+        enrichment["equity_required"], enrichment["equity_required_confidence"],
+        eligibility_verdict,
+        enriched_flag,
+        1 if init_mode else 0,
     )
+    assert len(columns) == len(values), f"{len(columns)} columns vs {len(values)} values"
+    placeholders = ",".join("?" * len(columns))
+    conn.execute(f"INSERT INTO items ({','.join(columns)}) VALUES ({placeholders})", values)
 
     row = {
         "title": raw["title"],
@@ -166,7 +189,7 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
     ].append(row)
 
 
-def run_source(conn, source, rules, init_mode, report, llm_budget):
+def run_source(conn, source, rules, init_mode, report, llm_budget, profile):
     source_id = source["id"]
     error = None
     try:
@@ -209,7 +232,7 @@ def run_source(conn, source, rules, init_mode, report, llm_budget):
         )
 
     for raw in raw_items:
-        process_item(conn, source, raw, rules, init_mode, report, llm_budget)
+        process_item(conn, source, raw, rules, init_mode, report, llm_budget, profile)
 
 
 def backfill_location_participants(conn, rules, llm_budget):
@@ -426,6 +449,7 @@ def main():
 
     sources_cfg = load_yaml(SOURCES_PATH)
     rules = load_yaml(RULES_PATH)
+    profile = load_yaml(PROFILE_PATH)["profile"]
 
     db.init_db(DB_PATH)
 
@@ -440,7 +464,7 @@ def main():
 
     with db.connect(DB_PATH) as conn:
         for source in sources_cfg["sources"]:
-            run_source(conn, source, rules, args.init, report, llm_budget)
+            run_source(conn, source, rules, args.init, report, llm_budget, profile)
 
         check_calendar(conn, sources_cfg.get("calendar", []), report)
         expire_stale_items(conn)

@@ -74,6 +74,27 @@ NEW_COLUMNS = [
     ("relevance_core_hits", "INTEGER"),
     ("relevance_buckets", "TEXT"),   # JSON list
     ("relevance_terms", "TEXT"),     # JSON list, for auditability
+    # Phase 3: structured eligibility fields (lib/eligibility.py). Each is
+    # paired with a `{name}_confidence` column taking explicit|llm|none.
+    ("requires_incorporation", "INTEGER"),
+    ("requires_incorporation_confidence", "TEXT"),
+    ("requires_faculty_sponsor", "INTEGER"),
+    ("requires_faculty_sponsor_confidence", "TEXT"),
+    ("requires_us_person", "INTEGER"),
+    ("requires_us_person_confidence", "TEXT"),
+    ("min_age", "INTEGER"),
+    ("min_age_confidence", "TEXT"),
+    ("max_age", "INTEGER"),
+    ("max_age_confidence", "TEXT"),
+    ("entry_fee_usd", "REAL"),
+    ("entry_fee_usd_confidence", "TEXT"),
+    ("max_team_size", "INTEGER"),
+    ("max_team_size_confidence", "TEXT"),
+    ("requires_enrollment", "INTEGER"),
+    ("requires_enrollment_confidence", "TEXT"),
+    ("equity_required", "INTEGER"),
+    ("equity_required_confidence", "TEXT"),
+    ("eligibility", "TEXT"),   # eligible|ineligible|unknown -- lib/eligibility.py's verdict
 ]
 
 

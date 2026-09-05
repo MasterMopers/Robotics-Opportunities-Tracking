@@ -14,6 +14,8 @@ from datetime import date
 
 from dateutil import parser as dateutil_parser
 
+from lib import negation
+from lib.eligibility import extract_eligibility_fields
 from lib.extract import Document
 from lib.relevance import score_relevance
 
@@ -173,17 +175,11 @@ def extract_signals(text: str, rules: dict):
     return matched, scores, reject
 
 
-_NEGATION_WORDS = re.compile(
-    r"\b(no|not|non|without|zero|free of|isn't|doesn't|won't|never)\b[\s-]*$", re.IGNORECASE
-)
-
-
-def _negated(text: str, match_start: int, window: int = 20) -> bool:
-    """True if a negation word sits immediately before the match, e.g. a
-    page advertising "no equity funding" shouldn't trip the "equity" reject
-    rule -- that's the opposite of what the rule is meant to catch."""
-    preceding = text[max(0, match_start - window):match_start]
-    return bool(_NEGATION_WORDS.search(preceding))
+# Shared with lib/eligibility.py -- see lib/negation.py's module docstring
+# for why this lives in its own module (avoids a circular import between
+# enrich.py and eligibility.py).
+_NEGATION_WORDS = negation.NEGATION_WORDS
+_negated = negation.negated
 
 
 # Cut a capture at the first sign it has run on into a time/date/filler
@@ -322,7 +318,8 @@ def enrich_item(doc: Document, rules: dict):
     location, location_format, location_confidence = extract_location(doc, rules)
     participants_count, participants_confidence = extract_participants(doc, rules)
     relevance = score_relevance(doc.text, rules)
-    return {
+    eligibility_fields = extract_eligibility_fields(doc.text, rules)
+    result = {
         "deadline_date": deadline_date,
         "deadline_confidence": deadline_confidence,
         "money_raw": money_raw,
@@ -341,3 +338,5 @@ def enrich_item(doc: Document, rules: dict):
         "relevance_terms": relevance["relevance_terms"],
         "relevance_eligible": relevance["relevance_eligible"],
     }
+    result.update(eligibility_fields)
+    return result
