@@ -6,9 +6,54 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import yaml
 
-from lib.enrich import extract_location, extract_participants
+from lib.enrich import extract_deadline, extract_location, extract_participants
 
 RULES = yaml.safe_load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "rules.yaml")))
+
+
+class TestExtractDeadline(unittest.TestCase):
+    def test_close_on_phrasing(self):
+        # Regression: HopHacks' real page text is "Applications close on
+        # September 1, 2026" -- the original pattern required the date
+        # immediately after "close(s)", so the word "on" alone broke the
+        # match (confirmed against the live page, 2026-09).
+        date, conf = extract_deadline("Applications close on September 1, 2026.", RULES)
+        self.assertEqual(date, "2026-09-01")
+        self.assertEqual(conf, "explicit")
+
+    def test_original_phrasing_without_preposition_still_matches(self):
+        date, conf = extract_deadline("Submissions due March 3, 2027.", RULES)
+        self.assertEqual(date, "2027-03-03")
+        self.assertEqual(conf, "explicit")
+
+    def test_jsonld_application_deadline(self):
+        text = '{"@type": "Event", "name": "Some Hackathon", "applicationDeadline": "2026-10-15"}'
+        date, conf = extract_deadline(text, RULES)
+        self.assertEqual(date, "2026-10-15")
+        self.assertEqual(conf, "explicit")
+
+    def test_jsonld_start_date_is_not_treated_as_deadline(self):
+        # Regression: SteelHacks' real JSON-LD has startDate/endDate only,
+        # no application-deadline field at all (confirmed against the live
+        # page, 2026-09) -- an event's own date must never be mislabeled as
+        # when applications close.
+        text = (
+            '{"@type": "Event", "name": "SteelHacks XIII", "startDate": "2026-09-19", '
+            '"endDate": "2026-09-20"}'
+        )
+        date, conf = extract_deadline(text, RULES)
+        self.assertIsNone(date)
+        self.assertEqual(conf, "none")
+
+    def test_no_deadline_stated_is_none(self):
+        date, conf = extract_deadline("Come build something great with us this year!", RULES)
+        self.assertIsNone(date)
+        self.assertEqual(conf, "none")
+
+    def test_relative_deadline_still_works(self):
+        date, conf = extract_deadline("Hurry, closes in 5 days!", RULES, today=__import__("datetime").date(2026, 1, 1))
+        self.assertEqual(date, "2026-01-06")
+        self.assertEqual(conf, "relative")
 
 
 class TestExtractLocation(unittest.TestCase):

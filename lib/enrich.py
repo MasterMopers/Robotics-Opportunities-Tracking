@@ -28,11 +28,28 @@ def _compile_deadline_patterns(rules: dict):
 
 
 def extract_deadline(text: str, rules: dict, today: date = None):
+    """Returns (deadline_date, deadline_confidence) with confidence in
+    {explicit, relative, llm, none} -- "llm" is never set by this function,
+    see lib/llm_enrich.py. The JSON-LD path only ever reads an explicit
+    application/registration-deadline field, never an event's own
+    startDate/endDate -- those are when the event happens, not when
+    applications close, and mislabeling one as the other would be a real
+    mistake, not just a missed extraction."""
     today = today or date.today()
     patterns = _compile_deadline_patterns(rules)
 
     for pat in patterns["explicit"]:
         m = pat.search(text)
+        if m:
+            raw = m.group(1)
+            try:
+                parsed = dateutil_parser.parse(raw, fuzzy=True, default=None)
+            except (ValueError, OverflowError):
+                continue
+            return parsed.date().isoformat(), "explicit"
+
+    for jsonld_pat in rules.get("deadline_jsonld_patterns", []):
+        m = re.search(jsonld_pat, text, re.DOTALL)
         if m:
             raw = m.group(1)
             try:

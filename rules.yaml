@@ -102,17 +102,39 @@ reject_rules:
 
 # Deadline phrase patterns, tried in order. %DATE% is replaced with a
 # dateutil-parseable date fragment matcher at runtime.
+#
+# The `(?:on\s+|is\s+|by\s+)?` tolerance below is a verified fix: HopHacks'
+# real page text is "Applications close on September 1, 2026" -- the
+# original `closes?\s+%DATE%` requires the date immediately after the verb,
+# so the word "on" alone broke the match (confirmed live, 2026-09).
+# The same tolerance is applied symmetrically to the other four patterns as
+# a low-risk generalization (common English phrasing), not independently
+# verified against a second real false-negative the way the "closes" fix
+# was -- flagged here rather than overclaiming.
 deadline_patterns:
   explicit:
-    - 'deadline:?\s+%DATE%'
-    - 'entries close\s+%DATE%'
-    - 'submissions? due\s+%DATE%'
-    - 'closes?\s+%DATE%'
-    - 'ends?\s+%DATE%'
+    - 'deadline:?\s+(?:is\s+|on\s+)?%DATE%'
+    - 'entries close\s+(?:on\s+)?%DATE%'
+    - 'submissions? due\s+(?:on\s+|by\s+)?%DATE%'
+    - 'closes?\s+(?:on\s+)?%DATE%'
+    - 'ends?\s+(?:on\s+)?%DATE%'
   relative:
     - 'ends in (\d+)\s+days?'
     - 'closes in (\d+)\s+days?'
     - '(\d+)\s+days? (?:left|remaining)'
+
+# JSON-LD Event deadline fields. Schema.org's Event type has no standard
+# "application deadline" property, so this pattern is a defensive addition,
+# not verified against a real page using it in this session's sample (unlike
+# the location JSON-LD pattern below, which fixed a confirmed real
+# false-positive). Deliberately does NOT match startDate/endDate -- those
+# are the event's own dates, not an application deadline, and treating them
+# as one would be a real, misleading mistake (confirmed on SteelHacks: its
+# JSON-LD has startDate/endDate only, no deadline-shaped field at all -- it
+# correctly stays unresolved under this guard rather than showing a wrong
+# "deadline" that's actually just when the hackathon happens).
+deadline_jsonld_patterns:
+  - '"@type":\s*"Event".{0,500}?"(?:applicationDeadline|registrationDeadline|deadlineDate)":\s*"([^"]+)"'
 
 money_pattern: '(?:up to\s+)?\$\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?(?:\s*(?:to|-|–)\s*\$?\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?)?'
 

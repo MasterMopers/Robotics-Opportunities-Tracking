@@ -1,21 +1,27 @@
-"""Opt-in, fallback-only LLM enrichment for location/participants fields.
+"""Opt-in, fallback-only LLM enrichment for location/participants/deadline
+fields.
 
-Never called unless OPENAI_API_KEY is set. Never touches deadline, money,
-team_size, matched_signals, scores, or reject -- those feed classify_item()
-and classification stays 100% deterministic (see monitor.py: classify_item()
-is called before this module ever runs). This module only ever fills
-location/location_format/participants_count, and only for the specific
-fields lib.enrich.enrich_item() left unresolved (confidence == "none"),
-tagging anything it fills with confidence "llm".
+Never called unless OPENAI_API_KEY is set. Never touches money, team_size,
+matched_signals, scores, or reject -- those feed classify_item() and
+classification stays 100% deterministic (see monitor.py: classify_item() is
+called before this module ever runs). This module only ever fills
+location/location_format/participants_count/deadline_date, and only for the
+specific fields lib.enrich.enrich_item() left unresolved (confidence ==
+"none"), tagging anything it fills with confidence "llm".
 
-Regex always runs first, for free. This is a fallback for what regex
-couldn't find on the page -- not a replacement for it.
+Regex/JSON-LD always runs first, for free. This is a fallback for what that
+couldn't find on the page -- not a replacement for it. Deadline is the one
+field where this fallback is expected to fire on most items, not
+occasionally: regex/JSON-LD alone resolve very few real deadlines (most
+pages state one in a phrasing neither anticipates), so this is a deliberate,
+accepted shift from "rare fallback" to "routine assist" for that field
+specifically -- still hard-capped by MAX_LLM_CALLS_PER_RUN either way.
 """
 
 import os
 
 MAX_LLM_CALLS_PER_RUN = 25          # weekly discovery run
-MAX_LLM_CALLS_PER_BACKFILL = 200    # one-off --backfill catch-up pass
+MAX_LLM_CALLS_PER_BACKFILL = 250    # one-off --backfill catch-up pass
 MAX_LLM_INPUT_CHARS = 8000          # bound tokens/cost per call; page_text is raw HTML
 
 MODEL = "gpt-5-nano"
@@ -38,6 +44,13 @@ stated.
 attendees the page explicitly states (e.g. "141 participants", "1,200 applicants"). \
 Output null if no such number is stated. Never estimate, round, or derive this from an \
 unrelated number (prize amounts, team-size limits, dates, years, dollar figures).
+4. deadline: the specific date applications/entries/submissions must be in by -- an \
+APPLICATION or ENTRY deadline specifically. Output the date as plain text exactly as \
+the page states it (e.g. "September 1, 2026"). Output null if the page does not state \
+an application deadline. Do NOT output an event's start date, end date, or the date the \
+event itself takes place as if it were a deadline -- those are different things. Many \
+pages state only when the event happens and never say when applications close; in that \
+case output null rather than substituting the event date.
 
 Never infer, estimate, or guess beyond what is explicitly written in the provided text. \
 When in doubt, output null. Do not use outside/background knowledge about the \
@@ -82,6 +95,7 @@ def _call_llm(text: str):
         location: Optional[str]
         location_format: Optional[Literal["In-person", "Remote", "Hybrid"]]
         participants_count: Optional[int]
+        deadline: Optional[str]
 
     try:
         client = OpenAI(timeout=20)
@@ -98,16 +112,37 @@ def _call_llm(text: str):
         return None
 
 
+def _parse_llm_date(raw):
+    """Parse the LLM's raw deadline text the same way the regex path parses
+    an explicit-pattern match -- if it doesn't parse, there's no deadline,
+    never a stored guess. Lazy import: dateutil is a hard dependency of
+    lib/enrich.py already, but this module otherwise has zero imports at
+    module load time by design (see is_enabled()/module docstring)."""
+    if not raw:
+        return None
+    from dateutil import parser as dateutil_parser
+
+    try:
+        return dateutil_parser.parse(raw, fuzzy=True, default=None).date().isoformat()
+    except (ValueError, OverflowError, TypeError):
+        return None
+
+
 def apply_llm_fallback(enrichment: dict, text: str, budget: LLMCallBudget) -> dict:
-    """Fallback-only: returns enrichment unchanged unless regex left a gap,
-    OPENAI_API_KEY is set, and the budget allows one more attempt. On any
-    failure/timeout/exhausted-budget/disabled-key, returns enrichment
+    """Fallback-only: returns enrichment unchanged unless regex/JSON-LD left
+    a gap, OPENAI_API_KEY is set, and the budget allows one more attempt. On
+    any failure/timeout/exhausted-budget/disabled-key, returns enrichment
     unchanged -- same as today's behavior. Only writes back the field(s)
     regex actually left as "none", even if the model's response also
-    includes a value for a field regex already resolved."""
+    includes a value for a field regex already resolved.
+
+    Deadline is expected to need this fallback on most items (regex/JSON-LD
+    resolve very few real deadlines), unlike location/participants where it
+    fires occasionally -- see the module docstring."""
     needs_location = enrichment["location_confidence"] == "none"
     needs_participants = enrichment["participants_confidence"] == "none"
-    if not (needs_location or needs_participants):
+    needs_deadline = enrichment["deadline_confidence"] == "none"
+    if not (needs_location or needs_participants or needs_deadline):
         return enrichment
     if not is_enabled():
         return enrichment
@@ -132,4 +167,9 @@ def apply_llm_fallback(enrichment: dict, text: str, budget: LLMCallBudget) -> di
     if needs_participants and result.participants_count is not None:
         filled["participants_count"] = result.participants_count
         filled["participants_confidence"] = "llm"
+    if needs_deadline:
+        parsed = _parse_llm_date(result.deadline)
+        if parsed:
+            filled["deadline_date"] = parsed
+            filled["deadline_confidence"] = "llm"
     return filled

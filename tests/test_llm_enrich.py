@@ -9,16 +9,19 @@ from lib import llm_enrich
 
 
 class _FakeParsed:
-    def __init__(self, location=None, location_format=None, participants_count=None):
+    def __init__(self, location=None, location_format=None, participants_count=None, deadline=None):
         self.location = location
         self.location_format = location_format
         self.participants_count = participants_count
+        self.deadline = deadline
 
 
-def _enrichment(loc_conf="none", part_conf="none", location=None, fmt="Unknown", count=None):
+def _enrichment(loc_conf="none", part_conf="none", location=None, fmt="Unknown", count=None,
+                 deadline_conf="none", deadline_date=None):
     return {
         "location": location, "location_format": fmt, "location_confidence": loc_conf,
         "participants_count": count, "participants_confidence": part_conf,
+        "deadline_date": deadline_date, "deadline_confidence": deadline_conf,
     }
 
 
@@ -29,7 +32,8 @@ class TestApplyLLMFallback(unittest.TestCase):
     @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
     @patch("lib.llm_enrich._call_llm")
     def test_regex_resolved_everything_llm_never_called(self, mock_call):
-        e = _enrichment(loc_conf="explicit", part_conf="explicit", location="Austin, TX", count=50)
+        e = _enrichment(loc_conf="explicit", part_conf="explicit", location="Austin, TX", count=50,
+                         deadline_conf="explicit", deadline_date="2026-10-01")
         result = llm_enrich.apply_llm_fallback(e, "text", self.budget)
         mock_call.assert_not_called()
         self.assertEqual(result, e)
@@ -37,15 +41,52 @@ class TestApplyLLMFallback(unittest.TestCase):
 
     @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
     @patch("lib.llm_enrich._call_llm")
-    def test_both_gaps_filled_with_llm_confidence(self, mock_call):
-        mock_call.return_value = _FakeParsed("Boston, MA", "Hybrid", 87)
+    def test_all_three_gaps_filled_with_llm_confidence(self, mock_call):
+        mock_call.return_value = _FakeParsed("Boston, MA", "Hybrid", 87, "November 3, 2026")
         result = llm_enrich.apply_llm_fallback(_enrichment(), "text", self.budget)
         mock_call.assert_called_once()
         self.assertEqual(result["location"], "Boston, MA")
         self.assertEqual(result["location_confidence"], "llm")
         self.assertEqual(result["participants_count"], 87)
         self.assertEqual(result["participants_confidence"], "llm")
+        self.assertEqual(result["deadline_date"], "2026-11-03")
+        self.assertEqual(result["deadline_confidence"], "llm")
         self.assertEqual(self.budget.remaining, 4)
+
+    @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
+    @patch("lib.llm_enrich._call_llm")
+    def test_deadline_only_gap_fires_call_even_when_location_and_participants_resolved(self, mock_call):
+        # Deadline is expected to need this fallback on most items even when
+        # location/participants are already resolved -- confirms the trigger
+        # condition is an OR across all three fields, not just location/participants.
+        mock_call.return_value = _FakeParsed(deadline="December 1, 2026")
+        e = _enrichment(loc_conf="explicit", part_conf="explicit", location="Austin, TX", count=50)
+        result = llm_enrich.apply_llm_fallback(e, "text", self.budget)
+        mock_call.assert_called_once()
+        self.assertEqual(result["deadline_date"], "2026-12-01")
+        self.assertEqual(result["deadline_confidence"], "llm")
+        self.assertEqual(result["location"], "Austin, TX")  # untouched
+
+    @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
+    @patch("lib.llm_enrich._call_llm")
+    def test_llm_event_date_confused_for_deadline_is_still_guarded_by_prompt_not_code(self, mock_call):
+        # The code layer trusts the model's `deadline` field completely (the
+        # event-date-vs-deadline guard lives in the system prompt, not here)
+        # -- this test documents that boundary: if the model ever violated
+        # its instructions, this function would not catch it. Real assurance
+        # comes from the prompt wording plus spot-checking live results.
+        mock_call.return_value = _FakeParsed(deadline=None)  # correctly null per prompt instructions
+        result = llm_enrich.apply_llm_fallback(_enrichment(), "text", self.budget)
+        self.assertIsNone(result["deadline_date"])
+        self.assertEqual(result["deadline_confidence"], "none")
+
+    @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
+    @patch("lib.llm_enrich._call_llm")
+    def test_unparseable_deadline_text_is_discarded_not_stored(self, mock_call):
+        mock_call.return_value = _FakeParsed(deadline="sometime soon, probably")
+        result = llm_enrich.apply_llm_fallback(_enrichment(), "text", self.budget)
+        self.assertIsNone(result["deadline_date"])
+        self.assertEqual(result["deadline_confidence"], "none")
 
     @patch.dict(os.environ, {"OPENAI_API_KEY": "sk-test"})
     @patch("lib.llm_enrich._call_llm")
