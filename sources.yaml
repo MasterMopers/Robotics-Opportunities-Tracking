@@ -1,10 +1,16 @@
 # Discovery sources and the Watch calendar.
 #
 # Every extraction method below was verified against the live page/endpoint
-# before being written here (see FINAL SUMMARY in the PR/commit message for
-# per-source notes). Nothing here is a guessed CSS selector.
+# before being written here (see docs/PROBES.md for the Phase 0b/4 probe
+# results). Nothing here is a guessed CSS selector.
 #
-# method values: rss | html | json | json_embedded | github
+# method values: rss | html | json | json_embedded | github | markdown_list
+#                | devpost_api | bulk_xml
+#
+# `cadence: daily|weekly` (Phase 5) controls which of monitor.py's two
+# scheduled runs a source is fetched on: API-shaped sources (structured,
+# cheap, no selector rot) run daily; HTML scrapers run weekly. Absent =
+# weekly, the old single-cadence default.
 
 sources:
   - id: hackster
@@ -14,6 +20,7 @@ sources:
     method: html
     url: "https://www.hackster.io/contests"
     min_expected: 1
+    cadence: weekly
     parse:
       # Card CSS-module class names (contest_card__...__<hash>) are rebuilt
       # per deploy and are NOT stable. The stable anchor is the routing
@@ -35,6 +42,7 @@ sources:
     method: html
     url: "https://www.pcbway.com/project/sponsor/"
     min_expected: 5
+    cadence: weekly
     parse:
       item_container_class: "box-item"
       link_selector: "a.img-cover"
@@ -43,37 +51,25 @@ sources:
       page, image alt text carries the project title.
 
   - id: devpost
-    name: "Devpost Hackathons (hardware/robotics filtered)"
+    name: "Devpost Hackathons (server-side robotics search)"
     class: contest
     trust: high
-    method: json
-    url: "https://devpost.com/api/hackathons?order_by=recently-added"
-    request_headers:
-      Referer: "https://devpost.com/hackathons"
-      Accept: "application/json"
-    json_items_path: "hackathons"
-    # Spec requires this source filtered to hardware/robotics. Server-side
-    # theme/search query params (?themes[]=Hardware, ?search=robotics) were
-    # tested live and triggered a 403 from Devpost's WAF on the very next
-    # request, so filtering happens client-side in the adapter instead.
-    filter_keywords_any:
-      - robot
-      - robotics
-      - hardware
-      - embedded
-      - iot
-      - firmware
-      - "maker "
-      - drone
-      - pcb
-    min_expected: 0
+    method: devpost_api
+    url: "https://devpost.com/api/hackathons"
+    min_expected: 3
+    cadence: daily
     notes: >
-      Real JSON API confirmed live (not guessed) -- requires a Referer
-      header or Devpost returns 403. The endpoint sits behind an AWS WAF
-      that blocked a second identical request within seconds during
-      verification, so this source is flaky in practice: min_expected is
-      set to 0 so a WAF block reports as a quiet week, not BROKEN. Treat
-      persistent zero-item weeks as a signal to check the source by hand.
+      Phase 4b replacement (see adapters/devpost_api.py). Phase 0b
+      re-probed this endpoint live and found the old WAF-403 note no
+      longer reproduces: `search=`, `status[]=`, and `page=` all filter
+      SERVER-SIDE now (docs/PROBES.md), so this adapter queries the API
+      directly with a handful of robotics-ish search terms and
+      status[]=open/upcoming instead of paginating the full ~14,000-item
+      unfiltered set. Also maps submission_period_dates/displayed_location/
+      registrations_count/prize_amount directly onto
+      deadline_date/location/participants_count/money_raw (confidence
+      "explicit") -- no regex, no LLM call, for the largest single source.
+      Live-verified: 33 items across the current search-term set.
 
   - id: mlh
     name: "Major League Hacking Events"
@@ -84,6 +80,7 @@ sources:
     embedded_script_selector: 'script[data-page="app"]'
     json_path: "props.upcomingEvents"
     min_expected: 5
+    cadence: daily
     notes: >
       Spec URL https://mlh.io/seasons returns HTTP 404 live; corrected to
       https://mlh.io/events (the current canonical listing, confirmed via
@@ -91,20 +88,27 @@ sources:
       JSON inside <script data-page="app">, so it is parsed directly --
       no DOM scraping, nothing to rot. Live check returned 70 events.
 
-  - id: nayafia-microgrants
-    name: "nayafia/microgrants (GitHub, README watch)"
+  - id: nayafia_microgrants
+    name: "nayafia/microgrants (README, direct read)"
     class: grant
     trust: high
-    method: github
-    repo: "nayafia/microgrants"
-    watch_path: "README.md"
-    min_expected: 1
+    method: markdown_list
+    url: "https://raw.githubusercontent.com/nayafia/microgrants/master/README.md"
+    min_expected: 30
+    cadence: daily
     notes: >
-      Verified live via GitHub REST API commits endpoint. Items here are
-      commits, not opportunities -- a commit message ("add grant", "remove
-      dead project") is not a submittable grant listing, so monitor.py
-      always routes github-sourced items to REVIEW regardless of trust,
-      rather than rendering a commit message as a fake "grant" row.
+      Phase 4a replacement for the old `github` commit-watcher, which hit
+      the GitHub commits API and emitted commit messages -- routed to
+      REVIEW unconditionally, yielding zero real grant listings from a
+      file containing 39 of them. This adapter reads the file's actual
+      content (see adapters/markdown_list.py): "## Program Name" headings,
+      the block's first URL (bare or markdown-link form -- VitaDAO
+      Fellowship uses the markdown form), and its "_italic_" description
+      line as the snippet. Live-verified: 39 programs, 37 bare URLs, 1
+      markdown link, 38 italic descriptions. min_expected: 30 (not 39) so
+      the health check fails only on real breakage, not the list's own
+      slow organic growth/shrinkage. Fixture committed at
+      tests/fixtures/nayafia_microgrants.md for offline testing.
 
   - id: sologrants
     name: "Solo Grants -- The Grant Guide"
@@ -113,6 +117,7 @@ sources:
     method: html
     url: "https://sologrants.com/guide"
     min_expected: 10
+    cadence: weekly
     parse:
       row_selector: "table tbody tr"
       name_selector: "span.font-semibold"
@@ -131,6 +136,7 @@ sources:
     method: html
     url: "https://www.awesomefoundation.org/en/chapters"
     min_expected: 30
+    cadence: weekly
     parse:
       item_selector: "article.country p a"
     notes: >
@@ -147,6 +153,7 @@ sources:
     method: rss
     url: "https://hackaday.com/feed/"
     min_expected: 3
+    cadence: weekly
     notes: "Verified live: standard RSS, 7 <item> entries on last fetch."
 
   - id: hn-robotics-grant
@@ -157,7 +164,146 @@ sources:
     url: "https://hn.algolia.com/api/v1/search_by_date?tags=story&query=robotics%20grant"
     json_items_path: "hits"
     min_expected: 1
+    cadence: daily
     notes: "Verified live: public Algolia HN search API, 72 hits on last fetch."
+
+  - id: hackaday_prize
+    name: "Hackaday.io Contests"
+    class: contest
+    trust: high
+    method: html
+    url: "https://hackaday.io/contests"
+    min_expected: 3
+    cadence: weekly
+    parse:
+      # Distinct from the `hackaday` RSS source above, which is Hackaday's
+      # editorial blog feed (posts, not contests) -- this is hackaday.io's
+      # own contest-listing page, a different property. Same href-prefix
+      # strategy as Hackster: every contest links to /contest/<id>-<slug>.
+      link_href_prefix: "/contest/"
+    notes: >
+      Verified live: server-rendered HTML, 21 /contest/<id>-<slug> links on
+      the default "Newest" sort (no query-param filter to open-only was
+      found -- the sort dropdown's other options are all still "all
+      contests", just reordered). This list includes past/closed contests
+      as well as current ones; each contest's own page states its own
+      deadline (extracted per-item, same as any other source), and
+      monitor.py's expire_stale_items() flips a contest to "expired" once
+      that deadline passes -- so stale entries here self-correct on the
+      next run rather than needing a client-side open/closed filter.
+
+  - id: instructables
+    name: "Instructables Contests"
+    disabled: true
+    disabled_reason: >
+      Probed live (2026-09-05): https://www.instructables.com/contest/ is a
+      client-rendered React SPA (empty <div id="react-container">, a
+      Vite/Rolldown JS bundle) with no server-rendered contest listing and
+      no discovered public JSON endpoint (the page references a private
+      Typesense search proxy with an embedded API key, not a stable public
+      contract to build an adapter against; /json-api/contests,
+      /sitemap.xml, and /feed all 404 or redirect to a login shell). The
+      only real server-rendered signal found is two Twitter Card meta tags
+      (twitter:label1/data1, twitter:label2/data2) naming the top two
+      current contests and their deadlines, with no linkable URL -- not
+      enough to build a reliable, non-guessed adapter against (a
+      manufactured URL for a slug we didn't observe would violate the
+      never-guess invariant). Left disabled per the spec's own contingency
+      for exactly this situation (see challenge_gov below) rather than
+      built against a guessed selector or private API contract.
+    class: contest
+    trust: high
+    method: html
+    min_expected: 0
+
+  - id: challenge_gov
+    name: "Challenge.gov"
+    disabled: true
+    disabled_reason: >
+      Probed live (2026-09-05, docs/PROBES.md): challenge.gov is a
+      client-rendered SPA shell with no challenge listing in the initial
+      HTML and no discoverable JSON/XML feed (/api/challenges, /wp-json/,
+      /feed/, /challenge/rss/ all 404). Matches the spec's own framing:
+      "the only public documentation that exists is a dead 2011 XML feed
+      and an abandoned third-party adapter." No current feed exists to
+      build against.
+    class: both
+    trust: high
+    method: html
+    min_expected: 0
+
+  - id: herox
+    name: "HeroX Challenges"
+    class: contest
+    trust: high
+    method: json
+    url: "https://www.herox.com/async/api-internals/public/challenge/search"
+    request_headers:
+      Referer: "https://www.herox.com/crowdsourcing-projects"
+      Accept: "application/json"
+    json_items_path: "results"
+    # HeroX's own `?q=` param on this endpoint was tested live and did NOT
+    # change the result set (docs/PROBES.md) -- filtering is client-side
+    # here, the same pattern the old (pre-probe) Devpost source used. Since
+    # there's no server-side filter, paginate through `next` (bounded by
+    # max_pages) rather than checking only the default first page's 10
+    # items against the keyword list, which is almost always empty by
+    # chance against 677 mostly-non-robotics challenges.
+    paginate_next_field: "next"
+    max_pages: 15
+    filter_keywords_any:
+      - robot
+      - robotics
+      - hardware
+      - drone
+      - uav
+      - autonomous
+      - sensor
+      - prosthetic
+      - satellite
+      - engineering design
+    min_expected: 0
+    cadence: daily
+    notes: >
+      Phase 0b probe: the public listing page
+      (https://www.herox.com/crowdsourcing-projects, not
+      /crowdsourcing-challenges which 404s) embeds a
+      <script id="page-data" type="application/json"> blob whose
+      `view.api_url` names this internal search endpoint. Confirmed live:
+      200, `{"count": 677, "next": "...?page=2", "results": [...]}` -- a
+      real paginated JSON API (id/title/url/days_left/prize_short/promo/
+      creator_title per item), not an HTML scrape. min_expected: 0 since
+      this is an internal (undocumented) endpoint that could change
+      without notice; a zero-item week is reported as quiet, not BROKEN.
+
+  - id: grants_gov
+    name: "Grants.gov (daily bulk XML export, robotics-filtered)"
+    class: grant
+    trust: low
+    method: bulk_xml
+    url: "https://www.grants.gov/xml-extract"
+    min_expected: 0
+    cadence: daily
+    notes: >
+      Phase 0b probe (docs/PROBES.md): the daily full-database export is
+      discovered by re-fetching this page for the most recent dated
+      GrantsDBExtract*.zip S3 link (confirmed live: ~74.5 MiB compressed,
+      ~306 MiB uncompressed XML). adapters/bulk_xml.py streams the ZIP
+      entry directly into ElementTree.iterparse (never materializing the
+      full document) and keeps only records whose title/description
+      mention a robotics-ish keyword AND whose CloseDate (if any) hasn't
+      already passed -- the export is a full historical archive, not just
+      open opportunities. Live-verified: ~32 current/rolling matches out
+      of the full multi-decade archive. trust: low (this is a keyword
+      filter over a huge, mostly-institutional archive, not a curated
+      robotics source) -- goes through the normal contest/grant + relevance
+      scoring gates like any other trust:low source. Expected low yield
+      by design (most Grants.gov opportunities are institutional, not
+      something a solo undergraduate can apply to directly), but the
+      eligibility columns (lib/eligibility.py) do that filtering correctly
+      and the download is cheap relative to what it is. min_expected: 0
+      since a robotics-keyword hit rate this low can legitimately be zero
+      on a given day without that meaning the source is broken.
 
 # Watch calendar: annual/monthly programs whose page is static for eleven
 # months. We do NOT scrape these for a deadline -- we alert `lead_days`
@@ -204,3 +350,202 @@ calendar:
     note: >
       IEEE RAS's own conference calendar is the most stable link available;
       ICRA itself changes domain every year (icra20XX.org).
+
+  # --- Phase 4c additions below: fellowships, IEEE RAS conference tracks,
+  # vendor contests, and CMU-internal programs, added as calendar entries
+  # because each is a page that's static for eleven months of the year.
+  # Dates were web-searched for the current cycle (2026-09-05) rather than
+  # left blank; `confirmed: false` marks anything inferred from prior-year
+  # timing or a single one-off cycle rather than a re-verified current
+  # announcement, per the same convention as lemelson-mit/collegiate-inventors
+  # above.
+
+  - id: emergent-ventures
+    name: "Emergent Ventures"
+    class: grant
+    month: 3
+    day: 15
+    lead_days: 30
+    confirmed: true
+    link: "https://www.mercatus.org/emergent-ventures"
+    note: "Rolling year-round, but the most recent confirmed cohort deadline (2026-2027 academic-year cohort) was March 15 -- used as the recurring annual anchor."
+
+  - id: z-fellows
+    name: "Z Fellows"
+    class: grant
+    month: 0
+    day: 1
+    lead_days: 14
+    confirmed: true
+    link: "https://www.zfellows.com/"
+    note: "Fully rolling, no fixed deadline -- new cohorts roughly every other month. Monthly recurrence (month: 0) models the rolling cadence, not a specific date."
+
+  - id: neo-scholars
+    name: "Neo Scholars"
+    class: grant
+    month: 6
+    day: 30
+    lead_days: 30
+    confirmed: false
+    link: "https://neo.com/scholars"
+    note: "Sources conflicted on the 2026 cycle deadline (June 14 vs. July 1 both cited); June 30 used as an unconfirmed midpoint estimate."
+
+  - id: interact-fellowship
+    name: "Interact Fellowship"
+    class: grant
+    month: 2
+    day: 9
+    lead_days: 30
+    confirmed: true
+    link: "https://joininteract.com/"
+    note: "2026 cohort application deadline confirmed as February 9."
+
+  - id: astera-residency
+    name: "Astera Residency"
+    class: grant
+    month: 4
+    day: 19
+    lead_days: 30
+    confirmed: true
+    link: "https://astera.org/first-residency-cohort/"
+    note: "Fall 2026 cohort deadline confirmed as April 19, 2026 -- used as the recurring annual anchor for the next cycle."
+
+  - id: atomic-fellowship
+    name: "Atomic Fellowship (gradCapital)"
+    class: grant
+    month: 0
+    day: 1
+    lead_days: 14
+    confirmed: false
+    link: "https://www.gradcapital.in/atomicfellow/"
+    note: "No specific 2026 cycle deadline found; appears to accept applications on an ongoing basis. Modeled as monthly (month: 0) as an unconfirmed best guess."
+
+  - id: iros
+    name: "IROS 2027 (IEEE/RSJ Intelligent Robots and Systems)"
+    class: contest
+    month: 3
+    day: 1
+    lead_days: 30
+    confirmed: true
+    link: "https://www.ieee-ras.org/event/call-for-papers-paper-submission-deadline-iros-2027-ieee-rsj-international-conference-on-intelligent-robots-and-systems-iros-27403-0/"
+    note: "Paper submission deadline confirmed as March 1, 2027. Conference itself is Sept 26-Oct 1, 2027 in Florence, Italy."
+
+  - id: robocup
+    name: "RoboCup 2027"
+    class: contest
+    month: 6
+    day: 17
+    lead_days: 30
+    confirmed: true
+    link: "https://2027.robocup.org/"
+    note: "Conference dates confirmed as June 17-21, 2027 in Nuremberg, Germany. No separate competition-entry deadline was found, so this uses the event start date, not an application deadline."
+
+  - id: rss-conference
+    name: "RSS 2026 (Robotics: Science and Systems)"
+    class: contest
+    month: 1
+    day: 23
+    lead_days: 30
+    confirmed: true
+    link: "https://roboticsconference.org/information/cfp/"
+    note: "Abstract/title submission deadline confirmed as Jan 23, 2026 (full paper deadline Jan 30). Conference itself is July 13-17, 2026 in Sydney."
+
+  - id: corl
+    name: "CoRL 2026 (Conference on Robot Learning)"
+    class: contest
+    month: 5
+    day: 26
+    lead_days: 30
+    confirmed: true
+    link: "https://www.corl.org/contributions/call-for-papers"
+    note: "Abstract submission deadline confirmed as May 26, 2026 (full paper deadline May 28). Conference itself is Nov 9-12, 2026 in Austin, TX."
+
+  - id: humanoids-conference
+    name: "IEEE-RAS Humanoids 2026"
+    class: contest
+    month: 12
+    day: 6
+    lead_days: 30
+    confirmed: true
+    link: "https://2026.ieee-humanoids.org/"
+    note: "Conference dates confirmed as December 6-9, 2026 in Silicon Valley, CA -- used as the event date; check the site's own Key Dates page for the separate paper-submission deadline."
+
+  - id: adafruit-contest
+    name: "Adafruit (seasonal contests)"
+    class: contest
+    month: 0
+    day: 1
+    lead_days: 14
+    confirmed: false
+    link: "https://blog.adafruit.com/tag/contest/"
+    note: "No single recurring annual Adafruit design contest identified -- they run sporadic/seasonal contests instead. Modeled as monthly (month: 0) as an unconfirmed placeholder; check the tag page directly."
+
+  - id: sparkfun-contest
+    name: "SparkFun (design challenges)"
+    class: contest
+    month: 0
+    day: 1
+    lead_days: 14
+    confirmed: false
+    link: "https://www.sparkfun.com/news"
+    note: "No single fixed annual SparkFun contest identified -- occasional design challenges instead (e.g. XRP Design Challenge). Modeled as monthly (month: 0) as an unconfirmed placeholder."
+
+  - id: seeed-studio-contest
+    name: "Seeed Studio (design contests)"
+    class: contest
+    month: 6
+    day: 30
+    lead_days: 30
+    confirmed: false
+    link: "https://www.seeedstudio.com/"
+    note: "A live 2026 one-off contest (\"Make a Sign\") had a June 30, 2026 deadline, but this is not confirmed as a recurring annual fixture -- date is inferred/unconfirmed."
+
+  - id: elephant-robotics-contest
+    name: "Elephant Robotics (contests/exhibitions)"
+    class: contest
+    month: 0
+    day: 1
+    lead_days: 14
+    confirmed: false
+    link: "https://www.elephantrobotics.com/"
+    note: "No dedicated Elephant-Robotics-run contest was found (they exhibit at events like CES and support third-party robotics competitions rather than running their own). Kept as a low-confidence placeholder per the spec's vendor-contest list rather than silently dropped; verify manually before relying on this entry."
+
+  - id: bambu-lab-contest
+    name: "Bambu Lab / MakerWorld (design challenges)"
+    class: contest
+    month: 7
+    day: 10
+    lead_days: 30
+    confirmed: false
+    link: "https://blog.bambulab.com/"
+    note: "A live July 10-Aug 9, 2026 MakerWorld design challenge (with Insta360) was found, but Bambu Lab/MakerWorld contests appear irregular/one-off rather than a fixed annual date -- inferred/unconfirmed."
+
+  - id: cmu-surf
+    name: "CMU Undergraduate Research Office: SURF"
+    class: grant
+    month: 2
+    day: 18
+    lead_days: 30
+    confirmed: true
+    link: "https://www.cmu.edu/uro/summer%20research%20fellowships/SURF/"
+    note: "Summer 2026 proposal deadline confirmed as Feb 18, 2026 (Feb 17, 2027 for the Summer 2027 cycle)."
+
+  - id: cmu-surg
+    name: "CMU Undergraduate Research Office: SURG"
+    class: grant
+    month: 0
+    day: 1
+    lead_days: 14
+    confirmed: true
+    link: "https://www.cmu.edu/uro/academic-research/SURG/index.html"
+    note: "Genuinely rolling: proposal deadline is the 1st of the month, reviewed on a recurring Sept/Oct/Nov/Feb/Mar/Apr cycle. Modeled as monthly (month: 0)."
+
+  - id: cmu-swartz-center
+    name: "CMU Swartz Center: Project Olympus Spark Grants"
+    class: grant
+    month: 10
+    day: 1
+    lead_days: 30
+    confirmed: false
+    link: "https://www.cmu.edu/swartz-center-for-entrepreneurship/resources-funding-and-talent/project-olympus-spark-grants/index.html"
+    note: "Spark Grants (not VentureBridge, which requires US incorporation and would fail requires_incorporation for this operator) is the better fit for \"project funds\" -- only a general \"next cycle in fall 2026\" was found, no specific date; Oct 1 is an inferred placeholder."

@@ -100,6 +100,32 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
     is_js_shell = len(page_doc.text) < 500 and not page_doc.structured
 
     enrichment = enrich_lib.enrich_item(combined_doc, rules)
+
+    # Some adapters (devpost_api, bulk_xml) supply already-resolved facts
+    # straight from a structured API/export -- e.g. Devpost's own
+    # submission_period_dates is more authoritative than anything a regex
+    # could recover from that hackathon's own rendered page. Apply those as
+    # an override, but only where the adapter actually resolved something
+    # (confidence != "none") -- an adapter that couldn't determine a field
+    # must never blank out a real result the deterministic extractors found
+    # from the page text.
+    prefilled = raw.get("prefilled")
+    if prefilled:
+        enrichment = dict(enrichment)
+        for value_key, conf_key in (
+            ("deadline_date", "deadline_confidence"),
+            ("location", "location_confidence"),
+            ("participants_count", "participants_confidence"),
+        ):
+            if prefilled.get(conf_key, "none") == "none":
+                continue
+            enrichment[value_key] = prefilled[value_key]
+            enrichment[conf_key] = prefilled[conf_key]
+            if value_key == "location":
+                enrichment["location_format"] = prefilled.get("location_format", enrichment.get("location_format"))
+        if prefilled.get("money_raw") is not None:
+            enrichment["money_raw"] = prefilled["money_raw"]
+
     decision = classify_lib.classify_item(source["class"], source["trust"], enrichment, rules)
 
     if source["method"] == "github":
@@ -191,6 +217,35 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profil
 
 def run_source(conn, source, rules, init_mode, report, llm_budget, profile):
     source_id = source["id"]
+
+    if source.get("disabled"):
+        # Phase 4c: a source that failed its Phase 0b/4 probe (no live
+        # feed/endpoint found) is marked `disabled: true` with a reason in
+        # sources.yaml rather than deleted -- never fetched, never counted
+        # as BROKEN/ERROR (it isn't failing, it's intentionally off), but
+        # still visible in the source report for auditability.
+        conn.execute(
+            """INSERT INTO source_health (source_id, last_run, last_status, last_count, last_error)
+               VALUES (?, ?, 'DISABLED', 0, ?)
+               ON CONFLICT(source_id) DO UPDATE SET
+                 last_run=excluded.last_run, last_status=excluded.last_status,
+                 last_count=excluded.last_count, last_error=excluded.last_error""",
+            (source_id, now_iso(), source.get("disabled_reason")),
+        )
+        report["sources"].append(
+            {
+                "id": source_id,
+                "name": source["name"],
+                "class": source["class"],
+                "trust": source["trust"],
+                "method": source["method"],
+                "count": 0,
+                "status": "DISABLED",
+                "error": source.get("disabled_reason"),
+            }
+        )
+        return
+
     error = None
     try:
         raw_items = fetch_source(source)

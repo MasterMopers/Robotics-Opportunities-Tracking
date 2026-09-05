@@ -113,7 +113,7 @@ def build_autogen_block(conn):
         "SELECT * FROM items WHERE status='review' ORDER BY first_seen DESC"
     ).fetchall()
     broken_sources = conn.execute(
-        "SELECT * FROM source_health WHERE last_status != 'OK' ORDER BY source_id"
+        "SELECT * FROM source_health WHERE last_status NOT IN ('OK', 'DISABLED') ORDER BY source_id"
     ).fetchall()
 
     closing_soon = []
