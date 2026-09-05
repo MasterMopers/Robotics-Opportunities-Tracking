@@ -98,7 +98,16 @@ def extract_deadline(doc: Document, rules: dict, today: date = None):
     for pat in patterns["explicit"]:
         m = pat.search(text)
         if m:
-            parsed = _parse_date_or_none(m.group(1))
+            # Almost every pattern has exactly one %DATE% capture group, so
+            # this is just m.group(1) -- but a pattern with two (a
+            # "Weekday, Month Day, Year - Weekday, Month Day, Year"
+            # submission-window range, e.g. hackaday.io's contest pages)
+            # needs the LAST one: that's the window's own close date, which
+            # is the real entry deadline for that kind of page, the same
+            # way Devpost's submission_period_dates end-of-range is treated
+            # as the deadline in adapters/devpost_api.py. Always taking the
+            # last group keeps single-%DATE% patterns unchanged.
+            parsed = _parse_date_or_none(m.groups()[-1])
             if parsed:
                 return parsed, "explicit"
 

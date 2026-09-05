@@ -18,13 +18,14 @@ WEIGHTS = {
 TODAY = date(2026, 1, 1)
 
 
-def _row(title, relevance_score=5.0, eligibility="eligible", money_raw=None, deadline_date=None):
+def _row(title, relevance_score=5.0, eligibility="eligible", money_raw=None, deadline_date=None, final_class="grant"):
     return {
         "title": title,
         "relevance_score": relevance_score,
         "eligibility": eligibility,
         "money_raw": money_raw,
         "deadline_date": deadline_date,
+        "final_class": final_class,
     }
 
 
@@ -57,18 +58,33 @@ class TestComputeFitScores(unittest.TestCase):
         scored = compute_fit_scores([unknown, eligible], WEIGHTS, today=TODAY)
         self.assertEqual([r["title"] for r, _fit in scored], ["Eligible", "Unknown elig"])
 
-    def test_missing_deadline_takes_u_half(self):
-        rolling = _row("Rolling grant", deadline_date=None)
-        far_off = _row("Far deadline", deadline_date="2027-01-01")  # ~365 days out, u ~ 0
-        near = _row("Near deadline", deadline_date="2026-01-08")  # 7 days out, u close to 1
+    def test_missing_deadline_takes_u_half_for_a_grant(self):
+        rolling = _row("Rolling grant", deadline_date=None, final_class="grant")
+        far_off = _row("Far deadline", deadline_date="2027-01-01", final_class="grant")  # ~365 days out, u ~ 0
+        near = _row("Near deadline", deadline_date="2026-01-08", final_class="grant")  # 7 days out, u close to 1
 
         scored = {r["title"]: fit for r, fit in compute_fit_scores([rolling, far_off, near], WEIGHTS, today=TODAY)}
 
-        # u=0.5 for rolling should land it between the far-off (low u) and
-        # near (high u) deadline rows, since relevance/eligibility/money
-        # are identical across all three.
+        # u=0.5 for a rolling grant should land it between the far-off
+        # (low u) and near (high u) deadline rows, since
+        # relevance/eligibility/money are identical across all three.
         self.assertLess(scored["Far deadline"], scored["Rolling grant"])
         self.assertLess(scored["Rolling grant"], scored["Near deadline"])
+
+    def test_missing_deadline_takes_u_zero_for_a_contest(self):
+        # A contest with no deadline is NOT the same carve-out as a rolling
+        # grant -- real contests almost always state one, so a missing
+        # deadline there is treated as u=0 (verified against a real case:
+        # PCBWay's "sponsored project" pages are other builders' already-
+        # submitted projects, not a call for entries with a due date).
+        no_deadline_contest = _row("No-deadline contest", deadline_date=None, final_class="contest")
+        near_deadline_contest = _row("Near-deadline contest", deadline_date="2026-01-08", final_class="contest")
+        scored = {r["title"]: fit for r, fit in compute_fit_scores([no_deadline_contest, near_deadline_contest], WEIGHTS, today=TODAY)}
+        expected_no_deadline_fit = (
+            WEIGHTS["relevance_weight"] * 1.0 + WEIGHTS["eligibility_weight"] * 1.0
+        )
+        self.assertAlmostEqual(scored["No-deadline contest"], expected_no_deadline_fit, places=9)
+        self.assertLess(scored["No-deadline contest"], scored["Near-deadline contest"])
 
     def test_missing_money_scores_zero_not_average(self):
         no_money = _row("No money stated", money_raw=None)

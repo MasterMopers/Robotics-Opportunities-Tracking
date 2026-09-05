@@ -21,8 +21,15 @@ change how actionable it is) so render_readme.py can build a single
   ranked. Missing money (m_hat=0) is NOT the same as an average -- an
   unknown prize is not evidence of a large one.
 - u: exp(-d/30), d = days remaining until deadline_date. Rows with no
-  deadline (rolling grants) get u=0.5 rather than being penalized for
-  having no urgency signal at all.
+  deadline get u=0.5 rather than being penalized for having no urgency
+  signal at all -- but only when final_class == "grant". Grants are
+  legitimately, routinely rolling (Awesome Foundation, most microgrants),
+  so a missing deadline there isn't a red flag. A contest with no deadline
+  gets u=0.0 instead: real contests almost always state one, so a missing
+  deadline there is either an extraction gap or -- verified against a
+  real case, PCBWay's "sponsored project" pages, which are OTHER
+  builders' already-submitted projects, not a call for entries with a due
+  date -- not really a time-boxed opportunity at all. See _urgency().
 
 The four weights live in rules.yaml's `ranking:` block, not here -- tuning
 the formula's balance should be a YAML edit, matching every other scoring
@@ -59,20 +66,35 @@ def parse_money_value(money_raw):
     return value
 
 
-def _urgency(deadline_date, today):
+def _urgency(deadline_date, final_class, today):
     if not deadline_date:
-        return NO_DEADLINE_URGENCY
+        # The spec's "no deadline" carve-out names "rolling grants"
+        # specifically, not "rolling items" generically -- grants are
+        # legitimately, routinely rolling (Awesome Foundation, most
+        # microgrants), so a missing deadline there isn't a red flag and
+        # gets the neutral, non-penalizing 0.5. A CONTEST with no
+        # deadline is a different situation: real contests almost always
+        # state one, so a missing deadline there is either an extraction
+        # gap or an ongoing community-submission page rather than a
+        # time-boxed call for entries (verified against a real case: PCBWay
+        # "sponsored project" pages are OTHER builders' already-submitted
+        # projects, not a call for entries with a due date at all) -- rank
+        # those below anything with a real, confirmed near-term deadline
+        # rather than granting them the same neutral urgency a rolling
+        # grant legitimately earns.
+        return NO_DEADLINE_URGENCY if final_class == "grant" else 0.0
     try:
         d_date = date.fromisoformat(deadline_date)
     except (ValueError, TypeError):
-        return NO_DEADLINE_URGENCY
+        return NO_DEADLINE_URGENCY if final_class == "grant" else 0.0
     days_remaining = max(0, (d_date - today).days)
     return math.exp(-days_remaining / 30)
 
 
 def compute_fit_scores(rows, weights: dict, today=None):
     """rows: dict-like items (sqlite3.Row or plain dict) exposing
-    relevance_score, eligibility, money_raw, deadline_date. Every row
+    relevance_score, eligibility, money_raw, deadline_date, final_class.
+    Every row
     passed in is scored -- callers are responsible for excluding
     eligibility == "ineligible" rows first (this function doesn't special-
     case that; it just computes e = 0.0 for anything not in
@@ -104,7 +126,7 @@ def compute_fit_scores(rows, weights: dict, today=None):
         m = parse_money_value(row["money_raw"])
         m_hat = 0.0 if (m is None or m_max <= 0) else math.log10(1 + m) / math.log10(1 + m_max)
 
-        u = _urgency(row["deadline_date"], today)
+        u = _urgency(row["deadline_date"], row["final_class"], today)
 
         fit = (
             weights["relevance_weight"] * r_hat

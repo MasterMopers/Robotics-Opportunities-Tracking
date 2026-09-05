@@ -46,7 +46,21 @@ DEFAULT_HEADERS = {"Referer": "https://devpost.com/hackathons", "Accept": "appli
 # deduped by hackathon id. Kept as a rules-adjacent constant here (adapter
 # wiring, not classification tuning) rather than in rules.yaml, since this
 # is "which API queries to issue," not a scoring/matching rule.
-SEARCH_TERMS = ("robot", "robotics", "hardware", "embedded", "drone", "pcb", "firmware")
+SEARCH_TERMS = (
+    "robot", "robotics", "hardware", "embedded", "drone", "pcb", "firmware",
+    # Widened beyond the original 7 terms: drawn directly from rules.yaml's
+    # relevance-bucket vocabulary (core/mechanical/electrical/software) so
+    # a broader, still on-topic set of hackathons gets a chance to clear
+    # the Phase 2 relevance gate and be trust:high auto-accepted -- which,
+    # for Devpost specifically, comes with a guaranteed explicit deadline
+    # (submission_period_dates) at no extra extraction cost. This directly
+    # grows the supply of real, deadline-bearing "Act now" candidates
+    # instead of only ever surfacing the handful the original 7 terms
+    # happened to catch.
+    "arduino", "raspberry pi", "sensor", "autonomous", "mechatronics",
+    "3d printing", "cad", "microcontroller", "esp32", "iot device",
+    "wearable device", "prosthetic", "exoskeleton", "actuator",
+)
 STATUSES = ("open", "upcoming")
 
 # Defensive client-side fallback, kept per the spec even though the Phase

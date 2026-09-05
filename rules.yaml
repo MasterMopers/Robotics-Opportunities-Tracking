@@ -299,6 +299,17 @@ deadline_patterns:
     - 'submissions? due\s+(?:on\s+|by\s+)?%DATE%'
     - 'closes?\s+(?:on\s+)?%DATE%'
     - 'ends?\s+(?:on\s+)?%DATE%'
+    # "Weekday, Month Day, Year <time> - Weekday, Month Day, Year <time>"
+    # submission-window range -- verified live on hackaday.io's contest
+    # pages (e.g. "Thursday, May 28, 2026 10:00 am PDT - Thursday, July 23,
+    # 2026 10:00 am PDT"), where the window's own close date IS the real
+    # entry deadline for that page (there's no separate "contest happens on
+    # X, applications close on Y" distinction the way a hackathon's event
+    # dates differ from its application deadline -- verified against a live
+    # page, not assumed). extract_deadline() always takes the LAST %DATE%
+    # capture group in a pattern, so this correctly resolves to the closing
+    # date, not the opening one.
+    - '(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,\s+%DATE%.{0,40}?[-–]\s*(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,\s+%DATE%'
   relative:
     - 'ends in (\d+)\s+days?'
     - 'closes in (\d+)\s+days?'
