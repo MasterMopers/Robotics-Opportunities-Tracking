@@ -165,3 +165,40 @@ reported as if it were an independent check.
 (Sweep table from `scripts/calibrate_floor.py` is appended below once Phase 2 runs.)
 
 **`OPENAI_API_KEY` not set at run time** -- calibration labels were built via source-provenance fallback, not a gpt-5-nano judge. No inter-run disagreement rate or anchor rates were computed (they would be circular against provenance-only labels -- see the discussion above). 82 items labeled (16 positive, 66 negative), 97 excluded as not classifiable by provenance alone.
+
+## Phase 2: relevance_floor sweep (scripts/calibrate_floor.py)
+
+Swept against 82 labeled items from data/calibration_labels.json (recall constraint: >= 90%).
+
+| floor | TP | FP | TN | FN | precision | recall | F1 |
+|---|---|---|---|---|---|---|---|
+| -4 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| -3 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| -2 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| -1 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| 0 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| 1 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| 2 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| 3 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 |
+| 4 | 16 | 1 | 65 | 0 | 0.94 | 1.00 | 0.97 | **<- selected**
+| 5 | 15 | 1 | 65 | 1 | 0.94 | 0.94 | 0.94 |
+| 6 | 13 | 1 | 65 | 3 | 0.93 | 0.81 | 0.87 |
+| 7 | 13 | 1 | 65 | 3 | 0.93 | 0.81 | 0.87 |
+| 8 | 7 | 1 | 65 | 9 | 0.88 | 0.44 | 0.58 |
+| 9 | 7 | 0 | 66 | 9 | 1.00 | 0.44 | 0.61 |
+| 10 | 7 | 0 | 66 | 9 | 1.00 | 0.44 | 0.61 |
+| 11 | 3 | 0 | 66 | 13 | 1.00 | 0.19 | 0.32 |
+| 12 | 3 | 0 | 66 | 13 | 1.00 | 0.19 | 0.32 |
+| 13 | 3 | 0 | 66 | 13 | 1.00 | 0.19 | 0.32 |
+| 14 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 15 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 16 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 17 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 18 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 19 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 20 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 21 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+| 22 | 1 | 0 | 66 | 15 | 1.00 | 0.06 | 0.12 |
+
+Selected floor **4**: maximizes precision (0.94) subject to recall >= 90% (achieved recall 1.00).
+

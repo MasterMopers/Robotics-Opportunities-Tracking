@@ -7,8 +7,117 @@ thresholds:
   # Winning score must beat the runner-up by at least this much to ACCEPT
   # outright; anything closer goes to REVIEW.
   margin: 2
+  # Minimum relevance score (see signals.relevance below) for an item to
+  # pass the relevance gate in lib/classify.py, regardless of trust level.
+  # THIS VALUE IS WRITTEN BY scripts/calibrate_floor.py -- do not hand-edit
+  # it; re-run that script after changing data/calibration_labels.json or
+  # any signals.relevance term list. See docs/PROBES.md for the sweep table
+  # this value was selected from.
+  relevance_floor: 4
 
 signals:
+  # Broad-robotics relevance axis (Phase 2). A single `core` term qualifies
+  # an item on its own; two non-core disciplines together also qualify
+  # (that's what "any combination of mechanical/electrical/software" means)
+  # -- one non-core discipline alone does not, which is what keeps a generic
+  # AI/web hackathon out via the `software` bucket alone. See
+  # lib/relevance.py for the scoring formula and lib/classify.py for how
+  # this gates every trust level, including trust: high.
+  relevance:
+    core:
+      - robot
+      - robotic
+      - robotics
+      - manipulator
+      - end effector
+      - gripper
+      - actuator
+      - mechatronic
+      - mechatronics
+      - ROS
+      - ROS 2
+      - SLAM
+      - teleoperation
+      - humanoid
+      - quadruped
+      - exoskeleton
+      - drone
+      - UAV
+      - AGV
+      - servo
+      - kinematics
+      - inverse kinematics
+      - autonomous vehicle
+      - robot arm
+    mechanical:
+      - CAD
+      - SolidWorks
+      - Fusion 360
+      - Onshape
+      - 3D print
+      - additive manufacturing
+      - CNC
+      - machining
+      - laser cut
+      - linkage
+      - gearbox
+      - compliant mechanism
+      - FEA
+      - tolerance stack
+      - load cell
+      - torque
+    electrical:
+      - PCB
+      - KiCad
+      - Altium
+      - firmware
+      - embedded
+      - microcontroller
+      - STM32
+      - ESP32
+      - Arduino
+      - Raspberry Pi
+      - FSR
+      - force sensitive resistor
+      - IMU
+      - strain gauge
+      - motor driver
+      - H-bridge
+      - ADC
+      - I2C
+      - SPI
+      - CAN bus
+      - piezoelectric
+    software:
+      - computer vision
+      - reinforcement learning
+      - control loop
+      - PID
+      - sensor fusion
+      - path planning
+      - motion planning
+      - Gazebo
+      - MuJoCo
+      - Isaac Sim
+      - point cloud
+      - depth camera
+      - LiDAR
+    anti:
+      - web3
+      - blockchain
+      - NFT
+      - DeFi
+      - smart contract
+      - tokenomics
+      - mobile app
+      - SaaS
+      - ecommerce
+      - fintech
+      - marketing
+      - chatbot
+      - landing page
+      - social network
+
   contest:
     - phrase: "competition"
       weight: 1

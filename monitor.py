@@ -132,8 +132,10 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
             final_class, contest_score, grant_score, matched_signals, reject_phrase,
             deadline_date, deadline_confidence, money_raw, team_size,
             location, location_format, location_confidence,
-            participants_count, participants_confidence, enriched, reported)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            participants_count, participants_confidence,
+            relevance_score, relevance_core_hits, relevance_buckets, relevance_terms,
+            enriched, reported)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
         (
             iid, source["id"], source["class"], raw["title"], raw["url"], snippet, ts, ts,
             decision["status"], decision["final_class"],
@@ -143,6 +145,8 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
             enrichment["money_raw"], enrichment["team_size"],
             enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
             enrichment["participants_count"], enrichment["participants_confidence"],
+            enrichment["relevance_score"], enrichment["relevance_core_hits"],
+            json.dumps(enrichment["relevance_buckets"]), json.dumps(enrichment["relevance_terms"]),
             enriched_flag,
             1 if init_mode else 0,
         ),

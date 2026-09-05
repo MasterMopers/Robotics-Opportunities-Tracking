@@ -7,6 +7,7 @@ This only ever runs on items that are new in this diff -- never the whole
 page list -- per the cost constraint in the spec.
 """
 
+import functools
 import html
 import re
 from datetime import date
@@ -14,6 +15,7 @@ from datetime import date
 from dateutil import parser as dateutil_parser
 
 from lib.extract import Document
+from lib.relevance import score_relevance
 
 DATE_FRAGMENT = (
     r"(?:[A-Z][a-z]+\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}"   # March 3, 2027
@@ -134,17 +136,24 @@ def extract_team_size(text: str, rules: dict):
     return None
 
 
+@functools.lru_cache(maxsize=None)
+def _compile_signal_phrase(phrase: str):
+    """Word-boundary match, not substring. Regression: naive substring
+    matching on "stem" produced three false positives from the words
+    "system" and "ecosystem" in a real corpus -- re.escape + \\b on both
+    ends closes that off. See test_relevance.py for the named regression."""
+    return re.compile(r"\b" + re.escape(phrase) + r"\b", re.IGNORECASE)
+
+
 def extract_signals(text: str, rules: dict):
     """Which contest/grant signal phrases are present in the text, and the
     reject rule (if any) that fires. Used both for scoring trust:low items
     and for making every classification decision debuggable from the db."""
-    lower = text.lower()
-
     matched = {"contest": [], "grant": []}
     scores = {"contest": 0.0, "grant": 0.0}
     for cls in ("contest", "grant"):
         for sig in rules["signals"][cls]:
-            if sig["phrase"].lower() in lower:
+            if _compile_signal_phrase(sig["phrase"]).search(text):
                 matched[cls].append(sig["phrase"])
                 scores[cls] += sig["weight"]
 
@@ -312,6 +321,7 @@ def enrich_item(doc: Document, rules: dict):
     matched, scores, reject = extract_signals(doc.text, rules)
     location, location_format, location_confidence = extract_location(doc, rules)
     participants_count, participants_confidence = extract_participants(doc, rules)
+    relevance = score_relevance(doc.text, rules)
     return {
         "deadline_date": deadline_date,
         "deadline_confidence": deadline_confidence,
@@ -325,4 +335,9 @@ def enrich_item(doc: Document, rules: dict):
         "location_confidence": location_confidence,
         "participants_count": participants_count,
         "participants_confidence": participants_confidence,
+        "relevance_score": relevance["relevance_score"],
+        "relevance_core_hits": relevance["relevance_core_hits"],
+        "relevance_buckets": relevance["relevance_buckets"],
+        "relevance_terms": relevance["relevance_terms"],
+        "relevance_eligible": relevance["relevance_eligible"],
     }

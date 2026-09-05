@@ -69,6 +69,11 @@ NEW_COLUMNS = [
     ("location_confidence", "TEXT"),
     ("participants_count", "INTEGER"),
     ("participants_confidence", "TEXT"),
+    # Phase 2: the relevance axis (lib/relevance.py).
+    ("relevance_score", "REAL"),
+    ("relevance_core_hits", "INTEGER"),
+    ("relevance_buckets", "TEXT"),   # JSON list
+    ("relevance_terms", "TEXT"),     # JSON list, for auditability
 ]
 
 
