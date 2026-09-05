@@ -1,20 +1,19 @@
 name: Monitor robotics opportunities
 
 on:
-  # TODO: re-enable in Phase 8
-  # schedule:
-  #   # Off-the-hour minutes on purpose -- GitHub delays/drops scheduled runs
-  #   # under load, and jobs at minute 0 get hit hardest. Do not "tidy" these.
-  #   #
-  #   # Phase 5 split: API-shaped sources (structured, cheap, no selector
-  #   # rot -- devpost_api, markdown_list, bulk_xml, any json/json_embedded
-  #   # source) run daily so a Devpost hackathon observed with only 4-8 days
-  #   # left is never missed by a weekly window. HTML scrapers run weekly.
-  #   # README rebuild stays monthly. sources.yaml's per-source `cadence`
-  #   # key controls which sources monitor.py's --cadence flag selects.
-  #   - cron: "37 13 * * *"   # daily: discovery run, --cadence daily
-  #   - cron: "37 13 * * 1"   # weekly: discovery run, --cadence weekly (Monday)
-  #   - cron: "37 13 1 * *"   # monthly: rebuild README from state.db
+  schedule:
+    # Off-the-hour minutes on purpose -- GitHub delays/drops scheduled runs
+    # under load, and jobs at minute 0 get hit hardest. Do not "tidy" these.
+    #
+    # Phase 5 split: API-shaped sources (structured, cheap, no selector
+    # rot -- devpost_api, markdown_list, bulk_xml, any json/json_embedded
+    # source) run daily so a Devpost hackathon observed with only 4-8 days
+    # left is never missed by a weekly window. HTML scrapers run weekly.
+    # README rebuild stays monthly. sources.yaml's per-source `cadence`
+    # key controls which sources monitor.py's --cadence flag selects.
+    - cron: "37 13 * * *"   # daily: discovery run, --cadence daily
+    - cron: "37 13 * * 1"   # weekly: discovery run, --cadence weekly (Monday)
+    - cron: "37 13 1 * *"   # monthly: rebuild README from state.db
   workflow_dispatch:
     inputs:
       backfill:
