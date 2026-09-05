@@ -163,3 +163,5 @@ separate anchor-rate number would be circular/trivially 100% and is not
 reported as if it were an independent check.
 
 (Sweep table from `scripts/calibrate_floor.py` is appended below once Phase 2 runs.)
+
+**`OPENAI_API_KEY` not set at run time** -- calibration labels were built via source-provenance fallback, not a gpt-5-nano judge. No inter-run disagreement rate or anchor rates were computed (they would be circular against provenance-only labels -- see the discussion above). 82 items labeled (16 positive, 66 negative), 97 excluded as not classifiable by provenance alone.
