@@ -15,6 +15,16 @@ thresholds:
   # this value was selected from.
   relevance_floor: 4
 
+# Phase 7: fit-score weights for ranking the unified "Act now" list
+# (lib/rank.py). fit = relevance_weight*r_hat + eligibility_weight*e +
+# money_weight*m_hat + deadline_weight*u -- see lib/rank.py's docstring for
+# what each term means. Must sum to 1.0.
+ranking:
+  relevance_weight: 0.40
+  eligibility_weight: 0.30
+  money_weight: 0.15
+  deadline_weight: 0.15
+
 signals:
   # Broad-robotics relevance axis (Phase 2). A single `core` term qualifies
   # an item on its own; two non-core disciplines together also qualify
