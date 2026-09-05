@@ -29,6 +29,7 @@ from lib import db
 from lib import enrich as enrich_lib
 from lib import llm_enrich
 from lib import normalize
+from lib.extract import Document, extract_document
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(ROOT, "state.db")
@@ -77,8 +78,26 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
     except Exception:
         pass  # enrichment is best-effort; classification still runs off title+snippet
 
-    combined_text = f"{raw['title']} {snippet} {page_text}"
-    enrichment = enrich_lib.enrich_item(combined_text, rules)
+    # lib/extract.py does the HTML parsing once: doc.text is clean prose
+    # (scripts/nav/footer/etc. stripped), doc.structured is every JSON-LD /
+    # __NEXT_DATA__ / __NUXT__ / location-hint payload on the page. Title
+    # and snippet are folded into the text view (they're never markup), but
+    # never into .structured -- only the fetched page can carry that.
+    page_doc = extract_document(page_text)
+    combined_doc = Document(
+        text=f"{raw['title']} {snippet} {page_doc.text}".strip(),
+        structured=page_doc.structured,
+    )
+
+    # Devpost/Hackster/MLH-style detail pages ship a near-empty HTML shell
+    # plus a JS-rendered payload; if neither clean text nor any structured
+    # payload came through, this is a half-parsed shell, not real content.
+    # Store it as unenriched (every enrichment field NULL) rather than a
+    # row that looks resolved but is really just noise -- Phase 5's
+    # re-enrichment pass retries any row left at enriched=0.
+    is_js_shell = len(page_doc.text) < 500 and not page_doc.structured
+
+    enrichment = enrich_lib.enrich_item(combined_doc, rules)
     decision = classify_lib.classify_item(source["class"], source["trust"], enrichment, rules)
 
     if source["method"] == "github":
@@ -89,9 +108,23 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
         decision = {"status": "review", "final_class": None, "reject_phrase": None}
 
     # LLM fallback runs strictly after classification -- it can only ever
-    # touch enrichment["location"/"participants_count"], never scores/reject,
-    # so it structurally cannot influence accept/review/reject either way.
-    enrichment = llm_enrich.apply_llm_fallback(enrichment, combined_text, llm_budget)
+    # touch enrichment["location"/"participants_count"/"deadline_date"],
+    # never scores/reject, so it structurally cannot influence
+    # accept/review/reject either way.
+    enrichment = llm_enrich.apply_llm_fallback(enrichment, combined_doc.text, llm_budget)
+
+    enriched_flag = 1
+    if is_js_shell:
+        enrichment = dict(enrichment)
+        enrichment.update(
+            {
+                "deadline_date": None, "deadline_confidence": "none",
+                "money_raw": None, "team_size": None,
+                "location": None, "location_format": "Unknown", "location_confidence": "none",
+                "participants_count": None, "participants_confidence": "none",
+            }
+        )
+        enriched_flag = 0
 
     conn.execute(
         """INSERT INTO items
@@ -100,7 +133,7 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
             deadline_date, deadline_confidence, money_raw, team_size,
             location, location_format, location_confidence,
             participants_count, participants_confidence, enriched, reported)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,?)""",
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
         (
             iid, source["id"], source["class"], raw["title"], raw["url"], snippet, ts, ts,
             decision["status"], decision["final_class"],
@@ -110,6 +143,7 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
             enrichment["money_raw"], enrichment["team_size"],
             enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
             enrichment["participants_count"], enrichment["participants_confidence"],
+            enriched_flag,
             1 if init_mode else 0,
         ),
     )
@@ -196,10 +230,15 @@ def backfill_location_participants(conn, rules, llm_budget):
             print(f"  backfill fetch failed for {r['url']}: {type(e).__name__}: {e}", file=sys.stderr)
             failed += 1
             continue
-        combined = f"{r['title']} {r['snippet'] or ''} {page_text}"
-        location, fmt, loc_conf = enrich_lib.extract_location(combined, rules)
-        count, count_conf = enrich_lib.extract_participants(combined, rules)
-        deadline_date, deadline_conf = enrich_lib.extract_deadline(combined, rules)
+        page_doc = extract_document(page_text)
+        combined_doc = Document(
+            text=f"{r['title']} {r['snippet'] or ''} {page_doc.text}".strip(),
+            structured=page_doc.structured,
+        )
+        combined = combined_doc.text
+        location, fmt, loc_conf = enrich_lib.extract_location(combined_doc, rules)
+        count, count_conf = enrich_lib.extract_participants(combined_doc, rules)
+        deadline_date, deadline_conf = enrich_lib.extract_deadline(combined_doc, rules)
         enrichment = {
             "location": location, "location_format": fmt, "location_confidence": loc_conf,
             "participants_count": count, "participants_confidence": count_conf,

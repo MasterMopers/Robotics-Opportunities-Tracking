@@ -123,19 +123,6 @@ deadline_patterns:
     - 'closes in (\d+)\s+days?'
     - '(\d+)\s+days? (?:left|remaining)'
 
-# JSON-LD Event deadline fields. Schema.org's Event type has no standard
-# "application deadline" property, so this pattern is a defensive addition,
-# not verified against a real page using it in this session's sample (unlike
-# the location JSON-LD pattern below, which fixed a confirmed real
-# false-positive). Deliberately does NOT match startDate/endDate -- those
-# are the event's own dates, not an application deadline, and treating them
-# as one would be a real, misleading mistake (confirmed on SteelHacks: its
-# JSON-LD has startDate/endDate only, no deadline-shaped field at all -- it
-# correctly stays unresolved under this guard rather than showing a wrong
-# "deadline" that's actually just when the hackathon happens).
-deadline_jsonld_patterns:
-  - '"@type":\s*"Event".{0,500}?"(?:applicationDeadline|registrationDeadline|deadlineDate)":\s*"([^"]+)"'
-
 money_pattern: '(?:up to\s+)?\$\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?(?:\s*(?:to|-|–)\s*\$?\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?)?'
 
 team_size_patterns:
@@ -145,20 +132,23 @@ team_size_patterns:
   - '\bindividual\b'
   - '\bsolo\b'
 
-# Location/format extraction. Only ever fills in a city or format when the
-# page itself states it -- default is "Unknown", never a guess. Tried in
-# order; first match wins. The JSON-LD pattern is bounded to text following
-# an "@type": "Event" tag specifically so it can't pick up an unrelated
-# Organization/publisher address elsewhere on the same page (verified this
-# false positive is real: Hackster's contest pages carry Hackster's own HQ
-# address in an Organization block with no Event block at all).
+# Location/format extraction against the CLEAN TEXT view produced by
+# lib/extract.py (doc.text) -- tags/attributes are already gone by the time
+# these run, so no pattern here should assume raw markup. Tried in order;
+# first match wins.
+#
+# As of Phase 1, JSON-LD location (Event.location.address, never an
+# Organization block -- Hackster's contest pages carry Hackster's own HQ
+# address in an Organization JSON-LD block with no Event block at all, a
+# confirmed real false positive) and the MLH hero-location CSS-class marker
+# are both handled as structured key lookups in lib/enrich.py against
+# doc.structured, not as regexes here -- see lib/extract.py's
+# _collect_location_hints and lib/enrich.py's _find_event_dicts.
 location_city_patterns:
-  - '"@type":\s*"Event".{0,500}?"addressLocality":\s*"([^"]+)"(?:,\s*"addressRegion":\s*"([^"]*)")?'
-  - 'lv-hero-location">([^<]{2,60})<'
-  - 'In-Person:</strong>\s*([^<\n]{2,80})'
-  - 'in person at\s+([^,<."=\n]{2,60}(?:,\s*[^,<."=\n]{2,40})?)'
-  - 'held at\s+([^,<."=\n]{2,60})'
-  - '\bVenue:\s*([^<\n"=]{2,60})'
+  - 'In-Person:\s*([^,.\n]{2,80})'
+  - 'in person at\s+([^,."\n]{2,60}(?:,\s*[^,."\n]{2,40})?)'
+  - 'held at\s+([^,."\n]{2,60})'
+  - '\bVenue:\s*([^\n"]{2,60})'
 
 location_format_phrases:
   in_person:
@@ -183,12 +173,15 @@ location_format_phrases:
     - 'in-person or virtual'
 
 # Only ever a real number the page states (e.g. "9 participants", "141
-# Participants"), never an invented estimate. Tried in order; first match
-# wins.
+# Participants"), never an invented estimate. Matched against the clean-text
+# view (doc.text): a page like Hackster's "Participants" stat block used to
+# be two adjacent <span> tags with the count right after the label
+# (`Participants</span><span>141</span>`) -- lib/extract.py's clean-text
+# pass now collapses that to plain "Participants 141", so the pattern below
+# is text-shaped, not markup-shaped. Tried in order; first match wins.
 participant_count_patterns:
-  - 'Participants \((\d[\d,]*)\)'
-  - 'Participants</span><span[^>]*>(\d[\d,]*)</span>'
-  - '<strong>(\d[\d,]*)</strong>\s*participants'
+  - 'Participants\s*\(\s*(\d[\d,]*)\s*\)'
+  - 'Participants\s+(\d[\d,]*)\b'
   - '(\d[\d,]*)\+?\s*(?:participants|attendees|hackers|applicants|teams (?:competed|registered|applied))\b'
 
 # Country classification for the resolved `location` string (lib/geo.py),
