@@ -1,11 +1,12 @@
 name: Monitor robotics opportunities
 
 on:
-  schedule:
-    # Off-the-hour minutes on purpose -- GitHub delays/drops scheduled runs
-    # under load, and jobs at minute 0 get hit hardest. Do not "tidy" these.
-    - cron: "37 13 * * 1"   # weekly: discovery run (Monday)
-    - cron: "37 13 1 * *"   # monthly: rebuild README from state.db
+  # TODO: re-enable in Phase 8
+  # schedule:
+  #   # Off-the-hour minutes on purpose -- GitHub delays/drops scheduled runs
+  #   # under load, and jobs at minute 0 get hit hardest. Do not "tidy" these.
+  #   - cron: "37 13 * * 1"   # weekly: discovery run (Monday)
+  #   - cron: "37 13 1 * *"   # monthly: rebuild README from state.db
   workflow_dispatch:
     inputs:
       backfill:
