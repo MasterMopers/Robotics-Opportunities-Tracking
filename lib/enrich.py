@@ -1,41 +1,64 @@
-"""Per-item enrichment: fetch an item's own page once and extract
-deadline, money, team size, and which rule phrases are present.
+"""Per-item enrichment: fetch an item's own page once, run it through
+lib/extract.py, and extract deadline, money, team size, signal phrases,
+location, and participant count from the two views that produces --
+clean prose text and structured (JSON-LD/__NEXT_DATA__/__NUXT__) payloads.
 
 This only ever runs on items that are new in this diff -- never the whole
 page list -- per the cost constraint in the spec.
 """
 
+import functools
 import html
 import re
 from datetime import date
 
-from bs4 import BeautifulSoup
 from dateutil import parser as dateutil_parser
 
-_NOISE_TAGS = ("script", "style", "noscript", "nav", "footer", "header")
-
-
-def clean_page_text(raw_html: str) -> str:
-    """Strip markup/script noise out of a fetched page before any regex
-    extractor sees it. Frameworks like Next.js embed a React Server
-    Components JSON stream inside <script> tags (e.g. `["$","$1","c",...]`)
-    that looks exactly like a dollar amount or a numeric id to a naive
-    `\\$\\d+` or `\\d+-person` regex -- this is what produced bogus
-    money_raw values like "$1" and team_size values like "70104-person"
-    on real hackathon pages. Parsing to visible text first removes that
-    class of false match at the source instead of trying to filter it back
-    out downstream."""
-    if not raw_html:
-        return ""
-    soup = BeautifulSoup(raw_html, "html.parser")
-    for tag in soup(_NOISE_TAGS):
-        tag.decompose()
-    return re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).strip()
+from lib import negation
+from lib.eligibility import extract_eligibility_fields
+from lib.extract import Document
+from lib.relevance import score_relevance
 
 DATE_FRAGMENT = (
     r"(?:[A-Z][a-z]+\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}"   # March 3, 2027
     r"|\d{1,2}/\d{1,2}/\d{2,4})"                                 # 3/3/27
 )
+
+# JSON-LD deadline fields that legitimately mean "applications/entries close
+# on this date". Deliberately does NOT include startDate/endDate -- those
+# are the event's own dates, not an application deadline (see
+# test_jsonld_start_date_is_not_treated_as_deadline).
+_JSONLD_DEADLINE_FIELDS = ("applicationDeadline", "submissionDeadline", "deadlineDate", "registrationDeadline")
+
+
+def _iter_dicts(obj):
+    """Yield every dict found anywhere in a nested structured payload
+    (walked by key/value, not by regex over a string)."""
+    if isinstance(obj, dict):
+        yield obj
+        for v in obj.values():
+            yield from _iter_dicts(v)
+    elif isinstance(obj, list):
+        for item in obj:
+            yield from _iter_dicts(item)
+
+
+def _has_type(d: dict, type_name: str) -> bool:
+    t = d.get("@type")
+    if isinstance(t, list):
+        return type_name in t
+    return t == type_name
+
+
+def _find_event_dicts(structured):
+    """Every dict anywhere in `structured` whose @type is (or includes)
+    "Event" -- never an Organization/Place/Person block, so an
+    unrelated publisher/organizer address can't be mistaken for the
+    event's own deadline or location."""
+    for top in structured or []:
+        for d in _iter_dicts(top):
+            if _has_type(d, "Event"):
+                yield d
 
 
 def _compile_deadline_patterns(rules: dict):
@@ -48,36 +71,53 @@ def _compile_deadline_patterns(rules: dict):
     return compiled
 
 
-def extract_deadline(text: str, rules: dict, today: date = None):
+def _parse_date_or_none(raw):
+    try:
+        parsed = dateutil_parser.parse(raw, fuzzy=True, default=None)
+    except (ValueError, OverflowError, TypeError):
+        return None
+    return parsed.date().isoformat()
+
+
+def extract_deadline(doc: Document, rules: dict, today: date = None):
     """Returns (deadline_date, deadline_confidence) with confidence in
     {explicit, relative, llm, none} -- "llm" is never set by this function,
-    see lib/llm_enrich.py. The JSON-LD path only ever reads an explicit
-    application/registration-deadline field, never an event's own
-    startDate/endDate -- those are when the event happens, not when
-    applications close, and mislabeling one as the other would be a real
-    mistake, not just a missed extraction."""
+    see lib/llm_enrich.py.
+
+    JSON-LD deadlines are read by walking doc.structured for a dict whose
+    @type is "Event" and pulling an explicit application/registration
+    deadline field from it -- never startDate/endDate, and never a key
+    lookup by regex over raw text (that was the pre-Phase-1 approach and is
+    why the JSON-LD payload, which lives inside a <script> tag stripped out
+    of doc.text, was never actually reachable by the old text-regex path in
+    the first place on JS-rendered pages)."""
     today = today or date.today()
+    text = doc.text
     patterns = _compile_deadline_patterns(rules)
 
     for pat in patterns["explicit"]:
         m = pat.search(text)
         if m:
-            raw = m.group(1)
-            try:
-                parsed = dateutil_parser.parse(raw, fuzzy=True, default=None)
-            except (ValueError, OverflowError):
-                continue
-            return parsed.date().isoformat(), "explicit"
+            # Almost every pattern has exactly one %DATE% capture group, so
+            # this is just m.group(1) -- but a pattern with two (a
+            # "Weekday, Month Day, Year - Weekday, Month Day, Year"
+            # submission-window range, e.g. hackaday.io's contest pages)
+            # needs the LAST one: that's the window's own close date, which
+            # is the real entry deadline for that kind of page, the same
+            # way Devpost's submission_period_dates end-of-range is treated
+            # as the deadline in adapters/devpost_api.py. Always taking the
+            # last group keeps single-%DATE% patterns unchanged.
+            parsed = _parse_date_or_none(m.groups()[-1])
+            if parsed:
+                return parsed, "explicit"
 
-    for jsonld_pat in rules.get("deadline_jsonld_patterns", []):
-        m = re.search(jsonld_pat, text, re.DOTALL)
-        if m:
-            raw = m.group(1)
-            try:
-                parsed = dateutil_parser.parse(raw, fuzzy=True, default=None)
-            except (ValueError, OverflowError):
-                continue
-            return parsed.date().isoformat(), "explicit"
+    for event in _find_event_dicts(doc.structured):
+        for field_name in _JSONLD_DEADLINE_FIELDS:
+            raw = event.get(field_name)
+            if raw:
+                parsed = _parse_date_or_none(str(raw))
+                if parsed:
+                    return parsed, "explicit"
 
     for pat in patterns["relative"]:
         m = pat.search(text)
@@ -107,17 +147,24 @@ def extract_team_size(text: str, rules: dict):
     return None
 
 
+@functools.lru_cache(maxsize=None)
+def _compile_signal_phrase(phrase: str):
+    """Word-boundary match, not substring. Regression: naive substring
+    matching on "stem" produced three false positives from the words
+    "system" and "ecosystem" in a real corpus -- re.escape + \\b on both
+    ends closes that off. See test_relevance.py for the named regression."""
+    return re.compile(r"\b" + re.escape(phrase) + r"\b", re.IGNORECASE)
+
+
 def extract_signals(text: str, rules: dict):
     """Which contest/grant signal phrases are present in the text, and the
     reject rule (if any) that fires. Used both for scoring trust:low items
     and for making every classification decision debuggable from the db."""
-    lower = text.lower()
-
     matched = {"contest": [], "grant": []}
     scores = {"contest": 0.0, "grant": 0.0}
     for cls in ("contest", "grant"):
         for sig in rules["signals"][cls]:
-            if sig["phrase"].lower() in lower:
+            if _compile_signal_phrase(sig["phrase"]).search(text):
                 matched[cls].append(sig["phrase"])
                 scores[cls] += sig["weight"]
 
@@ -137,26 +184,20 @@ def extract_signals(text: str, rules: dict):
     return matched, scores, reject
 
 
-_NEGATION_WORDS = re.compile(
-    r"\b(no|not|non|without|zero|free of|isn't|doesn't|won't|never)\b[\s-]*$", re.IGNORECASE
-)
+# Shared with lib/eligibility.py -- see lib/negation.py's module docstring
+# for why this lives in its own module (avoids a circular import between
+# enrich.py and eligibility.py).
+_NEGATION_WORDS = negation.NEGATION_WORDS
+_negated = negation.negated
 
 
-def _negated(text: str, match_start: int, window: int = 20) -> bool:
-    """True if a negation word sits immediately before the match, e.g. a
-    page advertising "no equity funding" shouldn't trip the "equity" reject
-    rule -- that's the opposite of what the rule is meant to catch."""
-    preceding = text[max(0, match_start - window):match_start]
-    return bool(_NEGATION_WORDS.search(preceding))
-
-
-_PLACE_JUNK_TOKENS = (
-    '"', "=", "<", ">", "\\", "{", "}", "[", "]", "$", "px;", "aria-", "svg",
-    "children", "fetchpriority", "class=", "panel-label", "-title",
-)
 # Cut a capture at the first sign it has run on into a time/date/filler
 # clause rather than staying a place name, e.g. "...held at 530pm on Aug
-# 21st" or "Johns Hopkins University in the fall".
+# 21st" or "Johns Hopkins University in the fall". The HTML/JS-noise token
+# filter that used to live alongside this (_PLACE_JUNK_TOKENS: `aria-`,
+# `svg`, `<`, `=`, ...) is gone as of Phase 1 -- it existed only to clean up
+# noise from matching against raw HTML, which lib/extract.py's clean-text
+# pass now prevents from ever reaching this function in the first place.
 _PLACE_TRIM_TRIGGER = re.compile(
     r"\b(?:in the|during|this fall|this spring|this summer|this winter|where|for|"
     r"mon|tue|tues|wed|thu|thurs|fri|sat|sun|"
@@ -167,9 +208,9 @@ _PLACE_TRIM_TRIGGER = re.compile(
 
 
 def _clean_place(candidate: str):
-    """Reject regex captures that are HTML/JS noise rather than a real place
-    name (e.g. a bare 'venue' match landing inside an aria-labelledby
-    attribute), and trim an obviously real capture's trailing filler clause."""
+    """Trim an obviously real capture's trailing filler clause and enforce
+    a sane length bound. Rejecting HTML/JS noise is no longer this
+    function's job -- see the _PLACE_TRIM_TRIGGER docstring above."""
     if not candidate:
         return None
     candidate = html.unescape(candidate).strip()
@@ -181,32 +222,62 @@ def _clean_place(candidate: str):
         return None
     if not re.search(r"[A-Za-z]", candidate):
         return None
-    low = candidate.lower()
-    if any(tok in low for tok in _PLACE_JUNK_TOKENS):
-        return None
     return candidate
 
 
-def extract_location(text: str, rules: dict):
-    """City/venue + format (In-person / Remote / Hybrid), only ever from text
-    the page actually states -- default is Unknown, never inferred from
-    class/source. Returns (location, format, confidence) with confidence in
-    {explicit, inferred, llm, none} -- explicit means a specific city/venue
-    was captured, inferred means only a format phrase (no venue) was found.
-    "llm" is never set by this function -- it's added only by the separate,
-    opt-in lib/llm_enrich.py fallback when this function leaves the field as
-    "none"."""
+def extract_location(doc: Document, rules: dict):
+    """City/venue + format (In-person / Remote / Hybrid), only ever from
+    text/structured data the page actually states -- default is Unknown,
+    never inferred from class/source. Returns (location, format, confidence)
+    with confidence in {explicit, inferred, llm, none} -- explicit means a
+    specific city/venue was captured, inferred means only a format phrase
+    (no venue) was found. "llm" is never set by this function -- it's added
+    only by the separate, opt-in lib/llm_enrich.py fallback when this
+    function leaves the field as "none".
+
+    JSON-LD location is read from Event.location.address specifically (by
+    key lookup on doc.structured), never from an Organization block --
+    see test_ignores_organization_address_without_event_type, the Hackster
+    HQ-address regression this guards against."""
+    text = doc.text
     location = None
-    for pat in rules.get("location_city_patterns", []):
-        for m in re.finditer(pat, text, re.DOTALL if "@type" in pat else 0):
-            groups = [g for g in m.groups() if g]
-            candidate = ", ".join(dict.fromkeys(g.strip() for g in groups))
-            cleaned = _clean_place(candidate)
-            if cleaned:
-                location = cleaned
+
+    for event in _find_event_dicts(doc.structured):
+        loc = event.get("location")
+        address = loc.get("address") if isinstance(loc, dict) else None
+        if isinstance(address, dict):
+            city = address.get("addressLocality")
+            region = address.get("addressRegion")
+            if city:
+                parts = [p for p in (city, region) if p]
+                candidate = ", ".join(dict.fromkeys(p.strip() for p in parts))
+                cleaned = _clean_place(candidate)
+                if cleaned:
+                    location = cleaned
+                    break
+
+    if not location:
+        # Structural DOM markers (e.g. MLH's hero-location CSS class),
+        # captured by lib/extract.py as plain {"@type": "LocationHint", ...}
+        # dicts -- a key lookup, not a regex over raw markup.
+        for item in doc.structured or []:
+            if isinstance(item, dict) and item.get("@type") == "LocationHint":
+                cleaned = _clean_place(item.get("text"))
+                if cleaned:
+                    location = cleaned
+                    break
+
+    if not location:
+        for pat in rules.get("location_city_patterns", []):
+            for m in re.finditer(pat, text):
+                groups = [g for g in m.groups() if g]
+                candidate = ", ".join(dict.fromkeys(g.strip() for g in groups))
+                cleaned = _clean_place(candidate)
+                if cleaned:
+                    location = cleaned
+                    break
+            if location:
                 break
-        if location:
-            break
 
     phrases = rules.get("location_format_phrases", {})
     has_in_person = any(re.search(p, text, re.IGNORECASE) for p in phrases.get("in_person", []))
@@ -232,11 +303,12 @@ def extract_location(text: str, rules: dict):
     return location, fmt, confidence
 
 
-def extract_participants(text: str, rules: dict):
+def extract_participants(doc: Document, rules: dict):
     """A real participant/attendee count the page states, never an invented
     estimate. Returns (count, confidence) with confidence in
     {explicit, llm, none} -- "llm" is never set by this function, see
     lib/llm_enrich.py."""
+    text = doc.text
     for pat in rules.get("participant_count_patterns", []):
         m = re.search(pat, text, re.IGNORECASE)
         if m:
@@ -247,14 +319,16 @@ def extract_participants(text: str, rules: dict):
     return None, "none"
 
 
-def enrich_item(text: str, rules: dict):
-    deadline_date, deadline_confidence = extract_deadline(text, rules)
-    money_raw = extract_money(text, rules)
-    team_size = extract_team_size(text, rules)
-    matched, scores, reject = extract_signals(text, rules)
-    location, location_format, location_confidence = extract_location(text, rules)
-    participants_count, participants_confidence = extract_participants(text, rules)
-    return {
+def enrich_item(doc: Document, rules: dict):
+    deadline_date, deadline_confidence = extract_deadline(doc, rules)
+    money_raw = extract_money(doc.text, rules)
+    team_size = extract_team_size(doc.text, rules)
+    matched, scores, reject = extract_signals(doc.text, rules)
+    location, location_format, location_confidence = extract_location(doc, rules)
+    participants_count, participants_confidence = extract_participants(doc, rules)
+    relevance = score_relevance(doc.text, rules)
+    eligibility_fields = extract_eligibility_fields(doc.text, rules)
+    result = {
         "deadline_date": deadline_date,
         "deadline_confidence": deadline_confidence,
         "money_raw": money_raw,
@@ -267,4 +341,11 @@ def enrich_item(text: str, rules: dict):
         "location_confidence": location_confidence,
         "participants_count": participants_count,
         "participants_confidence": participants_confidence,
+        "relevance_score": relevance["relevance_score"],
+        "relevance_core_hits": relevance["relevance_core_hits"],
+        "relevance_buckets": relevance["relevance_buckets"],
+        "relevance_terms": relevance["relevance_terms"],
+        "relevance_eligible": relevance["relevance_eligible"],
     }
+    result.update(eligibility_fields)
+    return result

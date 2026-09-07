@@ -38,7 +38,20 @@ def _fetch_by_href_prefix(soup, base, cfg):
         if not slug or slug in seen:
             continue
         seen.add(slug)
-        title = a.get_text(strip=True) or a.get("aria-label") or slug.replace("-", " ").title()
+        # A card's own visible text is sometimes stat badges (view/like
+        # counts) rendered inside the same <a>, not the title -- e.g.
+        # hackaday.io's contest cards. A `title="..."` HTML attribute on
+        # the link itself or a nested element (its image-cover div, most
+        # often) carries the real title in that case; only fall back to
+        # raw link text when neither exists.
+        nested_title_el = a.find(attrs={"title": True})
+        title = (
+            a.get("title")
+            or (nested_title_el.get("title") if nested_title_el else None)
+            or a.get_text(strip=True)
+            or a.get("aria-label")
+            or slug.replace("-", " ").title()
+        )
         items.append({"title": title, "url": urljoin(base, href), "snippet": ""})
     return items
 

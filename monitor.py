@@ -26,14 +26,18 @@ from adapters import fetch_source
 from adapters._http import get as http_get
 from lib import classify as classify_lib
 from lib import db
+from lib import eligibility as eligibility_lib
 from lib import enrich as enrich_lib
+from lib import llm_assess
 from lib import llm_enrich
 from lib import normalize
+from lib.extract import Document, extract_document
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(ROOT, "state.db")
 SOURCES_PATH = os.path.join(ROOT, "sources.yaml")
 RULES_PATH = os.path.join(ROOT, "rules.yaml")
+PROFILE_PATH = os.path.join(ROOT, "profile.yaml")
 
 
 def load_yaml(path):
@@ -56,14 +60,51 @@ def new_report():
     }
 
 
-def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
+def needs_reenrichment(existing_row, today=None) -> bool:
+    """Phase 5: replaces the old "if it exists, only touch last_seen"
+    short-circuit, which meant a row enriched from a JS shell on day one
+    (or simply never enriched because it predates a given extractor) stayed
+    Unknown forever. Re-run the full pipeline on an existing row whenever
+    any of:
+      - deadline_confidence = 'none' (never resolved)
+      - relevance_score IS NULL (predates the relevance axis, or was never
+        scored for some other reason)
+      - enriched = 0 (explicitly marked as not really enriched -- e.g. the
+        JS-shell case from Phase 1)
+      - last_enriched is more than 14 days old (routine refresh -- a page
+        that was a JS shell when first crawled may not be one anymore, a
+        rolling deadline may have been posted since, etc.)
+    `--backfill` remains a manual escape hatch (lib/db.py docstring), but
+    stops being the only repair mechanism."""
+    today = today or datetime.now(timezone.utc)
+
+    if existing_row["deadline_confidence"] in (None, "none"):
+        return True
+    if existing_row["relevance_score"] is None:
+        return True
+    if not existing_row["enriched"]:
+        return True
+
+    last_enriched = existing_row["last_enriched"]
+    if not last_enriched:
+        return True
+    try:
+        last = datetime.fromisoformat(last_enriched)
+    except ValueError:
+        return True
+    if last.tzinfo is None:
+        last = last.replace(tzinfo=timezone.utc)
+    return (today - last) > timedelta(days=14)
+
+
+def process_item(conn, source, raw, rules, init_mode, report, llm_budget, profile):
     if not raw.get("url") or not raw.get("title"):
         return
     iid = normalize.item_id(raw["url"])
-    existing = conn.execute("SELECT id FROM items WHERE id = ?", (iid,)).fetchone()
+    existing = conn.execute("SELECT * FROM items WHERE id = ?", (iid,)).fetchone()
     ts = now_iso()
 
-    if existing:
+    if existing and not needs_reenrichment(existing):
         conn.execute(
             "UPDATE items SET last_seen = ?, title = ? WHERE id = ?",
             (ts, raw["title"], iid),
@@ -73,12 +114,56 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
     snippet = raw.get("snippet", "") or ""
     page_text = ""
     try:
-        page_text = enrich_lib.clean_page_text(http_get(raw["url"]).text)
+        page_text = http_get(raw["url"]).text
     except Exception:
         pass  # enrichment is best-effort; classification still runs off title+snippet
 
-    combined_text = f"{raw['title']} {snippet} {page_text}"
-    enrichment = enrich_lib.enrich_item(combined_text, rules)
+    # lib/extract.py does the HTML parsing once: doc.text is clean prose
+    # (scripts/nav/footer/etc. stripped), doc.structured is every JSON-LD /
+    # __NEXT_DATA__ / __NUXT__ / location-hint payload on the page. Title
+    # and snippet are folded into the text view (they're never markup), but
+    # never into .structured -- only the fetched page can carry that.
+    page_doc = extract_document(page_text)
+    combined_doc = Document(
+        text=f"{raw['title']} {snippet} {page_doc.text}".strip(),
+        structured=page_doc.structured,
+    )
+
+    # Devpost/Hackster/MLH-style detail pages ship a near-empty HTML shell
+    # plus a JS-rendered payload; if neither clean text nor any structured
+    # payload came through, this is a half-parsed shell, not real content.
+    # Store it as unenriched (every enrichment field NULL) rather than a
+    # row that looks resolved but is really just noise -- Phase 5's
+    # re-enrichment pass retries any row left at enriched=0.
+    is_js_shell = len(page_doc.text) < 500 and not page_doc.structured
+
+    enrichment = enrich_lib.enrich_item(combined_doc, rules)
+
+    # Some adapters (devpost_api, bulk_xml) supply already-resolved facts
+    # straight from a structured API/export -- e.g. Devpost's own
+    # submission_period_dates is more authoritative than anything a regex
+    # could recover from that hackathon's own rendered page. Apply those as
+    # an override, but only where the adapter actually resolved something
+    # (confidence != "none") -- an adapter that couldn't determine a field
+    # must never blank out a real result the deterministic extractors found
+    # from the page text.
+    prefilled = raw.get("prefilled")
+    if prefilled:
+        enrichment = dict(enrichment)
+        for value_key, conf_key in (
+            ("deadline_date", "deadline_confidence"),
+            ("location", "location_confidence"),
+            ("participants_count", "participants_confidence"),
+        ):
+            if prefilled.get(conf_key, "none") == "none":
+                continue
+            enrichment[value_key] = prefilled[value_key]
+            enrichment[conf_key] = prefilled[conf_key]
+            if value_key == "location":
+                enrichment["location_format"] = prefilled.get("location_format", enrichment.get("location_format"))
+        if prefilled.get("money_raw") is not None:
+            enrichment["money_raw"] = prefilled["money_raw"]
+
     decision = classify_lib.classify_item(source["class"], source["trust"], enrichment, rules)
 
     if source["method"] == "github":
@@ -89,30 +174,113 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
         decision = {"status": "review", "final_class": None, "reject_phrase": None}
 
     # LLM fallback runs strictly after classification -- it can only ever
-    # touch enrichment["location"/"participants_count"], never scores/reject,
-    # so it structurally cannot influence accept/review/reject either way.
-    enrichment = llm_enrich.apply_llm_fallback(enrichment, combined_text, llm_budget)
+    # touch enrichment["location"/"participants_count"/"deadline_date"],
+    # never scores/reject, so it structurally cannot influence
+    # accept/review/reject either way.
+    enrichment = llm_enrich.apply_llm_fallback(enrichment, combined_doc.text, llm_budget)
 
-    conn.execute(
-        """INSERT INTO items
-           (id, source_id, class, title, url, snippet, first_seen, last_seen, status,
-            final_class, contest_score, grant_score, matched_signals, reject_phrase,
-            deadline_date, deadline_confidence, money_raw, team_size,
-            location, location_format, location_confidence,
-            participants_count, participants_confidence, enriched, reported)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,?)""",
-        (
-            iid, source["id"], source["class"], raw["title"], raw["url"], snippet, ts, ts,
-            decision["status"], decision["final_class"],
-            enrichment["scores"]["contest"], enrichment["scores"]["grant"],
-            json.dumps(enrichment["matched_signals"]), decision["reject_phrase"],
-            enrichment["deadline_date"], enrichment["deadline_confidence"],
-            enrichment["money_raw"], enrichment["team_size"],
-            enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
-            enrichment["participants_count"], enrichment["participants_confidence"],
-            1 if init_mode else 0,
-        ),
+    enriched_flag = 1
+    if is_js_shell:
+        enrichment = dict(enrichment)
+        enrichment.update(
+            {
+                "deadline_date": None, "deadline_confidence": "none",
+                "money_raw": None, "team_size": None,
+                "location": None, "location_format": "Unknown", "location_confidence": "none",
+                "participants_count": None, "participants_confidence": "none",
+            }
+        )
+        enriched_flag = 0
+
+    # Phase 6: a second, separate LLM call -- invoked ONLY for items that
+    # already passed the deterministic relevance gate (never for an item
+    # the deterministic layer didn't already consider in-scope; this is
+    # the "cannot promote an item that failed the deterministic gate"
+    # requirement, enforced at the call site, not just inside
+    # lib/llm_assess.py). It writes only to its own columns
+    # (llm_robotics_relevant/llm_relevance_evidence/eligibility_llm_evidence
+    # plus whichever eligibility_* fields it fills), all tagged confidence
+    # "llm" -- never to status/final_class/contest_score/grant_score/
+    # relevance_score, which this dict update never even names.
+    if enrichment.get("relevance_eligible"):
+        llm_updates = llm_assess.assess_item(combined_doc, rules, enrichment, llm_budget)
+        if llm_updates:
+            enrichment = dict(enrichment)
+            enrichment.update(llm_updates)
+
+    # Eligibility verdict is computed last, after any Phase 6 LLM gap-fill,
+    # so a field the LLM resolved (confidence "llm") counts the same as a
+    # deterministically resolved one -- lib.eligibility.evaluate() treats
+    # explicit/llm identically and only "none" as unresolved.
+    eligibility_verdict, eligibility_reason = eligibility_lib.evaluate(enrichment, profile)
+
+    # Shared between the INSERT (brand-new item) and UPDATE (Phase 5
+    # re-enrichment of an existing row) paths -- everything except the
+    # identity/bookkeeping columns (id, first_seen, last_seen,
+    # last_enriched, reported), which are handled per-path below.
+    enrichment_columns = [
+        "source_id", "class", "title", "url", "snippet", "status",
+        "final_class", "contest_score", "grant_score", "matched_signals", "reject_phrase",
+        "deadline_date", "deadline_confidence", "money_raw", "team_size",
+        "location", "location_format", "location_confidence",
+        "participants_count", "participants_confidence",
+        "relevance_score", "relevance_core_hits", "relevance_buckets", "relevance_terms",
+        "requires_incorporation", "requires_incorporation_confidence",
+        "requires_faculty_sponsor", "requires_faculty_sponsor_confidence",
+        "requires_us_person", "requires_us_person_confidence",
+        "min_age", "min_age_confidence", "max_age", "max_age_confidence",
+        "entry_fee_usd", "entry_fee_usd_confidence",
+        "max_team_size", "max_team_size_confidence",
+        "requires_enrollment", "requires_enrollment_confidence",
+        "equity_required", "equity_required_confidence",
+        "eligibility", "enriched",
+        "llm_robotics_relevant", "llm_relevance_evidence", "eligibility_llm_evidence",
+    ]
+    enrichment_values = (
+        source["id"], source["class"], raw["title"], raw["url"], snippet, decision["status"],
+        decision["final_class"], enrichment["scores"]["contest"], enrichment["scores"]["grant"],
+        json.dumps(enrichment["matched_signals"]), decision["reject_phrase"],
+        enrichment["deadline_date"], enrichment["deadline_confidence"],
+        enrichment["money_raw"], enrichment["team_size"],
+        enrichment["location"], enrichment["location_format"], enrichment["location_confidence"],
+        enrichment["participants_count"], enrichment["participants_confidence"],
+        enrichment["relevance_score"], enrichment["relevance_core_hits"],
+        json.dumps(enrichment["relevance_buckets"]), json.dumps(enrichment["relevance_terms"]),
+        enrichment["requires_incorporation"], enrichment["requires_incorporation_confidence"],
+        enrichment["requires_faculty_sponsor"], enrichment["requires_faculty_sponsor_confidence"],
+        enrichment["requires_us_person"], enrichment["requires_us_person_confidence"],
+        enrichment["min_age"], enrichment["min_age_confidence"],
+        enrichment["max_age"], enrichment["max_age_confidence"],
+        enrichment["entry_fee_usd"], enrichment["entry_fee_usd_confidence"],
+        enrichment["max_team_size"], enrichment["max_team_size_confidence"],
+        enrichment["requires_enrollment"], enrichment["requires_enrollment_confidence"],
+        enrichment["equity_required"], enrichment["equity_required_confidence"],
+        eligibility_verdict, enriched_flag,
+        enrichment.get("llm_robotics_relevant"), enrichment.get("llm_relevance_evidence"),
+        enrichment.get("eligibility_llm_evidence"),
     )
+    assert len(enrichment_columns) == len(enrichment_values), (
+        f"{len(enrichment_columns)} columns vs {len(enrichment_values)} values"
+    )
+
+    if existing:
+        # Re-enrichment of a row that already exists (Phase 5): overwrite
+        # everything the pipeline just recomputed, including status/
+        # final_class (a row can be reclassified once a gap is filled --
+        # that's the point), but never first_seen, and never reported
+        # (re-enrichment is not "this is new," so it must not trigger a
+        # duplicate GitHub issue mention for an item already reported).
+        set_clause = ", ".join(f"{c} = ?" for c in enrichment_columns)
+        conn.execute(
+            f"UPDATE items SET {set_clause}, last_seen = ?, last_enriched = ? WHERE id = ?",
+            enrichment_values + (ts, ts, iid),
+        )
+        return
+
+    columns = ["id"] + enrichment_columns + ["first_seen", "last_seen", "last_enriched", "reported"]
+    values = (iid,) + enrichment_values + (ts, ts, ts, 1 if init_mode else 0)
+    placeholders = ",".join("?" * len(columns))
+    conn.execute(f"INSERT INTO items ({','.join(columns)}) VALUES ({placeholders})", values)
 
     row = {
         "title": raw["title"],
@@ -128,8 +296,37 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
     ].append(row)
 
 
-def run_source(conn, source, rules, init_mode, report, llm_budget):
+def run_source(conn, source, rules, init_mode, report, llm_budget, profile):
     source_id = source["id"]
+
+    if source.get("disabled"):
+        # Phase 4c: a source that failed its Phase 0b/4 probe (no live
+        # feed/endpoint found) is marked `disabled: true` with a reason in
+        # sources.yaml rather than deleted -- never fetched, never counted
+        # as BROKEN/ERROR (it isn't failing, it's intentionally off), but
+        # still visible in the source report for auditability.
+        conn.execute(
+            """INSERT INTO source_health (source_id, last_run, last_status, last_count, last_error)
+               VALUES (?, ?, 'DISABLED', 0, ?)
+               ON CONFLICT(source_id) DO UPDATE SET
+                 last_run=excluded.last_run, last_status=excluded.last_status,
+                 last_count=excluded.last_count, last_error=excluded.last_error""",
+            (source_id, now_iso(), source.get("disabled_reason")),
+        )
+        report["sources"].append(
+            {
+                "id": source_id,
+                "name": source["name"],
+                "class": source["class"],
+                "trust": source["trust"],
+                "method": source["method"],
+                "count": 0,
+                "status": "DISABLED",
+                "error": source.get("disabled_reason"),
+            }
+        )
+        return
+
     error = None
     try:
         raw_items = fetch_source(source)
@@ -171,7 +368,7 @@ def run_source(conn, source, rules, init_mode, report, llm_budget):
         )
 
     for raw in raw_items:
-        process_item(conn, source, raw, rules, init_mode, report, llm_budget)
+        process_item(conn, source, raw, rules, init_mode, report, llm_budget, profile)
 
 
 def backfill_location_participants(conn, rules, llm_budget):
@@ -191,15 +388,20 @@ def backfill_location_participants(conn, rules, llm_budget):
     updated, failed, llm_used = 0, 0, 0
     for r in rows:
         try:
-            page_text = enrich_lib.clean_page_text(http_get(r["url"]).text)
+            page_text = http_get(r["url"]).text
         except Exception as e:
             print(f"  backfill fetch failed for {r['url']}: {type(e).__name__}: {e}", file=sys.stderr)
             failed += 1
             continue
-        combined = f"{r['title']} {r['snippet'] or ''} {page_text}"
-        location, fmt, loc_conf = enrich_lib.extract_location(combined, rules)
-        count, count_conf = enrich_lib.extract_participants(combined, rules)
-        deadline_date, deadline_conf = enrich_lib.extract_deadline(combined, rules)
+        page_doc = extract_document(page_text)
+        combined_doc = Document(
+            text=f"{r['title']} {r['snippet'] or ''} {page_doc.text}".strip(),
+            structured=page_doc.structured,
+        )
+        combined = combined_doc.text
+        location, fmt, loc_conf = enrich_lib.extract_location(combined_doc, rules)
+        count, count_conf = enrich_lib.extract_participants(combined_doc, rules)
+        deadline_date, deadline_conf = enrich_lib.extract_deadline(combined_doc, rules)
         enrichment = {
             "location": location, "location_format": fmt, "location_confidence": loc_conf,
             "participants_count": count, "participants_confidence": count_conf,
@@ -379,10 +581,19 @@ def main():
         help="One-time: re-fetch accepted items missing location/participants fields, then exit. "
              "Not run by the recurring workflow.",
     )
+    parser.add_argument(
+        "--cadence",
+        choices=("daily", "weekly"),
+        default=None,
+        help="Phase 5: only run sources whose sources.yaml `cadence` matches (API-shaped sources are "
+             "daily, HTML scrapers are weekly -- absent cadence defaults to weekly). Omit to run every "
+             "source regardless of cadence (used by --init and any ad-hoc manual run).",
+    )
     args = parser.parse_args()
 
     sources_cfg = load_yaml(SOURCES_PATH)
     rules = load_yaml(RULES_PATH)
+    profile = load_yaml(PROFILE_PATH)["profile"]
 
     db.init_db(DB_PATH)
 
@@ -395,9 +606,13 @@ def main():
     llm_budget = llm_enrich.LLMCallBudget(llm_enrich.MAX_LLM_CALLS_PER_RUN)
     report = new_report()
 
+    sources_to_run = sources_cfg["sources"]
+    if args.cadence:
+        sources_to_run = [s for s in sources_to_run if s.get("cadence", "weekly") == args.cadence]
+
     with db.connect(DB_PATH) as conn:
-        for source in sources_cfg["sources"]:
-            run_source(conn, source, rules, args.init, report, llm_budget)
+        for source in sources_to_run:
+            run_source(conn, source, rules, args.init, report, llm_budget, profile)
 
         check_calendar(conn, sources_cfg.get("calendar", []), report)
         expire_stale_items(conn)

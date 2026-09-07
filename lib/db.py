@@ -69,6 +69,46 @@ NEW_COLUMNS = [
     ("location_confidence", "TEXT"),
     ("participants_count", "INTEGER"),
     ("participants_confidence", "TEXT"),
+    # Phase 2: the relevance axis (lib/relevance.py).
+    ("relevance_score", "REAL"),
+    ("relevance_core_hits", "INTEGER"),
+    ("relevance_buckets", "TEXT"),   # JSON list
+    ("relevance_terms", "TEXT"),     # JSON list, for auditability
+    # Phase 3: structured eligibility fields (lib/eligibility.py). Each is
+    # paired with a `{name}_confidence` column taking explicit|llm|none.
+    ("requires_incorporation", "INTEGER"),
+    ("requires_incorporation_confidence", "TEXT"),
+    ("requires_faculty_sponsor", "INTEGER"),
+    ("requires_faculty_sponsor_confidence", "TEXT"),
+    ("requires_us_person", "INTEGER"),
+    ("requires_us_person_confidence", "TEXT"),
+    ("min_age", "INTEGER"),
+    ("min_age_confidence", "TEXT"),
+    ("max_age", "INTEGER"),
+    ("max_age_confidence", "TEXT"),
+    ("entry_fee_usd", "REAL"),
+    ("entry_fee_usd_confidence", "TEXT"),
+    ("max_team_size", "INTEGER"),
+    ("max_team_size_confidence", "TEXT"),
+    ("requires_enrollment", "INTEGER"),
+    ("requires_enrollment_confidence", "TEXT"),
+    ("equity_required", "INTEGER"),
+    ("equity_required_confidence", "TEXT"),
+    ("eligibility", "TEXT"),   # eligible|ineligible|unknown -- lib/eligibility.py's verdict
+    # Phase 5: when a row was last actually re-enriched (not just re-seen).
+    # NULL/absent means "never enriched at all" -- see monitor.py's
+    # re-enrichment trigger condition.
+    ("last_enriched", "TEXT"),
+    # Phase 6: the second, separate LLM assessment call (lib/llm_assess.py).
+    # Labels only -- never feeds status/final_class/contest_score/
+    # grant_score/relevance_score. llm_robotics_relevant is for
+    # ranking/calibration; eligibility_llm_evidence records the one quote
+    # that justified whichever eligibility_* fields got confidence "llm"
+    # from this call (the 8 eligibility columns themselves already exist
+    # from Phase 3 and are reused here, not duplicated).
+    ("llm_robotics_relevant", "INTEGER"),
+    ("llm_relevance_evidence", "TEXT"),
+    ("eligibility_llm_evidence", "TEXT"),
 ]
 
 

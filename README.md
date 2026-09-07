@@ -26,254 +26,429 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 77 open contest(s) · 91 grant(s) listed · updated 2026-09-06 20:09 EDT
+### 📡 15 actionable opportunities right now · 46 accepted total · updated 2026-09-07 14:53 EDT
 
-_11 item(s) excluded from the tables below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
+_1 item(s) excluded below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
 
-_Format (in-person/remote/hybrid) is known for 28/168 listings below; a participant count is known for 16/168 -- both only ever come from what the source page itself states, never a guess. "Unknown" means the page didn't say._
+## Act now
+_The 15 highest-fit opportunities that aren't confirmed ineligible, ranked by relevance, eligibility, prize/grant size, and deadline urgency (see lib/rank.py). This is the section worth reading end to end -- everything else below is either time-sensitive, unresolved, or explicitly out of reach._
 
-## Open contests
-_Sorted by deadline. "Team size" and "Format" come straight from each contest's own page._
-
-| Contest | Prize | Team size | Format | Participants (last count) | Deadline |
-| --- | --- | --- | --- | --- | --- |
-| [HopHacks](https://www.hophacks.com/) | n/a | individual | In-person (Johns Hopkins University) | Unknown | 2026-09-01 |
-| [Modern Java In The Wild](https://www.hackster.io/contests/modern-java-in-the-wild) | $4,000 | n/a | Unknown | 141 | rolling/unknown |
-| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | $4,000 | n/a | Unknown | 279 | rolling/unknown |
-| [Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html) | $2,500 | n/a | Unknown | Unknown | rolling/unknown |
-| [ARMduino UNO (PY32F030) – Ultra Low-Cost 32-Bit ARM Development Board](https://www.pcbway.com/project/sponsor/ARMduino_UNO_PY32F030_Ultra_Low_Cost_32_Bit_ARM_Development_Board_f340c903.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [NERVA Ring](https://www.pcbway.com/project/sponsor/NERVA_Ring_b0359f0c.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Custom Gearbox \| SAE Baja \| CCNY Racing](https://www.pcbway.com/project/sponsor/Custom_Gearbox_SAE_Baja_CCNY_Racing_36a9712c.html) | $3,145 | n/a | Unknown | Unknown | rolling/unknown |
-| [BB1 Prototype 3 (BB1-3)](https://www.pcbway.com/project/sponsor/BB1_Prototype_3_BB1_3_e796da89.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html) | $110 | n/a | Unknown | Unknown | rolling/unknown |
-| [Knight Neuronix Ryxen](https://www.pcbway.com/project/sponsor/Knight_Neuronix_Ryxen_d002a8c3.html) | $3,500 | n/a | Unknown | Unknown | rolling/unknown |
-| [PulsePhone](https://www.pcbway.com/project/sponsor/PulsePhone_ea2dc2c7.html) | n/a | solo | Unknown | Unknown | rolling/unknown |
-| [AeroGroundStation](https://www.pcbway.com/project/sponsor/AeroGroundStation_02c4ab80.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Esp32 based MP3 player](https://www.pcbway.com/project/sponsor/Esp32_based_MP3_player_268f1740.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [ZOREX DRIVE 30](https://www.pcbway.com/project/sponsor/ZOREX_DRIVE_30_8800755b.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Rainbow Six Siege-Inspired Airsoft Drone](https://www.pcbway.com/project/sponsor/Rainbow_Six_Siege_Inspired_Airsoft_Drone_6f9ff7b0.html) | n/a | individual | Unknown | Unknown | rolling/unknown |
-| [Global Hack Week: Data](https://events.mlh.io/events/14416-global-hack-week-data) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackRice](https://hackrice.com/) | n/a | n/a | In-person (Houston, Texas) | Unknown | rolling/unknown |
-| [HackMTY 2026](https://hackmty.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackWesTX 26](https://hackwestx.gdgttu.com/) | $5,000 | n/a | Unknown | Unknown | rolling/unknown |
-| [HackHers @GSU](https://hackhers.club/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [VTHacks 14](https://vthacks.com/) | n/a | n/a | In-person (Virginia Tech) | 550 | rolling/unknown |
-| [SteelHacks XIII](https://steelhacks.org/) | n/a | n/a | In-person (University of Pittsburgh) | Unknown | rolling/unknown |
-| [&HACKS XII](https://andhacks.cs.wm.edu/) | n/a | solo | Unknown | Unknown | rolling/unknown |
-| [HackGT 13](http://hack.gt/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [ShellHacks](https://shellhacks.net/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack the Hill](https://hackthehill.com/) | n/a | n/a | In-person (Ottawa, ON) | 4 | rolling/unknown |
-| [hackUMBC](https://hackumbc.tech/) | n/a | up to 4 members | In-person (ITE and Engineering Buildings, UMBC, Baltimore, MD) | Unknown | rolling/unknown |
-| [BigRed//Hacks 2026](https://www.bigredhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Gator Quant Hacks](https://www.gqhacks.com) | n/a | n/a | In-person (Gainesville, Florida) | Unknown | rolling/unknown |
-| [Rowdy Hacks](https://rowdyhacks.org) | n/a | n/a | Unknown | 4 | rolling/unknown |
-| [Hack Dearborn 5: Conjure Reality](https://www.hackdearborn.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [MHacks](https://www.mhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [WolfHacks by ACM at NC State](https://wolfhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [StormHacks](https://www.stormhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [GirlHacks](https://www.njitgirlhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackNC](https://hacknc.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack Knight](https://hackknight.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Knight Hacks IX](https://2026.knighthacks.org/) | $60,000 | n/a | In-person (Orlando, Florida) | Unknown | rolling/unknown |
-| [CodeRED Orion](https://uhcode.red/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Innohacks 4.0](https://innohacks.live) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [SwampHacks XII](https://swamphacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack the Valley](https://hackthevalley.io/) | n/a | n/a | In-person | Unknown | rolling/unknown |
-| [LA Hacks AI Hackathon 2026](https://ai.lahacks.com) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [IKU Womxn in STEM Hackathon](https://ikuwomxninstemhackathon.co.uk/) | n/a | solo | In-person (Bush House, North Wing, King's College London) | Unknown | rolling/unknown |
-| [SBUHacks](https://hack.sbcs.io/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackTX 26](https://hacktx.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack at Penn State](https://hackpsu.org) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackUTD](https://zeroday.hackutd.co) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackRPI 2026](https://hackrpi.com/) | n/a | n/a | In-person (Troy, New York) | Unknown | rolling/unknown |
-| [MakeCU](https://v0-curc-makecu.vercel.app/) | n/a | n/a | Unknown | 2,025 | rolling/unknown |
-| [HackUMass](https://www.hackumass.com/) | n/a | n/a | Unknown | 600 | rolling/unknown |
-| [DurHack](https://durhack.com) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [UofTHacks](https://uofthacks.com/) | n/a | individual | In-person | 500 | rolling/unknown |
-| [uOttaHack 9](https://2027.uottahack.ca/) | n/a | n/a | In-person (University of Ottawa) | Unknown | rolling/unknown |
-| [Hackville 2027](https://hackville.io/) | $3900 | n/a | Hybrid | 150 | rolling/unknown |
-| [Hoya Hacks](https://www.hoyahacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack@Brown 2027](https://hackatbrown.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [UGAHacks](https://ugahacks.com/) | n/a | n/a | Hybrid | 200 | rolling/unknown |
-| [SpartaHack](https://www.spartahack.com/) | n/a | n/a | In-person (MSU STEM Building, East Lansing, Michigan) | Unknown | rolling/unknown |
-| [Hack_NCState](https://hackncstate.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [InnovateHer](https://innovateherhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [SF Hacks](https://sfhacks.io) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [CUhackit](https://cuhack.it/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackIllinois](https://www.hackillinois.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hacklytics 2027](https://hacklytics2027.web.app/) | n/a | n/a | In-person (Atlanta) | 1,000 | rolling/unknown |
-| [WiCHacks](https://wichacks.io/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HenHacks](https://www.henhackshackathon.com/) | n/a | n/a | In-person | Unknown | rolling/unknown |
-| [Kent Hack Enough](https://khe.io/) | $0.00 | Solo | Unknown | 4 | rolling/unknown |
-| [Diamondhacks](https://diamondhacks.acmucsd.com/) | $5000 | n/a | In-person (La Jolla, California) | Unknown | rolling/unknown |
-| [HackKU27](https://www.hackku.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [WEHack](https://www.wehackutd.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [LA Hacks 27](https://lahacks.com) | $60,000 | n/a | In-person (Los Angeles, California) | 1,400 | rolling/unknown |
-| [FLOSS Weekly Episode 880: The Two Wolves](https://hackaday.com/2026/09/02/floss-weekly-episode-880-the-two-wolves/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Creating the Greenest Possible Clothing with Living Fungi](https://hackaday.com/2026/09/02/creating-the-greenest-possible-clothing-with-living-fungi/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Many Small Steps for Robots, One Giant Leap for Mankind](https://www.notboring.co/p/robot-steps) | $25 | individual | Unknown | 2,200 | rolling/unknown |
-| [Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353) | $250 | solo | Unknown | Unknown | rolling/unknown |
-
-## Available grants
-_Sorted by amount (highest first). Most microgrant programs are rolling, not deadline-based._
-
-| Grant | Amount | Format / eligibility area | Deadline |
-| --- | --- | --- | --- |
-| [Disability](https://www.awesomefoundation.org/en/chapters/disability) | $112,000 | Unknown | rolling |
-| [Schmidt Science Fellows](https://sologrants.com/guide/schmidt-science-fellows) | $110k | Unknown | rolling |
-| [776 Fellowship](https://sologrants.com/guide/776) | $100k | Remote | rolling |
-| [OSV Fellowship](https://sologrants.com/guide/osv) | $100k | Remote | rolling |
-| [ACX Grants](https://sologrants.com/guide/acx-grants) | $1,000-100,000 | Unknown | rolling |
-| [Sui Foundation Grants](https://sologrants.com/guide/sui-grants) | $10 - $100K | Unknown | rolling |
-| [Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship) | $100k | Unknown | rolling |
-| [Emergent Ventures](https://sologrants.com/guide/emergentventures) | $1k-$50k | Unknown | rolling |
-| [Protostars](https://sologrants.com/guide/blackbird) | $50k | Unknown | rolling |
-| [Soma Scholars](https://sologrants.com/guide/soma-scholars) | $30,000 | Unknown | rolling |
-| [Kothari Fellowship](https://sologrants.com/guide/kothari) | $15k | Unknown | rolling |
-| [Magnificent Grants](https://sologrants.com/guide/magnificent) | $10k | Unknown | rolling |
-| [Non-Trivial Fellowship](https://sologrants.com/guide/nontrivial) | $2k-$10k | Unknown | rolling |
-| [OSV Grants](https://sologrants.com/guide/osv-grants) | $10,000 | Remote | rolling |
-| [Georgetown, MA](https://www.awesomefoundation.org/en/chapters/georgetown) | up to $10,000 | Unknown | rolling |
-| [Dojo Grants](https://sologrants.com/guide/dojo-grants) | $8k | Unknown | rolling |
-| [Time Initiative Fellowship](https://sologrants.com/guide/time-initiative-fellowship) | $8k | Remote | rolling |
-| [Compound Reverie Grants](https://sologrants.com/guide/compound-reverie-grants) | $500 - $7,500 | Unknown | rolling |
-| [Eclipse Grants](https://sologrants.com/guide/eclipse-grants) | $5k | Unknown | rolling |
-| [Atomic Fellowship](https://sologrants.com/guide/atomic-fellowship) | $4,000 | Unknown | rolling |
-| [Unitary](https://sologrants.com/guide/unitary) | $4,000 | Unknown | rolling |
-| [Inflection Grants](https://sologrants.com/guide/inflection-grants) | $2k | Unknown | rolling |
-| [1517 Fund Medici Grant](https://sologrants.com/guide/1517fund) | $1k | Unknown | rolling |
-| [Adamnite Microgrants](https://sologrants.com/guide/adamnite-microgrants) | $1k | Unknown | rolling |
-| [Awesome Foundation Grants](https://sologrants.com/guide/awesome-foundation-grants) | $1,000 | Remote | rolling |
-| [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | $100-$1,000 | Unknown | rolling |
-| [Sean's Grant](https://sologrants.com/guide/seangrant) | $1k | Unknown | rolling |
-| [Conservation and Climate](https://www.awesomefoundation.org/en/chapters/conservationandclimate) | $1000 | Unknown | rolling |
-| [On the Water](https://www.awesomefoundation.org/en/chapters/onthewater) | $1000 | Unknown | rolling |
-| [Javakhk](https://www.awesomefoundation.org/en/chapters/javakhk) | $1000 | Unknown | rolling |
-| [Yerevan](https://www.awesomefoundation.org/en/chapters/yerevan) | $1000 | Unknown | rolling |
-| [Fleurieu](https://www.awesomefoundation.org/en/chapters/fleurieu) | $1000 | Unknown | rolling |
-| [Lake Mac](https://www.awesomefoundation.org/en/chapters/lakemac) | $1,000 | Unknown | rolling |
-| [Lower Hunter](https://www.awesomefoundation.org/en/chapters/lowerhunter) | $1,000 | Unknown | rolling |
-| [Sydney](https://www.awesomefoundation.org/en/chapters/sydney) | $1,000 | Unknown | rolling |
-| [Amherstburg](https://www.awesomefoundation.org/en/chapters/amherstburg) | $1000 | Unknown | rolling |
-| [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | $1,000 | In-person (the co-working space at 945 Princess St) | rolling |
-| [Kitchener-Waterloo](https://www.awesomefoundation.org/en/chapters/kitchener-waterloo) | $1000 | Unknown | rolling |
-| [New Glasgow](https://www.awesomefoundation.org/en/chapters/newglasgow) | $1000 | Unknown | rolling |
-| [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | $1,000 | Unknown | rolling |
-| [Austin, TX](https://www.awesomefoundation.org/en/chapters/austin) | $1000 | Unknown | rolling |
-| [Baltimore, MD](https://www.awesomefoundation.org/en/chapters/baltimore) | $1000 | Unknown | rolling |
-| [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | $1,000 | Unknown | rolling |
-| [Chicago, IL](https://www.awesomefoundation.org/en/chapters/chicago) | $1,000 | Unknown | rolling |
-| [Cleveland, OH](https://www.awesomefoundation.org/en/chapters/cleveland) | $1,000 | Unknown | rolling |
-| [Durham, NC](https://www.awesomefoundation.org/en/chapters/durham) | $1000 | Unknown | rolling |
-| [Gainesville, FL](https://www.awesomefoundation.org/en/chapters/gainesville) | $1,000 | Unknown | rolling |
-| [Hamilton-Wenham, MA](https://www.awesomefoundation.org/en/chapters/hamilton-wenham) | $1,000 | Unknown | rolling |
-| [Ipswich, MA](https://www.awesomefoundation.org/en/chapters/ipswich) | $1000 | Unknown | rolling |
-| [Miami, FL](https://www.awesomefoundation.org/en/chapters/miami) | up to $1000 | Unknown | rolling |
-| [New York City, NY](https://www.awesomefoundation.org/en/chapters/nyc) | $1,000 | Unknown | rolling |
-| [Newburgh, NY](https://www.awesomefoundation.org/en/chapters/newburgh) | $1,000 | Unknown | rolling |
-| [Newburyport, MA](https://www.awesomefoundation.org/en/chapters/newburyport) | $1000 | In-person (Michael's Harborside Restaurant) | rolling |
-| [Oahu, HI](https://www.awesomefoundation.org/en/chapters/oahu) | $1000 | Unknown | rolling |
-| [Peekskill, NY](https://www.awesomefoundation.org/en/chapters/peekskill) | $1,000 | Unknown | rolling |
-| [Philadelphia, PA](https://www.awesomefoundation.org/en/chapters/philadelphia) | $1,000 | Unknown | rolling |
-| [Rockport, MA](https://www.awesomefoundation.org/en/chapters/rockport) | $1000 | Unknown | rolling |
-| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | $1000 | Unknown | rolling |
-| [San Jose, CA](https://www.awesomefoundation.org/en/chapters/sanjose) | $1,000 | Unknown | rolling |
-| [Santa Cruz, CA](https://www.awesomefoundation.org/en/chapters/santacruz) | $1,000 | Unknown | rolling |
-| [South Bend, IN](https://www.awesomefoundation.org/en/chapters/southbend) | $1000 | Unknown | rolling |
-| [St. Paul, MN](https://www.awesomefoundation.org/en/chapters/stpaul) | $1,000 | Unknown | rolling |
-| [Washington, DC](https://www.awesomefoundation.org/en/chapters/dc) | $1,000 | Unknown | 2026-10-18 |
-| [Westminster, MD](https://www.awesomefoundation.org/en/chapters/westminster) | $1,000 | Unknown | rolling |
-| [Tashkent](https://www.awesomefoundation.org/en/chapters/tashkent) | $1000 | Unknown | rolling |
-| [EVM Capital](https://sologrants.com/guide/evmcapital) | $100-$600 | Unknown | rolling |
-| [Alya Capital](https://sologrants.com/guide/alyacapital) | $100-$500 | Unknown | rolling |
-| [Bagel Fund](https://sologrants.com/guide/bagelfund) | $100-$500 | Unknown | rolling |
-| [Éire Ventures](https://sologrants.com/guide/eire-ventures) | $500 | Unknown | rolling |
-| [Feather Grants](https://sologrants.com/guide/feather-grants) | $200 | Unknown | rolling |
-| [Cactus Capital](https://sologrants.com/guide/cactuscapital) | $100 | Unknown | rolling |
-| [Lift Off Grant](https://sologrants.com/guide/liftoff) | $100 | Remote | rolling |
-| [San Antonio, TX](https://www.awesomefoundation.org/en/chapters/sanantonio) | $100 | Unknown | rolling |
-| [Nautilus](https://sologrants.com/guide/nautilus) | amount not extracted | Unknown | rolling |
-| [Dragon Dreaming](https://www.awesomefoundation.org/en/chapters/dragondreaming) | amount not extracted | Unknown | rolling |
-| [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | amount not extracted | Unknown | rolling |
-| [South Shore](https://www.awesomefoundation.org/en/chapters/southshore) | amount not extracted | Unknown | rolling |
-| [Kuala Lumpur](https://www.awesomefoundation.org/en/chapters/kualalumpur) | amount not extracted | Unknown | rolling |
-| [Leiden](https://www.awesomefoundation.org/en/chapters/leiden) | amount not extracted | Unknown | rolling |
-| [Rotterdam](https://www.awesomefoundation.org/en/chapters/rotterdam) | amount not extracted | Unknown | rolling |
-| [Utrecht](https://www.awesomefoundation.org/en/chapters/utrecht) | amount not extracted | Unknown | rolling |
-| [Qatar](https://www.awesomefoundation.org/en/chapters/qatar) | amount not extracted | Unknown | rolling |
-| [Glasgow](https://www.awesomefoundation.org/en/chapters/glasgow) | amount not extracted | Unknown | rolling |
-| [Burlingame-San Mateo, CA](https://www.awesomefoundation.org/en/chapters/burlingamesanmateo) | amount not extracted | Unknown | rolling |
-| [Key West, FL](https://www.awesomefoundation.org/en/chapters/keywest) | amount not extracted | Unknown | rolling |
-| [Los Angeles, CA](https://www.awesomefoundation.org/en/chapters/los-angeles) | amount not extracted | Unknown | rolling |
-| [North Minneapolis, MN](https://www.awesomefoundation.org/en/chapters/northminneapolis) | amount not extracted | Unknown | rolling |
-| [Orlando, FL](https://www.awesomefoundation.org/en/chapters/orlando) | amount not extracted | Unknown | rolling |
-| [Rhode Island](https://www.awesomefoundation.org/en/chapters/rhodeisland) | amount not extracted | Unknown | rolling |
-| [Seattle, WA](https://www.awesomefoundation.org/en/chapters/seattle) | amount not extracted | Unknown | rolling |
-| [State College, PA](https://www.awesomefoundation.org/en/chapters/statecollege) | amount not extracted | Unknown | rolling |
+| Opportunity | Type | Prize/Amount | Format (location) | Deadline | Eligibility | Fit |
+| --- | --- | --- | --- | --- | --- | --- |
+| [Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353) | Contest | $250 | Unknown | rolling/unknown | Unknown | 0.58 |
+| [Many Small Steps for Robots, One Giant Leap for Mankind](https://www.notboring.co/p/robot-steps) | Contest | $25 | Unknown | rolling/unknown | Unknown | 0.43 |
+| [Knight Neuronix Ryxen](https://www.pcbway.com/project/sponsor/Knight_Neuronix_Ryxen_d002a8c3.html) | Contest | $3,500 | Unknown | rolling/unknown | Unknown | 0.40 |
+| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | Contest | $4,000 | Unknown | 2026-09-07 | Unknown | 0.36 |
+| [Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship) | Grant | $100k | Remote (Worldwide) | rolling/unknown | Unknown | 0.34 |
+| [Trelis AI Grants](https://trelis.com/trelis-ai-grants/) | Grant | $500 | Unknown | rolling/unknown | Unknown | 0.34 |
+| [Protostars](https://sologrants.com/guide/blackbird) | Grant | $50k | Unknown | rolling/unknown | Unknown | 0.33 |
+| [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.32 |
+| [AlphaPilot – Lockheed Martin AI Drone Racing Innovation Challenge](https://www.herox.com/alphapilot) | Contest | $1,000,000 | Remote | rolling/unknown | Unknown | 0.32 |
+| [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/) | Contest | $50,000 | Remote | 2026-10-30 | Unknown | 0.32 |
+| [4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html) | Contest | $2,500 | Unknown | rolling/unknown | Unknown | 0.30 |
+| [Bay Hacks](https://bayhacks-2026.devpost.com/) | Contest | $500 | In-person (USF Hall of Flags) | 2026-09-19 | Unknown | 0.30 |
+| [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | Grant | $1,000 | In-person (the co-working space at 945 Princess St) | rolling/unknown | Unknown | 0.29 |
+| [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.29 |
+| [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | Grant | $100-$1,000 | Remote | rolling/unknown | Unknown | 0.28 |
 
 ## Closing soon
-_Contests inside 14 days of their deadline._
+_Contests inside 14 days of their deadline (regardless of Act-now rank)._
 
-_Nothing closing in the next 14 days._
+| Contest | Deadline | Days left |
+| --- | --- | --- |
+| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | 2026-09-07 | 0 |
+| [Bay Hacks](https://bayhacks-2026.devpost.com/) | 2026-09-19 | 12 |
+| [STEMinate Wildcard Hack](https://steminate-texas-wildcard-hack.devpost.com/) | 2026-09-19 | 12 |
 
 ## Watch calendar
 _Annual/monthly programs tracked by date instead of scraping a page that's static for 11 months._
 
 | Program | Next occurrence | Days away | Alert window |
 | --- | --- | --- | --- |
-| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 19 | alert 45d out |
-| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 25 | alert 21d out |
-| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 56 | alert 30d out |
-| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 292 | alert 60d out |
+| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 18 | alert 45d out |
+| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 24 | alert 21d out |
+| [Z Fellows](https://www.zfellows.com/) | 2026-10-01 | 24 | alert 14d out |
+| [Atomic Fellowship (gradCapital)](https://www.gradcapital.in/atomicfellow/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [Adafruit (seasonal contests)](https://blog.adafruit.com/tag/contest/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [SparkFun (design challenges)](https://www.sparkfun.com/news) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [Elephant Robotics (contests/exhibitions)](https://www.elephantrobotics.com/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [CMU Undergraduate Research Office: SURG](https://www.cmu.edu/uro/academic-research/SURG/index.html) | 2026-10-01 | 24 | alert 14d out |
+| [CMU Swartz Center: Project Olympus Spark Grants](https://www.cmu.edu/swartz-center-for-entrepreneurship/resources-funding-and-talent/project-olympus-spark-grants/index.html) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 30d out |
+| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 55 | alert 30d out |
+| [IEEE-RAS Humanoids 2026](https://2026.ieee-humanoids.org/) | 2026-12-06 | 90 | alert 30d out |
+| [RSS 2026 (Robotics: Science and Systems)](https://roboticsconference.org/information/cfp/) | 2027-01-23 | 138 | alert 30d out |
+| [Interact Fellowship](https://joininteract.com/) | 2027-02-09 | 155 | alert 30d out |
+| [CMU Undergraduate Research Office: SURF](https://www.cmu.edu/uro/summer%20research%20fellowships/SURF/) | 2027-02-18 | 164 | alert 30d out |
+| [IROS 2027 (IEEE/RSJ Intelligent Robots and Systems)](https://www.ieee-ras.org/event/call-for-papers-paper-submission-deadline-iros-2027-ieee-rsj-international-conference-on-intelligent-robots-and-systems-iros-27403-0/) | 2027-03-01 | 175 | alert 30d out |
+| [Emergent Ventures](https://www.mercatus.org/emergent-ventures) | 2027-03-15 | 189 | alert 30d out |
+| [Astera Residency](https://astera.org/first-residency-cohort/) | 2027-04-19 | 224 | alert 30d out |
+| [CoRL 2026 (Conference on Robot Learning)](https://www.corl.org/contributions/call-for-papers) | 2027-05-26 | 261 | alert 30d out |
+| [RoboCup 2027](https://2027.robocup.org/) | 2027-06-17 | 283 | alert 30d out |
+| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 291 | alert 60d out |
+| [Neo Scholars](https://neo.com/scholars) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 296 | alert 30d out |
+| [Seeed Studio (design contests)](https://www.seeedstudio.com/) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 296 | alert 30d out |
+| [Bambu Lab / MakerWorld (design challenges)](https://blog.bambulab.com/) | 2027-07-10 *(date unconfirmed, inferred from prior years)* | 306 | alert 30d out |
 
 ## Needs review
+
+### Eligibility unclear
+_Relevant and not confirmed ineligible, but at least one eligibility fact is still unresolved and the item didn't rank into Act now -- a quick human look could move it up or rule it out._
+
+| Item | Class | Fit |
+| --- | --- | --- |
+| [Since AI 2026](https://sinceai2026.devpost.com/) | contest | 0.27 |
+| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | grant | 0.27 |
+| [Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html) | contest | 0.27 |
+| [Xor Grant](https://www.mechaelephant.com/microgrant) | grant | 0.26 |
+| [HackStorm 3.0: Sense, Think and Act](https://hackstorm3.devpost.com/) | contest | 0.25 |
+| [Custom Gearbox \| SAE Baja \| CCNY Racing](https://www.pcbway.com/project/sponsor/Custom_Gearbox_SAE_Baja_CCNY_Racing_36a9712c.html) | contest | 0.25 |
+| [Magnificent Grants](https://sologrants.com/guide/magnificent) | grant | 0.24 |
+| [Sheridan Datathon 2026](https://sheridandatathon2026.devpost.com/) | contest | 0.24 |
+| [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | grant | 0.22 |
+| [Nexara – Edge-AI Animatronic Physical Avatar Head](https://www.pcbway.com/project/sponsor/Nexara_Edge_AI_Animatronic_Physical_Avatar_Head_5c94782b.html) | contest | 0.21 |
+| [Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html) | contest | 0.21 |
+| [The cheetah bot - fastest line follower](https://www.pcbway.com/project/sponsor/The_cheetah_bot_fastest_line_follower_6aee7654.html) | contest | 0.20 |
+| [PIP Phase 1](https://www.pcbway.com/project/sponsor/PIP_Phase_1_f3167c2a.html) | contest | 0.20 |
+| [Action Space](https://action-space-hacks.devpost.com/) | contest | 0.19 |
+| [HTCJ × PROOF Aviation Futures Challenge](https://htcj-aviation-futures.devpost.com/) | contest | 0.19 |
+| [24.15 Ghz RF Transceiver Prototype](https://www.pcbway.com/project/sponsor/24_15_Ghz_RF_Transceiver_Prototype_9a81275b.html) | contest | 0.18 |
+| [Safety seat](https://www.pcbway.com/project/sponsor/Safety_seat_230399c0.html) | contest | 0.18 |
+| [CACIQUE – Student-Developed Solid Rocket Motor](https://www.pcbway.com/project/sponsor/CACIQUE_Solid_Combustion_Motor_c581dbc3.html) | contest | 0.18 |
+| [ARMduino UNO (PY32F030) – Ultra Low-Cost 32-Bit ARM Development Board](https://www.pcbway.com/project/sponsor/ARMduino_UNO_PY32F030_Ultra_Low_Cost_32_Bit_ARM_Development_Board_f340c903.html) | contest | 0.18 |
+| [Rocket Avionics STM32H743ZIT6](https://www.pcbway.com/project/sponsor/Rocket_Avionics_STM32H743ZIT6_d8cb6f80.html) | contest | 0.18 |
+| [NERVA Ring](https://www.pcbway.com/project/sponsor/NERVA_Ring_b0359f0c.html) | contest | 0.18 |
+| [BB1 Prototype 3 (BB1-3)](https://www.pcbway.com/project/sponsor/BB1_Prototype_3_BB1_3_e796da89.html) | contest | 0.18 |
+| [MakeCU](https://v0-curc-makecu.vercel.app/) | contest | 0.16 |
+| [Syntax Summit](https://syntax-summit.devpost.com/) | contest | 0.14 |
+
+### Classification unclear
 _The classifier couldn't confidently call these contest vs. grant vs. neither -- worth a quick human look rather than being silently dropped._
 
 | Item | Source | Contest score | Grant score |
 | --- | --- | --- | --- |
-| [Tell HN: TIL Notion's TOS makes using it for MCP illegal](https://news.ycombinator.com/item?id=43325133) | hn-robotics-grant | 0.0 | 1.0 |
-| [Determinism, Free Will, and Computational Irreducibility](https://news.ycombinator.com/item?id=43526818) | hn-robotics-grant | 0.0 | 0.0 |
+| [NES Radar Tracks Flights at 9600 Baud](https://hackaday.com/2026/09/06/nes-radar-tracks-flights-at-9600-baud/) | hackaday | 0.0 | 1.0 |
+| [Comparing PETG and PCTG Filaments](https://hackaday.com/2026/09/07/comparing-petg-and-pctg-filaments/) | hackaday | 0.0 | 1.0 |
+| [The First Spacecraft Launched To Orbit From Europe](https://hackaday.com/2026/09/07/the-first-spacecraft-launched-to-orbit-from-europe/) | hackaday | 1.0 | 1.0 |
+| [How To Talk To A Machine Without Anthropomorphising It](https://hackaday.com/2026/09/07/how-to-talk-to-a-machine-without-anthropomorphising-it/) | hackaday | 1.0 | 1.0 |
+| [The Helicopter with Radioactive Blades](https://hackaday.com/2026/09/07/the-helicopter-with-radioactive-blades/) | hackaday | 0.0 | 1.0 |
+| [WordStar Lives Again (and Again)](https://hackaday.com/2026/09/06/wordstar-lives-again-and-again/) | hackaday | 0.0 | 1.0 |
+| [Printing Micron-Scale Benchies With Resin and Turmeric](https://hackaday.com/2026/09/06/printing-micron-scale-benchies-with-resin-and-turmeric/) | hackaday | 0.0 | 1.0 |
+| [This Clavichord is a Well-Tempered Project](https://hackaday.com/2026/09/06/this-clavichord-is-a-well-tempered-project/) | hackaday | 0.0 | 1.0 |
+| [Is This the Year of The Linux… Television?](https://hackaday.com/2026/09/06/is-this-the-year-of-the-linux-television/) | hackaday | 0.0 | 1.0 |
+| [Saturn’s South Pole is Apparently Decagon-Shaped](https://hackaday.com/2026/09/06/saturns-south-pole-is-apparently-decagon-shaped/) | hackaday | 0.0 | 1.0 |
+| [Hackaday Links: September 6, 2026](https://hackaday.com/2026/09/06/hackaday-links-september-6-2026/) | hackaday | 1.0 | 1.0 |
+| [How Charged Water Drops Induce Corrosion](https://hackaday.com/2026/09/06/how-charged-water-drops-induce-corrosion/) | hackaday | 0.0 | 1.0 |
+| [Ask HN: Protecting the elderly from scam callers with GPT AI?](https://news.ycombinator.com/item?id=35174337) | hn-robotics-grant | 0.0 | 0.0 |
+| [Furby: Toy giant Hasbro brings back iconic robotic creature](https://www.bbc.com/news/business-65994859) | hn-robotics-grant | 0.0 | 0.0 |
+| [Ask HN: Is front end a dead-end career track?](https://news.ycombinator.com/item?id=37310591) | hn-robotics-grant | 0.0 | 0.0 |
+| [Korean internet giant Naver explores robotics, AI and autonomous driving](https://techcrunch.com/2023/09/01/korean-internet-giant-naver-explores-robotics-ai-and-autonomous-driving/) | hn-robotics-grant | 0.0 | 0.0 |
+| [Bionic Woman Makes History Merging Robotic Limb with Bone and Her Mind](https://www.giantfreakinrobot.com/sci/bionic-woman-karin-sweden.html) | hn-robotics-grant | 0.0 | 0.0 |
+| [Why Should Founders Team Up to Raise Money from Investors](https://news.ycombinator.com/item?id=40695978) | hn-robotics-grant | 0.0 | 0.0 |
+| [SpaceX launches Starship rocket and catches booster in giant metal arms](https://www.theguardian.com/science/2024/oct/13/spacex-elon-musk-launches-and-lands-starship-rocket-in-first-test-of-giant-robotic-arms) | hn-robotics-grant | 0.0 | 0.0 |
+| [Human-Computer Symbiosis](https://news.ycombinator.com/item?id=42082369) | hn-robotics-grant | 0.0 | 0.0 |
+| [Robotics News 03-05-2025](https://news.ycombinator.com/item?id=43265804) | hn-robotics-grant | 0.0 | 0.0 |
+| [Expeditions in Computing (Expeditions)](https://www.grants.gov/search-results-detail/363623) | grants_gov | 0.0 | 0.0 |
+| [Precision Inertial Navigation &amp; Positioning On an Integrated Tesseract (PINPOINT)](https://www.grants.gov/search-results-detail/363489) | grants_gov | 0.0 | 0.0 |
+| [AI Partnership &amp; Exchange for Tech Leaders (APEX)](https://www.grants.gov/search-results-detail/363315) | grants_gov | 0.0 | 0.0 |
+| [Special Program Announcement for Office of Naval Research Research Opportunity: FY27 Communications and Networking Applied Research](https://www.grants.gov/search-results-detail/362836) | grants_gov | 0.0 | 0.0 |
+| [Tribal Colleges Research Grants Program](https://www.grants.gov/search-results-detail/362029) | grants_gov | 0.0 | 0.0 |
+| [Disability and Rehabilitation Engineering](https://www.grants.gov/search-results-detail/359590) | grants_gov | 0.0 | 0.0 |
+| [NSF Scholarships in Science, Technology, Engineering, and Mathematics Program](https://www.grants.gov/search-results-detail/359577) | grants_gov | 0.0 | 0.0 |
+| [Disability and Rehabilitation Engineering](https://www.grants.gov/search-results-detail/359505) | grants_gov | 0.0 | 0.0 |
+| [Combustion and Fire Systems](https://www.grants.gov/search-results-detail/359423) | grants_gov | 0.0 | 0.0 |
+| [Disability and Rehabilitation Engineering](https://www.grants.gov/search-results-detail/359355) | grants_gov | 0.0 | 0.0 |
+| [NSF Scholarships in Science, Technology, Engineering, and Mathematics Program](https://www.grants.gov/search-results-detail/359286) | grants_gov | 0.0 | 0.0 |
+| [Centers of Research Excellence in Science and Technology - Research Infrastructure for Science and Engineering](https://www.grants.gov/search-results-detail/359061) | grants_gov | 0.0 | 0.0 |
+| [Mind, Machine and Motor Nexus (M3X)](https://www.grants.gov/search-results-detail/358682) | grants_gov | 0.0 | 0.0 |
+| [Disability and Rehabilitation Engineering (DARE)](https://www.grants.gov/search-results-detail/348795) | grants_gov | 0.0 | 0.0 |
+| [Energy, Power, Control, and Networks](https://www.grants.gov/search-results-detail/348258) | grants_gov | 0.0 | 0.0 |
+| [Tactical Behaviors for Autonomous Maneuver](https://www.grants.gov/search-results-detail/339728) | grants_gov | 0.0 | 0.0 |
+| [National Robotics Initiative](https://www.grants.gov/search-results-detail/200793) | grants_gov | 0.0 | 0.0 |
+| [UNITED STATES MILITARY ACADEMY Broad Agency Announcement](https://www.grants.gov/search-results-detail/325932) | grants_gov | 0.0 | 0.0 |
+| [Foundational Research in Robotics](https://www.grants.gov/search-results-detail/324369) | grants_gov | 0.0 | 0.0 |
+| [Cyber-Physical Systems](https://www.grants.gov/search-results-detail/60697) | grants_gov | 0.0 | 0.0 |
+| [General &amp; Age-Related Disabilities Engineering (GARDE)](https://www.grants.gov/search-results-detail/59006) | grants_gov | 0.0 | 0.0 |
+| [ROBOTICS OUTREACH COMPETITION - ROC](https://www.grants.gov/search-results-detail/58164) | grants_gov | 1.0 | 0.0 |
+| [Cyber-Physical Systems](https://www.grants.gov/search-results-detail/50661) | grants_gov | 0.0 | 0.0 |
+| [Energy, Power, and Adaptive Systems](https://www.grants.gov/search-results-detail/50237) | grants_gov | 0.0 | 0.0 |
+| [Nano and Bio Mechanics](https://www.grants.gov/search-results-detail/46229) | grants_gov | 0.0 | 0.0 |
+| [Cyber-Physical Systems](https://www.grants.gov/search-results-detail/45731) | grants_gov | 0.0 | 0.0 |
+| [New Technology for Proteomics and Glycomics (STTR [R41/R42])](https://www.grants.gov/search-results-detail/44961) | grants_gov | 0.0 | 2.0 |
+| [New Technology for Proteomics and Glycomics (SBIR [R43/R44])](https://www.grants.gov/search-results-detail/44960) | grants_gov | 0.0 | 2.0 |
+| [Develop and Implement Unmanned Aircraft Systems (UAS) Research and Monitoring at Ala Kahakai National Historic Trail and at Puuhonua o Honaunau National Historical Park](https://www.grants.gov/search-results-detail/306758) | grants_gov | 0.0 | 0.0 |
+| [Engineering Design and Systems Engineering (EDSE)](https://www.grants.gov/search-results-detail/306170) | grants_gov | 0.0 | 0.0 |
+| [HydroNEXT FOA: Innovative Technologies to Advance Non-Powered Dam and Pumped-Storage Hydropower Deve](https://www.grants.gov/search-results-detail/285957) | grants_gov | 0.0 | 0.0 |
+| [Real-Time Full Spectrum Cyber Science and Technology](https://www.grants.gov/search-results-detail/280168) | grants_gov | 0.0 | 0.0 |
+| [2023 Latin American Space Challenge](https://www.herox.com/SpaceChallenge2023) | herox | 2.0 | 0.0 |
+| [555 Timer Contest by Lutetium](https://hackaday.io/contest/182830-555-timer-contest) | hackaday_prize | 2.0 | 0.0 |
+| [Odd Inputs and Peculiar Peripherals by Lutetium](https://hackaday.io/contest/185414-odd-inputs-and-peculiar-peripherals) | hackaday_prize | 2.0 | 0.0 |
+| [2022 Cyberdeck Contest by Lutetium](https://hackaday.io/contest/186672-2022-cyberdeck-contest) | hackaday_prize | 2.0 | 0.0 |
+| [2023 Hackaday.io Low-Power Challenge by Lutetium](https://hackaday.io/contest/189286-2023-hackadayio-low-power-challenge) | hackaday_prize | 3.0 | 0.0 |
+| [Cyberdeck 2023 by Lutetium](https://hackaday.io/contest/191511-cyberdeck-2023) | hackaday_prize | 3.0 | 0.0 |
+| [2024 Business Card Contest by Lutetium](https://hackaday.io/contest/195949-2024-business-card-contest) | hackaday_prize | 3.0 | 0.0 |
+| [Tiny Games Challenge by Lutetium](https://hackaday.io/contest/196871-tiny-games-challenge) | hackaday_prize | 3.0 | 0.0 |
+| [Supercon 8 - Add On Contest by Lutetium](https://hackaday.io/contest/197237-supercon-8-add-on-contest) | hackaday_prize | 3.0 | 0.0 |
+| [One Hertz Challenge by Lutetium](https://hackaday.io/contest/203248-one-hertz-challenge) | hackaday_prize | 3.0 | 0.0 |
+| [Component Abuse Challenge by Lutetium](https://hackaday.io/contest/204037-component-abuse-challenge) | hackaday_prize | 3.0 | 0.0 |
+| [Green Powered Challenge by Lutetium](https://hackaday.io/contest/205085-green-powered-challenge) | hackaday_prize | 3.0 | 0.0 |
+| [Retrocomputing Contest by Lutetium](https://hackaday.io/contest/206399-retrocomputing-contest) | hackaday_prize | 2.0 | 0.0 |
+| [Tell HN: TIL Notion's TOS makes using it for MCP illegal](https://news.ycombinator.com/item?id=43325133) | hn-robotics-grant | 0.0 | 0.0 |
 | [Lessons Learned Writing a Book Collaboratively with LLMs](https://news.ycombinator.com/item?id=43758459) | hn-robotics-grant | 0.0 | 0.0 |
-| [Giant Robotic Bugs Are Headed to Farms](https://spectrum.ieee.org/ground-control-robot-insects) | hn-robotics-grant | 2.0 | 1.0 |
+| [Giant Robotic Bugs Are Headed to Farms](https://spectrum.ieee.org/ground-control-robot-insects) | hn-robotics-grant | 1.0 | 0.0 |
 | [Show HN: Aura – Like robots.txt, but for AI actions](https://github.com/osmandkitay/aura) | hn-robotics-grant | 0.0 | 1.0 |
 | [Tell HN: Out the door price for Unitree R1 ($5900) Robot to USA](https://news.ycombinator.com/item?id=45021743) | hn-robotics-grant | 0.0 | 0.0 |
-| [The Genie's Car Factories](https://news.ycombinator.com/item?id=45297229) | hn-robotics-grant | 0.0 | 1.0 |
+| [The Genie's Car Factories](https://news.ycombinator.com/item?id=45297229) | hn-robotics-grant | 0.0 | 0.0 |
 | [Show HN: Granola to Obsidian Sync Plugin](https://obsidian.md/plugins?search=granola) | hn-robotics-grant | 0.0 | 0.0 |
-| [Show HN: I built an automated AI lab that generates and publishes inventions](https://unpatentable.org/innovation/) | hn-robotics-grant | 0.0 | 1.0 |
+| [Show HN: I built an automated AI lab that generates and publishes inventions](https://unpatentable.org/innovation/) | hn-robotics-grant | 0.0 | 0.0 |
 | [Show HN: Fighting the War Against Expensive Reinforcement Learning](https://cadenza-landing-qtu7gbjwb-akshparekh123-3457s-projects.vercel.app/) | hn-robotics-grant | 0.0 | 0.0 |
 | [Show HN: Job Extinction Index – automation risk scores for 700 U.S. occupations](https://jobs.voxos.ai) | hn-robotics-grant | 0.0 | 0.0 |
 | [Robots, Grannies and Meaning-Adjusted Work Days](https://twitter.com/notevenwrongg/status/2025656572458746156) | hn-robotics-grant | 0.0 | 0.0 |
 | [Show HN: A Hacker News–style site focused on European tech](https://techposts.eu) | hn-robotics-grant | 0.0 | 0.0 |
-| [OpenClaw stats don't add up](https://news.ycombinator.com/item?id=47859207) | hn-robotics-grant | 0.0 | 1.0 |
-| [Robotics giant Figure AI demonstrates its robots to the world](https://forgeglobal.com/insights/figure-ai-robotics-growth-2026/) | hn-robotics-grant | 0.0 | 0.0 |
+| [OpenClaw stats don't add up](https://news.ycombinator.com/item?id=47859207) | hn-robotics-grant | 0.0 | 0.0 |
+| [Robotics giant Figure AI demonstrates its robots to the world](https://forgeglobal.com/insights/figure-ai-robotics-growth-2026/) | hn-robotics-grant | 0.0 | 1.0 |
 | [Show HN: Modeloop – A modern model-based design tool](https://www.modeloop.app/) | hn-robotics-grant | 0.0 | 0.0 |
-| [Robots will replace 700K delivery workers, warns head of e-commerce giant](https://www.computerworld.com/article/4188535/robots-will-replace-700000-delivery-workers-warns-head-of-e-commerce-giant.html) | hn-robotics-grant | 1.0 | 0.0 |
-| [A Defrag Simulator In Your Browser](https://hackaday.com/2026/09/01/a-defrag-simulator-in-your-browser/) | hackaday | 2.0 | 1.0 |
-| [HDMI For the Color Computer 2](https://hackaday.com/2026/09/02/hdmi-for-the-color-computer-2/) | hackaday | 2.0 | 1.0 |
-| [“I’m Not Dead Yet!” Reverse Polish Notation Calculators You Can Still Buy](https://hackaday.com/2026/09/02/im-not-dead-yet-reverse-polish-notation-calculators-you-can-still-buy/) | hackaday | 2.0 | 1.0 |
-| [How a 1981 RAM Expansion Worked](https://hackaday.com/2026/09/02/how-a-1981-ram-expansion-worked/) | hackaday | 2.0 | 1.0 |
-| [Harvesting Namib Desert Fog with High Voltage](https://hackaday.com/2026/09/02/harvesting-namib-desert-fog-with-high-voltage/) | hackaday | 2.0 | 1.0 |
-| [README.md updated: add line break](https://github.com/nayafia/microgrants/commit/7f028efa953b0e9cc033e3daa349ed18445715ae) | nayafia-microgrants | 0.0 | 3.0 |
-| [README.md updated: update contribution section](https://github.com/nayafia/microgrants/commit/4f4c2d6766fc33f113deebeeda60d00416023050) | nayafia-microgrants | 0.0 | 3.0 |
-| [README.md updated: Added the just announced Patch Grants](https://github.com/nayafia/microgrants/commit/ad586e06eace1a4ecc6be6bb844f0e9bb200a5bd) | nayafia-microgrants | 0.0 | 3.0 |
-| [README.md updated: add merge grant](https://github.com/nayafia/microgrants/commit/7859a3d875ff1c20917bc3579d5bca14b3cf2095) | nayafia-microgrants | 0.0 | 5.0 |
-| [README.md updated: order of magnitude reduction](https://github.com/nayafia/microgrants/commit/da222145ca42ededab766c54ad7c1e987f4279ea) | nayafia-microgrants | 0.0 | 5.0 |
-| [README.md updated: remove climate grants, site is dead](https://github.com/nayafia/microgrants/commit/85c6e1e12efd2a06b0dd4c554698776fef222cf6) | nayafia-microgrants | 1.0 | 7.0 |
-| [README.md updated: remove dead project](https://github.com/nayafia/microgrants/commit/76b01ba692e1a984b0d4286f87569102dbd50f28) | nayafia-microgrants | 0.0 | 3.0 |
-| [README.md updated: add grant](https://github.com/nayafia/microgrants/commit/bb8528e6396f385da2322b5292b4538790a0875e) | nayafia-microgrants | 0.0 | 6.0 |
-| [README.md updated: Add Da Vinci Fellowship](https://github.com/nayafia/microgrants/commit/45b218e0fbbca3522d45691d7b301f4ffab813e6) | nayafia-microgrants | 1.0 | 5.0 |
-| [README.md updated: Farnsworth fund renamed, updated link](https://github.com/nayafia/microgrants/commit/bfac1a9466e3c6c95a4359cc6ab5303c414094ac) | nayafia-microgrants | 0.0 | 4.0 |
-| [README.md updated: update patch grants url](https://github.com/nayafia/microgrants/commit/fdd2625259ff27b24e718b768cf00cd48da40300) | nayafia-microgrants | 0.0 | 3.0 |
-| [README.md updated: Update README.md](https://github.com/nayafia/microgrants/commit/2fc2ee0410e496c01458a078e7e994c8e85dce9b) | nayafia-microgrants | 0.0 | 4.0 |
-| [README.md updated: Merge pull request #98 from rbnyng/patch-1](https://github.com/nayafia/microgrants/commit/2da8bf4023352a4bb1d8c5866e5085d898a018b3) | nayafia-microgrants | 0.0 | 4.0 |
-| [README.md updated: remove Project Cover](https://github.com/nayafia/microgrants/commit/78f5b0350499a3332eb04b985ac96d8a1e9c7809) | nayafia-microgrants | 0.0 | 3.0 |
-| [README.md updated: Add Forge Grants](https://github.com/nayafia/microgrants/commit/e8a6100284d253164cdceee908811b878ea057e6) | nayafia-microgrants | 0.0 | 4.0 |
-| [README.md updated: Update README.md](https://github.com/nayafia/microgrants/commit/5349987e89a880fa3a32b296f8c1103d11e7db8b) | nayafia-microgrants | 0.0 | 4.0 |
-| [README.md updated: Add Arraig Grants (formerly Éire Ventures)](https://github.com/nayafia/microgrants/commit/bc86a5505d513c6cc4651003c7eaffadc85c6055) | nayafia-microgrants | 1.0 | 5.0 |
-| [README.md updated: remove inactive grants](https://github.com/nayafia/microgrants/commit/374d1a2fd37d16262053e358476dec777bd237f4) | nayafia-microgrants | 0.0 | 7.0 |
-| [README.md updated: remove inactive grant](https://github.com/nayafia/microgrants/commit/f571fd5bcc1b6109dba4bc8251e73b1350db8ab5) | nayafia-microgrants | 0.0 | 4.0 |
-| [README.md updated: Merge pull request #105 from olivcho/master](https://github.com/nayafia/microgrants/commit/e214bd5402d9f88c8ffda3149a4d9626bc09d207) | nayafia-microgrants | 1.0 | 4.0 |
+| [Robots will replace 700K delivery workers, warns head of e-commerce giant](https://www.computerworld.com/article/4188535/robots-will-replace-700000-delivery-workers-warns-head-of-e-commerce-giant.html) | hn-robotics-grant | 0.0 | 0.0 |
+| [COSMAC Elf Turns 50](https://hackaday.com/2026/09/04/cosmac-elf-turns-50/) | hackaday | 0.0 | 1.0 |
+| [Free Your Rotary Telephone From Its Wire](https://hackaday.com/2026/09/05/free-your-rotary-telephone-from-its-wire/) | hackaday | 0.0 | 1.0 |
+| [Running Generative AI on an RP2350](https://hackaday.com/2026/09/05/running-generative-ai-on-an-rp2350/) | hackaday | 0.0 | 1.0 |
+| [If at First You Don’t Succeed…](https://hackaday.com/2026/09/05/if-at-first-you-dont-succeed/) | hackaday | 0.0 | 1.0 |
+| [Voicebox FX is a Blueprint for CircuitPython I2S Audio](https://hackaday.com/2026/09/05/voicebox-fx-is-a-blueprint-for-circuitpython-i2s-audio/) | hackaday | 0.0 | 1.0 |
+| [Pixel Watch 5 Demonstrates Good Repairability](https://hackaday.com/2026/09/05/pixel-watch-5-demonstrates-good-repairability/) | hackaday | 0.0 | 1.0 |
+| [Running Apple ][ Software on a Commodore 64 — Silently](https://hackaday.com/2026/09/05/running-apple-software-on-a-commodore-64-silently/) | hackaday | 0.0 | 1.0 |
+| [Tashkent](https://www.awesomefoundation.org/en/chapters/tashkent) | awesomefoundation | 0.0 | 1.0 |
+| [Westminster, MD](https://www.awesomefoundation.org/en/chapters/westminster) | awesomefoundation | 0.0 | 1.0 |
+| [Washington, DC](https://www.awesomefoundation.org/en/chapters/dc) | awesomefoundation | 2.0 | 4.0 |
+| [State College, PA](https://www.awesomefoundation.org/en/chapters/statecollege) | awesomefoundation | 1.0 | 1.0 |
+| [St. Paul, MN](https://www.awesomefoundation.org/en/chapters/stpaul) | awesomefoundation | 0.0 | 2.0 |
+| [South Bend, IN](https://www.awesomefoundation.org/en/chapters/southbend) | awesomefoundation | 3.0 | 1.0 |
+| [Seattle, WA](https://www.awesomefoundation.org/en/chapters/seattle) | awesomefoundation | 1.0 | 1.0 |
+| [Santa Cruz, CA](https://www.awesomefoundation.org/en/chapters/santacruz) | awesomefoundation | 0.0 | 1.0 |
+| [San Jose, CA](https://www.awesomefoundation.org/en/chapters/sanjose) | awesomefoundation | 0.0 | 4.0 |
+| [San Antonio, TX](https://www.awesomefoundation.org/en/chapters/sanantonio) | awesomefoundation | 2.0 | 1.0 |
+| [Rockport, MA](https://www.awesomefoundation.org/en/chapters/rockport) | awesomefoundation | 0.0 | 1.0 |
+| [Rhode Island](https://www.awesomefoundation.org/en/chapters/rhodeisland) | awesomefoundation | 0.0 | 1.0 |
+| [Portland, OR](https://www.awesomefoundation.org/en/chapters/portland) | awesomefoundation | 3.0 | 5.0 |
+| [Pittsburgh, PA](https://www.awesomefoundation.org/en/chapters/pittsburgh) | awesomefoundation | 1.0 | 5.0 |
+| [Philadelphia, PA](https://www.awesomefoundation.org/en/chapters/philadelphia) | awesomefoundation | 0.0 | 2.0 |
+| [Peekskill, NY](https://www.awesomefoundation.org/en/chapters/peekskill) | awesomefoundation | 0.0 | 1.0 |
+| [Orlando, FL](https://www.awesomefoundation.org/en/chapters/orlando) | awesomefoundation | 0.0 | 1.0 |
+| [Oahu, HI](https://www.awesomefoundation.org/en/chapters/oahu) | awesomefoundation | 0.0 | 2.0 |
+| [North Minneapolis, MN](https://www.awesomefoundation.org/en/chapters/northminneapolis) | awesomefoundation | 0.0 | 1.0 |
+| [Newburyport, MA](https://www.awesomefoundation.org/en/chapters/newburyport) | awesomefoundation | 0.0 | 3.0 |
+| [Newburgh, NY](https://www.awesomefoundation.org/en/chapters/newburgh) | awesomefoundation | 1.0 | 1.0 |
+| [New York City, NY](https://www.awesomefoundation.org/en/chapters/nyc) | awesomefoundation | 1.0 | 1.0 |
+| [Miami, FL](https://www.awesomefoundation.org/en/chapters/miami) | awesomefoundation | 1.0 | 2.0 |
+| [Los Angeles, CA](https://www.awesomefoundation.org/en/chapters/los-angeles) | awesomefoundation | 0.0 | 1.0 |
+| [Key West, FL](https://www.awesomefoundation.org/en/chapters/keywest) | awesomefoundation | 0.0 | 2.0 |
+| [Ipswich, MA](https://www.awesomefoundation.org/en/chapters/ipswich) | awesomefoundation | 2.0 | 4.0 |
+| [Hamilton-Wenham, MA](https://www.awesomefoundation.org/en/chapters/hamilton-wenham) | awesomefoundation | 0.0 | 3.0 |
+| [Gloucester, MA](https://www.awesomefoundation.org/en/chapters/gloucester) | awesomefoundation | 2.0 | 3.0 |
+| [Georgetown, MA](https://www.awesomefoundation.org/en/chapters/georgetown) | awesomefoundation | 0.0 | 3.0 |
+| [Gainesville, FL](https://www.awesomefoundation.org/en/chapters/gainesville) | awesomefoundation | 0.0 | 2.0 |
+| [Durham, NC](https://www.awesomefoundation.org/en/chapters/durham) | awesomefoundation | 0.0 | 2.0 |
+| [Detroit, MI](https://www.awesomefoundation.org/en/chapters/detroit) | awesomefoundation | 0.0 | 4.0 |
+| [Cleveland, OH](https://www.awesomefoundation.org/en/chapters/cleveland) | awesomefoundation | 0.0 | 6.0 |
+| [Chicago, IL](https://www.awesomefoundation.org/en/chapters/chicago) | awesomefoundation | 3.0 | 4.0 |
+| [Cass Clay](https://www.awesomefoundation.org/en/chapters/cassclay) | awesomefoundation | 0.0 | 1.0 |
+| [Burlingame-San Mateo, CA](https://www.awesomefoundation.org/en/chapters/burlingamesanmateo) | awesomefoundation | 0.0 | 2.0 |
+| [Baltimore, MD](https://www.awesomefoundation.org/en/chapters/baltimore) | awesomefoundation | 1.0 | 2.0 |
+| [Austin, TX](https://www.awesomefoundation.org/en/chapters/austin) | awesomefoundation | 2.0 | 1.0 |
+| [Ann Arbor, MI](https://www.awesomefoundation.org/en/chapters/ann-arbor) | awesomefoundation | 0.0 | 4.0 |
+| [Glasgow](https://www.awesomefoundation.org/en/chapters/glasgow) | awesomefoundation | 3.0 | 2.0 |
+| [Qatar](https://www.awesomefoundation.org/en/chapters/qatar) | awesomefoundation | 0.0 | 1.0 |
+| [Utrecht](https://www.awesomefoundation.org/en/chapters/utrecht) | awesomefoundation | 0.0 | 1.0 |
+| [Rotterdam](https://www.awesomefoundation.org/en/chapters/rotterdam) | awesomefoundation | 0.0 | 1.0 |
+| [Leiden](https://www.awesomefoundation.org/en/chapters/leiden) | awesomefoundation | 0.0 | 1.0 |
+| [Kuala Lumpur](https://www.awesomefoundation.org/en/chapters/kualalumpur) | awesomefoundation | 0.0 | 1.0 |
+| [Toronto](https://www.awesomefoundation.org/en/chapters/toronto) | awesomefoundation | 0.0 | 1.0 |
+| [South Shore](https://www.awesomefoundation.org/en/chapters/southshore) | awesomefoundation | 0.0 | 1.0 |
+| [New Glasgow](https://www.awesomefoundation.org/en/chapters/newglasgow) | awesomefoundation | 0.0 | 1.0 |
+| [Kitchener-Waterloo](https://www.awesomefoundation.org/en/chapters/kitchener-waterloo) | awesomefoundation | 0.0 | 1.0 |
+| [Amherstburg](https://www.awesomefoundation.org/en/chapters/amherstburg) | awesomefoundation | 2.0 | 3.0 |
+| [Sydney](https://www.awesomefoundation.org/en/chapters/sydney) | awesomefoundation | 1.0 | 6.0 |
+| [Newcastle](https://www.awesomefoundation.org/en/chapters/newcastle) | awesomefoundation | 0.0 | 4.0 |
+| [Lower Hunter](https://www.awesomefoundation.org/en/chapters/lowerhunter) | awesomefoundation | 0.0 | 1.0 |
+| [Lake Mac](https://www.awesomefoundation.org/en/chapters/lakemac) | awesomefoundation | 0.0 | 3.0 |
+| [Fleurieu](https://www.awesomefoundation.org/en/chapters/fleurieu) | awesomefoundation | 0.0 | 1.0 |
+| [Adelaide](https://www.awesomefoundation.org/en/chapters/adelaide) | awesomefoundation | 2.0 | 4.0 |
+| [Yerevan](https://www.awesomefoundation.org/en/chapters/yerevan) | awesomefoundation | 2.0 | 1.0 |
+| [Javakhk](https://www.awesomefoundation.org/en/chapters/javakhk) | awesomefoundation | 0.0 | 1.0 |
+| [On the Water](https://www.awesomefoundation.org/en/chapters/onthewater) | awesomefoundation | 0.0 | 1.0 |
+| [Dragon Dreaming](https://www.awesomefoundation.org/en/chapters/dragondreaming) | awesomefoundation | 0.0 | 2.0 |
+| [Disability](https://www.awesomefoundation.org/en/chapters/disability) | awesomefoundation | 1.0 | 3.0 |
+| [Conservation and Climate](https://www.awesomefoundation.org/en/chapters/conservationandclimate) | awesomefoundation | 0.0 | 2.0 |
+| [Éire Ventures](https://sologrants.com/guide/eire-ventures) | sologrants | 0.0 | 8.0 |
+| [Unitary](https://sologrants.com/guide/unitary) | sologrants | 0.0 | 10.0 |
+| [Trelis AI Grants](https://sologrants.com/guide/trelis-ai-grants) | sologrants | 0.0 | 4.0 |
+| [Time Initiative Fellowship](https://sologrants.com/guide/time-initiative-fellowship) | sologrants | 0.0 | 3.0 |
+| [Sui Foundation Grants](https://sologrants.com/guide/sui-grants) | sologrants | 0.0 | 4.0 |
+| [Soma Scholars](https://sologrants.com/guide/soma-scholars) | sologrants | 0.0 | 6.0 |
+| [Solana Grants](https://sologrants.com/guide/solana) | sologrants | 0.0 | 2.0 |
+| [Slavin Family Foundation Fellowship](https://sologrants.com/guide/slavin-family-foundation-fellowship) | sologrants | 0.0 | 3.0 |
+| [Sean's Grant](https://sologrants.com/guide/seangrant) | sologrants | 0.0 | 6.0 |
+| [Schmidt Science Fellows](https://sologrants.com/guide/schmidt-science-fellows) | sologrants | 2.0 | 4.0 |
+| [OSV Grants](https://sologrants.com/guide/osv-grants) | sologrants | 0.0 | 5.0 |
+| [Non-Trivial Fellowship](https://sologrants.com/guide/nontrivial) | sologrants | 0.0 | 5.0 |
+| [Nautilus](https://sologrants.com/guide/nautilus) | sologrants | 0.0 | 6.0 |
+| [Lift Off Grant](https://sologrants.com/guide/liftoff) | sologrants | 0.0 | 10.0 |
+| [Kothari Fellowship](https://sologrants.com/guide/kothari) | sologrants | 0.0 | 9.0 |
+| [Inflection Grants](https://sologrants.com/guide/inflection-grants) | sologrants | 1.0 | 2.0 |
+| [Feather Grants](https://sologrants.com/guide/feather-grants) | sologrants | 0.0 | 2.0 |
+| [EVM Capital](https://sologrants.com/guide/evmcapital) | sologrants | 0.0 | 4.0 |
+| [Eclipse Grants](https://sologrants.com/guide/eclipse-grants) | sologrants | 0.0 | 4.0 |
+| [Dojo Grants](https://sologrants.com/guide/dojo-grants) | sologrants | 0.0 | 4.0 |
+| [Compound Reverie Grants](https://sologrants.com/guide/compound-reverie-grants) | sologrants | 0.0 | 8.0 |
+| [Cactus Capital](https://sologrants.com/guide/cactuscapital) | sologrants | 0.0 | 6.0 |
+| [Believe Fellowship](https://sologrants.com/guide/believe) | sologrants | 0.0 | 3.0 |
+| [Awesome Foundation Grants](https://sologrants.com/guide/awesome-foundation-grants) | sologrants | 0.0 | 6.0 |
+| [Atomic Fellowship](https://sologrants.com/guide/atomic-fellowship) | sologrants | 0.0 | 3.0 |
+| [Alya Capital](https://sologrants.com/guide/alyacapital) | sologrants | 0.0 | 2.0 |
+| [Adamnite Microgrants](https://sologrants.com/guide/adamnite-microgrants) | sologrants | 0.0 | 8.0 |
+| [ACX Grants](https://sologrants.com/guide/acx-grants) | sologrants | 0.0 | 4.0 |
+| [OSV Fellowship](https://sologrants.com/guide/osv) | sologrants | 0.0 | 5.0 |
+| [776 Fellowship](https://sologrants.com/guide/776) | sologrants | 2.0 | 5.0 |
+| [1517 Fund Medici Grant](https://sologrants.com/guide/1517fund) | sologrants | 0.0 | 7.0 |
+| [Emergent Ventures](https://sologrants.com/guide/emergentventures) | sologrants | 0.0 | 6.0 |
+| [VitaDAO Fellowship](https://www.vitadao.com/fellowship) | nayafia_microgrants | 1.0 | 2.0 |
+| [Unitary Fund](http://unitary.fund/) | nayafia_microgrants | 0.0 | 2.0 |
+| [Thiel Fellowship](https://thielfellowship.org/) | nayafia_microgrants | 0.0 | 3.0 |
+| [Sisters of Perpetual Indulgence](https://www.thesisters.org/grants) | nayafia_microgrants | 0.0 | 2.0 |
+| [SciFounders](https://scifounders.com/) | nayafia_microgrants | 0.0 | 1.0 |
+| [Science Debate](https://sciencedebate.org/minigrants.html) | nayafia_microgrants | 0.0 | 0.0 |
+| [Puffin Foundation](http://www.puffinfoundation.org/grants-info.html) | nayafia_microgrants | 0.0 | 0.0 |
+| [Prototype Fund](https://prototypefund.de) | nayafia_microgrants | 0.0 | 1.0 |
+| [Pollination Project](https://thepollinationproject.org/) | nayafia_microgrants | 1.0 | 4.0 |
+| [Patch Grants](https://www.joinpatch.org/grants/) | nayafia_microgrants | 0.0 | 4.0 |
+| [Open Humans Project Grant](https://www.openhumans.org/grants/) | nayafia_microgrants | 0.0 | 2.0 |
+| [NLNet Foundation](https://nlnet.nl/propose/) | nayafia_microgrants | 0.0 | 4.0 |
+| [Native Cultures Fund](https://www.hafoundation.org/Grantseekers/Native-Cultures-Fund) | nayafia_microgrants | 0.0 | 0.0 |
+| [Nagarathna Memorial Grant](https://thejeshgn.com/projects/nagarathna-memorial-grant/) | nayafia_microgrants | 0.0 | 5.0 |
+| [Mitzvoters](https://www.mitzvoters.org/) | nayafia_microgrants | 0.0 | 0.0 |
+| [Magnificent Grants](https://www.magnificentgrants.com/) | nayafia_microgrants | 0.0 | 1.0 |
+| [Lift Off Grant](https://www.liftoffgrant.com/) | nayafia_microgrants | 0.0 | 3.0 |
+| [Inflection Grants](https://www.inflectiongrants.com/) | nayafia_microgrants | 0.0 | 2.0 |
+| [Indie Fund](http://indie-fund.com/) | nayafia_microgrants | 0.0 | 1.0 |
+| [Gumroad Creators Fund](https://blog.gumroad.com/post/183876075758/introducing-the-first-batch-of-our-creators-fund) | nayafia_microgrants | 0.0 | 1.0 |
+| [Feather Grants](https://www.gradcapital.in/feathergrants/) | nayafia_microgrants | 1.0 | 3.0 |
+| [Fortitude Fund](https://fortitudefund.com/) | nayafia_microgrants | 0.0 | 1.0 |
+| [Emergent Ventures](https://www.mercatus.org/emergentventures) | nayafia_microgrants | 0.0 | 2.0 |
+| [Da Vinci Fellowship](https://davincifellowship.com/) | nayafia_microgrants | 0.0 | 2.0 |
+| [Clarity Health Fund](https://www.clarityhealthfund.org/) | nayafia_microgrants | 0.0 | 5.0 |
+| [cache money grants](https://cachemoney.xyz/grants/) | nayafia_microgrants | 0.0 | 1.0 |
+| [Bellare Grants](https://bellaregrants.netlify.app/) | nayafia_microgrants | 0.0 | 1.0 |
+| [Bed-Stuy Create & Connect Fund](https://laundromatproject.org/create-connect-fund/) | nayafia_microgrants | 0.0 | 1.0 |
+| [Awesome Foundation](http://www.awesomefoundation.org/) | nayafia_microgrants | 0.0 | 4.0 |
+| [Atomic Fellowship](https://www.gradcapital.in/atomicfellow/) | nayafia_microgrants | 0.0 | 2.0 |
+| [ACX Grants](https://www.astralcodexten.com/p/acx-grants-results-2024) | nayafia_microgrants | 2.0 | 3.0 |
+| [Arraig Grants (formerly Éire Ventures)](https://arraig.com/micro-grants/) | nayafia_microgrants | 0.0 | 1.0 |
+| [5x5 Night](http://5x5night.com/) | nayafia_microgrants | 2.0 | 1.0 |
+| [LA Hacks 27](https://lahacks.com) | mlh | 4.0 | 0.0 |
+| [WEHack](https://www.wehackutd.com/) | mlh | 2.0 | 0.0 |
+| [MariHacks](https://www.marihacks.com/) | mlh | 0.0 | 0.0 |
+| [HackKU27](https://www.hackku.org/) | mlh | 0.0 | 0.0 |
+| [Diamondhacks](https://diamondhacks.acmucsd.com/) | mlh | 2.0 | 0.0 |
+| [Kent Hack Enough](https://khe.io/) | mlh | 4.0 | 0.0 |
+| [HenHacks](https://www.henhackshackathon.com/) | mlh | 3.0 | 0.0 |
+| [WiCHacks](https://wichacks.io/) | mlh | 0.0 | 0.0 |
+| [HackHERS](https://ruhackhers.org/) | mlh | 2.0 | 0.0 |
+| [HackIllinois](https://www.hackillinois.org/) | mlh | 0.0 | 0.0 |
+| [Hacklytics 2027](https://hacklytics2027.web.app/) | mlh | 2.0 | 0.0 |
+| [CUhackit](https://cuhack.it/) | mlh | 0.0 | 0.0 |
+| [SF Hacks](https://sfhacks.io) | mlh | 0.0 | 0.0 |
+| [MakeUofT](http://makeuoft.ca/) | mlh | 3.0 | 0.0 |
+| [InnovateHer](https://innovateherhacks.org/) | mlh | 3.0 | 0.0 |
+| [Hack_NCState](https://hackncstate.org/) | mlh | 4.0 | 0.0 |
+| [SpartaHack](https://www.spartahack.com/) | mlh | 2.0 | 0.0 |
+| [Hack@Brown 2027](https://hackatbrown.org/) | mlh | 0.0 | 0.0 |
+| [UGAHacks](https://ugahacks.com/) | mlh | 3.0 | 0.0 |
+| [ElleHacks](https://ellehacks.com/) | mlh | 0.0 | 0.0 |
+| [Hoya Hacks](https://www.hoyahacks.com/) | mlh | 0.0 | 0.0 |
+| [Hackville 2027](https://hackville.io/) | mlh | 2.0 | 0.0 |
+| [nwHacks](https://nwhacks.io/) | mlh | 2.0 | 0.0 |
+| [uOttaHack 9](https://2027.uottahack.ca/) | mlh | 0.0 | 0.0 |
+| [UofTHacks](https://uofthacks.com/) | mlh | 0.0 | 0.0 |
+| [DeltaHacks](https://www.deltahacks.com/) | mlh | 4.0 | 0.0 |
+| [DurHack](https://durhack.com) | mlh | 2.0 | 0.0 |
+| [HackUMass](https://www.hackumass.com/) | mlh | 4.0 | 0.0 |
+| [HackRPI 2026](https://hackrpi.com/) | mlh | 3.0 | 0.0 |
+| [HackUTD](https://zeroday.hackutd.co) | mlh | 0.0 | 0.0 |
+| [hackCBS 9.O](https://hackcbs.tech) | mlh | 2.0 | 0.0 |
+| [Hack at Penn State](https://hackpsu.org) | mlh | 2.0 | 0.0 |
+| [HackTX 26](https://hacktx.com/) | mlh | 0.0 | 0.0 |
+| [SBUHacks](https://hack.sbcs.io/) | mlh | 3.0 | 0.0 |
+| [LA Hacks AI Hackathon 2026](https://ai.lahacks.com) | mlh | 2.0 | 0.0 |
+| [IKU Womxn in STEM Hackathon](https://ikuwomxninstemhackathon.co.uk/) | mlh | 3.0 | 0.0 |
+| [Hack the Valley](https://hackthevalley.io/) | mlh | 2.0 | 0.0 |
+| [SwampHacks XII](https://swamphacks.com/) | mlh | 0.0 | 0.0 |
+| [Innohacks 4.0](https://innohacks.live) | mlh | 5.0 | 0.0 |
+| [CodeRED Orion](https://uhcode.red/) | mlh | 2.0 | 0.0 |
+| [Knight Hacks IX](https://2026.knighthacks.org/) | mlh | 2.0 | 0.0 |
+| [Hack Knight](https://hackknight.org/) | mlh | 0.0 | 0.0 |
+| [HackNC](https://hacknc.com/) | mlh | 3.0 | 1.0 |
+| [GirlHacks](https://www.njitgirlhacks.com/) | mlh | 2.0 | 0.0 |
+| [MHacks](https://www.mhacks.org/) | mlh | 2.0 | 0.0 |
+| [WolfHacks by ACM at NC State](https://wolfhacks.org/) | mlh | 2.0 | 0.0 |
+| [StormHacks](https://www.stormhacks.com/) | mlh | 0.0 | 0.0 |
+| [Rowdy Hacks](https://rowdyhacks.org) | mlh | 3.0 | 0.0 |
+| [Hack Dearborn 5: Conjure Reality](https://www.hackdearborn.org/) | mlh | 2.0 | 0.0 |
+| [Gator Quant Hacks](https://www.gqhacks.com) | mlh | 1.0 | 0.0 |
+| [BigRed//Hacks 2026](https://www.bigredhacks.com/) | mlh | 0.0 | 0.0 |
+| [hackUMBC](https://hackumbc.tech/) | mlh | 4.0 | 0.0 |
+| [OwlHacks](https://www.owlhacks.com/) | mlh | 2.0 | 0.0 |
+| [DivHacks](https://www.columbiadivhacks.org/) | mlh | 3.0 | 0.0 |
+| [Hack the Hill](https://hackthehill.com/) | mlh | 3.0 | 0.0 |
+| [ShellHacks](https://shellhacks.net/) | mlh | 0.0 | 0.0 |
+| [HackGT 13](http://hack.gt/) | mlh | 0.0 | 0.0 |
+| [HackNex Season 2](https://innovocon.online/events/hacknex) | mlh | 0.0 | 0.0 |
+| [&HACKS XII](https://andhacks.cs.wm.edu/) | mlh | 2.0 | 0.0 |
+| [SteelHacks XIII](https://steelhacks.org/) | mlh | 2.0 | 0.0 |
+| [HopHacks](https://www.hophacks.com/) | mlh | 3.0 | 0.0 |
+| [VTHacks 14](https://vthacks.com/) | mlh | 3.0 | 0.0 |
+| [Hack the North](https://hackthenorth.com/) | mlh | 0.0 | 0.0 |
+| [HackHers @GSU](https://hackhers.club/) | mlh | 4.0 | 0.0 |
+| [HackWesTX 26](https://hackwestx.gdgttu.com/) | mlh | 3.0 | 0.0 |
+| [HackMTY 2026](https://hackmty.com/) | mlh | 0.0 | 0.0 |
+| [HackRice](https://hackrice.com/) | mlh | 3.0 | 0.0 |
+| [Global Hack Week: Data](https://events.mlh.io/events/14416-global-hack-week-data) | mlh | 1.0 | 0.0 |
+| [Hack the Change 2026](https://hack-the-change-2026.devpost.com/) | devpost | 7.0 | 0.0 |
+| [The CAD Challenge 2026](https://the-cad-challenge-2026.devpost.com/) | devpost | 5.0 | 0.0 |
+| [Brewing Codes 4.0](https://brewing-codes-4-0.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Galuxium Nexus V2](https://galuxium-nexus-v2-29411.devpost.com/) | devpost | 6.0 | 1.0 |
+| [Syndicate by Maximor](https://syndicate-by-maximor.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Agentic Cinema: The Blockbuster Hackathon](https://agentic-cinema.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Hack The Weather](https://hack-the-weather.devpost.com/) | devpost | 5.0 | 0.0 |
+| [AnimalHack 2026](https://animalhack2026.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Gear Up Hacks 2026](https://gear-up-hacks-2026.devpost.com/) | devpost | 4.0 | 0.0 |
+| [COMMA_HACK 7](https://comma-hack-7.devpost.com/) | devpost | 6.0 | 0.0 |
+| [ImpactHack 2026](https://impacthack26.devpost.com/) | devpost | 5.0 | 0.0 |
+| [Meow](https://makeuc-2026-30881.devpost.com/) | devpost | 5.0 | 0.0 |
+| [MakeUC 2026](https://makeuc-2026-30884.devpost.com/) | devpost | 5.0 | 0.0 |
+| [CityCamp Gainesville Hack Day](https://citycamp-hack-day.devpost.com/) | devpost | 4.0 | 0.0 |
+| [HopHacks Fall 2026](https://hophacks-fall-2026.devpost.com/) | devpost | 4.0 | 0.0 |
+| [BioHacks](https://biohacksmcmaster.devpost.com/) | devpost | 5.0 | 0.0 |
+| [SourceHacks V1](https://sourcehacksv1.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Arbiter Hacks V1](https://arbiter-hacks-v1.devpost.com/) | devpost | 5.0 | 0.0 |
+| [Hyphen-Hacks](https://hyphen-hacks26.devpost.com/) | devpost | 5.0 | 0.0 |
+| [TigerHacks 2026](https://tigerhacks-2026.devpost.com/) | devpost | 5.0 | 0.0 |
+| [Revolution](https://revolution-mty2026.devpost.com/) | devpost | 4.0 | 0.0 |
+| [H.A.R.D. Hack 2027](https://h-a-r-d-hack-2027.devpost.com/) | devpost | 4.0 | 0.0 |
+| [InnovArt 2027: Art and Technology Hack Day](https://innovart2027.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Global Innovation Build Challenge V2](https://gibc-v2.devpost.com/) | devpost | 6.0 | 0.0 |
+| [GatewayHacks 2026 \| Software & AI](https://gatewayhacks-2026.devpost.com/) | devpost | 5.0 | 0.0 |
+| [OpenCV AI Competition 2026, powered by AWS](https://opencv26.devpost.com/) | devpost | 5.0 | 1.0 |
+| [VoltHacks](https://volthacks.devpost.com/) | devpost | 5.0 | 0.0 |
+| [HarborHack 2026 - Agent In The Loop](https://harborhack-2026.devpost.com/) | devpost | 6.0 | 0.0 |
+| [CrownHacks](https://crownhacks.devpost.com/) | devpost | 4.0 | 0.0 |
+| [HACK47: OFFGRID](https://hack47-offgrid.devpost.com/) | devpost | 5.0 | 0.0 |
+
+## Ineligible
+_7 accepted item(s) are confirmed ineligible for this operator's profile (profile.yaml) and are not listed individually -- but the failing reasons are tallied below so a bad eligibility extractor would be visible here, not silent._
+
+| Failing field | Count |
+| --- | --- |
+| requires_incorporation | 3 |
+| max_age | 3 |
+| equity_required | 1 |
 
 ## Sources needing attention
 

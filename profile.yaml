@@ -1,0 +1,15 @@
+# The operator's own eligibility profile. lib/eligibility.py's evaluate()
+# compares each item's extracted eligibility facts against this file, so
+# eligibility is a comparison against real, editable data -- never a
+# hardcoded constant in code. Update this file (not code) if the
+# operator's situation changes.
+profile:
+  incorporated: false
+  has_faculty_sponsor: false
+  us_person: true
+  age: 20
+  currently_enrolled: true
+  institution: Carnegie Mellon University
+  team_size: 1
+  will_pay_entry_fee: false
+  will_give_equity: false

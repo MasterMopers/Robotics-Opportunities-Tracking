@@ -10,12 +10,16 @@ from zoneinfo import ZoneInfo
 import yaml
 
 from lib import db
+from lib import eligibility as eligibility_lib
 from lib.geo import classify_country
-from monitor import RULES_PATH, SOURCES_PATH, _next_occurrence
+from lib.rank import compute_fit_scores, parse_money_value
+from monitor import PROFILE_PATH, RULES_PATH, SOURCES_PATH, _next_occurrence
 
 # --- tunable constants -----------------------------------------------------
 CLOSING_SOON_DAYS = 14          # discovered contests inside this many days of
                                  # their deadline show up in "Closing soon"
+ACT_NOW_CAP = 15                # Phase 7: "5 to 15 opportunities the operator
+                                 # could actually enter," not a wide skim list
 STALE_GRANT_MONTHS = 12         # a rolling grant with no activity this long
                                  # is marked stale (per spec section 3 table)
 # ----------------------------------------------------------------------------
@@ -27,17 +31,10 @@ README_PATH = os.path.join(ROOT, "README.md")
 BEGIN_MARKER = "<!-- BEGIN AUTOGEN -->"
 END_MARKER = "<!-- END AUTOGEN -->"
 
-
-def money_sort_key(money_raw):
-    if not money_raw:
-        return -1
-    nums = [float(n.replace(",", "")) for n in re.findall(r"[\d,]+(?:\.\d+)?", money_raw)]
-    if not nums:
-        return -1
-    value = max(nums)
-    if re.search(r"\bk\b", money_raw, re.IGNORECASE) or money_raw.strip().lower().endswith("k"):
-        value *= 1000
-    return value
+# Kept for any external caller still importing the old name; identical to
+# lib.rank.parse_money_value (Phase 7 moved the implementation there so
+# lib/rank.py doesn't have to import render_readme.py).
+money_sort_key = parse_money_value
 
 
 def esc(cell):
@@ -68,21 +65,17 @@ def table(headers, rows):
     return "\n".join(lines)
 
 
-def render_contest_row(item):
+ELIGIBILITY_LABEL = {"eligible": "Eligible", "unknown": "Unknown", None: "Unknown"}
+
+
+def render_act_now_row(item, fit):
     deadline = item["deadline_date"] or "rolling/unknown"
-    team = item["team_size"] or "n/a"
     money = item["money_raw"] or "n/a"
+    kind = "Contest" if item["final_class"] == "contest" else "Grant"
+    elig = ELIGIBILITY_LABEL.get(item["eligibility"], "Unknown")
     return (
-        f"| [{esc(item['title'])}]({item['url']}) | {esc(money)} | {esc(team)} | "
-        f"{location_cell(item)} | {participants_cell(item)} | {deadline} |"
-    )
-
-
-def render_grant_row(item):
-    money = item["money_raw"] or "amount not extracted"
-    deadline = item["deadline_date"] or "rolling"
-    return (
-        f"| [{esc(item['title'])}]({item['url']}) | {esc(money)} | {location_cell(item)} | {deadline} |"
+        f"| [{esc(item['title'])}]({item['url']}) | {kind} | {esc(money)} | "
+        f"{location_cell(item)} | {deadline} | {elig} | {fit:.2f} |"
     )
 
 
@@ -91,34 +84,66 @@ def build_autogen_block(conn):
     now_est = datetime.now(ZoneInfo("America/New_York"))
     now = now_est.strftime("%Y-%m-%d %H:%M %Z")
 
-    contests_all = conn.execute(
-        "SELECT * FROM items WHERE final_class='contest' AND status='accepted' ORDER BY "
-        "(deadline_date IS NULL), deadline_date ASC"
+    rules = yaml.safe_load(open(RULES_PATH))
+    profile = yaml.safe_load(open(PROFILE_PATH))["profile"]
+
+    accepted_all = conn.execute(
+        "SELECT * FROM items WHERE status='accepted' AND final_class IN ('contest', 'grant')"
     ).fetchall()
-    grants_all = conn.execute(
-        "SELECT * FROM items WHERE final_class='grant' AND status='accepted'"
-    ).fetchall()
-    grants_all = sorted(grants_all, key=lambda r: money_sort_key(r["money_raw"]), reverse=True)
 
     # US-only filter: excludes only items whose resolved location string
     # confidently names a non-US place. An item with no resolved location
-    # (status "Unknown") is left visible -- excluding it would be a guess,
-    # and this project never guesses. Rows stay 'accepted' in state.db either
-    # way; this is a render-time filter only, fully auditable there.
-    rules_for_geo = yaml.safe_load(open(RULES_PATH))
-    contests = [c for c in contests_all if classify_country(c["location"], rules_for_geo) != "non-US"]
-    grants = [g for g in grants_all if classify_country(g["location"], rules_for_geo) != "non-US"]
-    non_us_excluded = (len(contests_all) - len(contests)) + (len(grants_all) - len(grants))
+    # (still "Unknown") is left visible -- excluding it would be a guess,
+    # and this project never guesses. Rows stay 'accepted' in state.db
+    # either way; this is a render-time filter only, fully auditable here.
+    #
+    # Event location and requires_us_person are deliberately independent
+    # signals: a remote contest hosted abroad may still be open to US
+    # entrants (requires_us_person can be false or unknown regardless of
+    # where the organizer sits), and a US-hosted contest may explicitly be
+    # closed to non-US entrants. This filter only ever looks at the
+    # resolved event `location`, never at requires_us_person, and
+    # lib/eligibility.py's requires_us_person check never looks at
+    # `location` either -- neither one substitutes for the other.
+    accepted = [r for r in accepted_all if classify_country(r["location"], rules) != "non-US"]
+    non_us_excluded = len(accepted_all) - len(accepted)
+
+    ineligible = [r for r in accepted if r["eligibility"] == "ineligible"]
+    rankable = [r for r in accepted if r["eligibility"] != "ineligible"]
+
+    ranking_weights = rules["ranking"]
+    scored = compute_fit_scores(rankable, ranking_weights, today=today)
+
+    act_now = scored[:ACT_NOW_CAP]
+    missed_cap = scored[ACT_NOW_CAP:]
+    # Only "unknown"-eligibility rows that missed the Act-now cap go to
+    # Needs review -- a genuinely eligible row that just didn't rank in the
+    # top ACT_NOW_CAP is intentionally not shown anywhere else. That's the
+    # point of capping: "5 to 15 opportunities," not everything accepted
+    # dumped into a second list right below it. It stays 'accepted' in
+    # state.db regardless.
+    unknown_missed_cap = [(r, fit) for r, fit in missed_cap if r["eligibility"] in (None, "unknown")]
+
     review_items = conn.execute(
         "SELECT * FROM items WHERE status='review' ORDER BY first_seen DESC"
     ).fetchall()
     broken_sources = conn.execute(
-        "SELECT * FROM source_health WHERE last_status != 'OK' ORDER BY source_id"
+        "SELECT * FROM source_health WHERE last_status NOT IN ('OK', 'DISABLED') ORDER BY source_id"
     ).fetchall()
 
+    # Ineligible rows are never listed individually in the README (the
+    # operator can't enter them) -- but a collapsed count with WHY each one
+    # failed is what makes a bad eligibility extractor visible instead of
+    # silently swallowing rows. lib.eligibility.evaluate() is re-run here
+    # (cheap, no network) rather than persisting a redundant reason column.
+    ineligible_reason_counts = {}
+    for row in ineligible:
+        _verdict, reason = eligibility_lib.evaluate(row, profile)
+        ineligible_reason_counts[reason] = ineligible_reason_counts.get(reason, 0) + 1
+
     closing_soon = []
-    for c in contests:
-        if not c["deadline_date"]:
+    for c in accepted:
+        if c["final_class"] != "contest" or not c["deadline_date"]:
             continue
         try:
             d = datetime.strptime(c["deadline_date"], "%Y-%m-%d").date()
@@ -130,53 +155,38 @@ def build_autogen_block(conn):
 
     calendar_entries = yaml.safe_load(open(SOURCES_PATH)).get("calendar", [])
 
-    with_location = sum(1 for c in list(contests) + list(grants) if c["location_format"] and c["location_format"] != "Unknown")
-    with_count = sum(1 for c in list(contests) + list(grants) if c["participants_count"] is not None)
-    total_items = len(contests) + len(grants)
-
     lines = [BEGIN_MARKER, ""]
-    lines.append(f"### 📡 {len(contests)} open contest(s) · {len(grants)} grant(s) listed · updated {now}")
+    lines.append(
+        f"### \U0001F4E1 {len(act_now)} actionable opportunit{'y' if len(act_now) == 1 else 'ies'} "
+        f"right now \u00b7 {len(accepted)} accepted total \u00b7 updated {now}"
+    )
     lines.append("")
     if non_us_excluded:
         lines.append(
-            f"_{non_us_excluded} item(s) excluded from the tables below as confidently non-US "
+            f"_{non_us_excluded} item(s) excluded below as confidently non-US "
             f"(location text names a specific non-US place). Items whose location is still "
             f"Unknown are kept visible, not excluded -- this filter only removes what we can "
             f"actually tell is outside the US, never a guess._"
         )
         lines.append("")
-    if total_items:
-        lines.append(
-            f"_Format (in-person/remote/hybrid) is known for {with_location}/{total_items} listings below; "
-            f"a participant count is known for {with_count}/{total_items} -- both only ever come from what the "
-            f"source page itself states, never a guess. \"Unknown\" means the page didn't say._"
-        )
-        lines.append("")
 
-    lines.append("## Open contests")
+    lines.append("## Act now")
     lines.append(
-        "_Sorted by deadline. \"Team size\" and \"Format\" come straight from each contest's own page._"
+        f"_The {ACT_NOW_CAP} highest-fit opportunities that aren't confirmed ineligible, ranked by "
+        f"relevance, eligibility, prize/grant size, and deadline urgency (see lib/rank.py). This is "
+        f"the section worth reading end to end -- everything else below is either time-sensitive, "
+        f"unresolved, or explicitly out of reach._"
     )
     lines.append("")
-    if contests:
-        rows = [render_contest_row(c) for c in contests]
-        lines.append(table(["Contest", "Prize", "Team size", "Format", "Participants (last count)", "Deadline"], rows))
+    if act_now:
+        rows = [render_act_now_row(r, fit) for r, fit in act_now]
+        lines.append(table(["Opportunity", "Type", "Prize/Amount", "Format (location)", "Deadline", "Eligibility", "Fit"], rows))
     else:
-        lines.append("_None currently open._")
-    lines.append("")
-
-    lines.append("## Available grants")
-    lines.append("_Sorted by amount (highest first). Most microgrant programs are rolling, not deadline-based._")
-    lines.append("")
-    if grants:
-        rows = [render_grant_row(g) for g in grants]
-        lines.append(table(["Grant", "Amount", "Format / eligibility area", "Deadline"], rows))
-    else:
-        lines.append("_None currently listed._")
+        lines.append("_Nothing actionable right now._")
     lines.append("")
 
     lines.append("## Closing soon")
-    lines.append(f"_Contests inside {CLOSING_SOON_DAYS} days of their deadline._")
+    lines.append(f"_Contests inside {CLOSING_SOON_DAYS} days of their deadline (regardless of Act-now rank)._")
     lines.append("")
     if closing_soon:
         rows = [
@@ -210,6 +220,25 @@ def build_autogen_block(conn):
     lines.append("")
 
     lines.append("## Needs review")
+    lines.append("")
+    lines.append("### Eligibility unclear")
+    lines.append(
+        "_Relevant and not confirmed ineligible, but at least one eligibility fact is still "
+        "unresolved and the item didn't rank into Act now -- a quick human look could move it up "
+        "or rule it out._"
+    )
+    lines.append("")
+    if unknown_missed_cap:
+        rows = [
+            f"| [{esc(r['title'])}]({r['url']}) | {r['final_class'] or 'unclear'} | {fit:.2f} |"
+            for r, fit in unknown_missed_cap
+        ]
+        lines.append(table(["Item", "Class", "Fit"], rows))
+    else:
+        lines.append("_Nothing pending eligibility review outside Act now._")
+    lines.append("")
+
+    lines.append("### Classification unclear")
     lines.append(
         "_The classifier couldn't confidently call these contest vs. grant vs. neither -- "
         "worth a quick human look rather than being silently dropped._"
@@ -222,7 +251,24 @@ def build_autogen_block(conn):
         ]
         lines.append(table(["Item", "Source", "Contest score", "Grant score"], rows))
     else:
-        lines.append("_Nothing pending review._")
+        lines.append("_Nothing pending classification review._")
+    lines.append("")
+
+    lines.append("## Ineligible")
+    lines.append(
+        f"_{len(ineligible)} accepted item(s) are confirmed ineligible for this operator's profile "
+        f"(profile.yaml) and are not listed individually -- but the failing reasons are tallied below "
+        f"so a bad eligibility extractor would be visible here, not silent._"
+    )
+    lines.append("")
+    if ineligible_reason_counts:
+        rows = [
+            f"| {reason} | {count} |"
+            for reason, count in sorted(ineligible_reason_counts.items(), key=lambda kv: -kv[1])
+        ]
+        lines.append(table(["Failing field", "Count"], rows))
+    else:
+        lines.append("_No accepted items are currently ineligible._")
     lines.append("")
 
     lines.append("## Sources needing attention")

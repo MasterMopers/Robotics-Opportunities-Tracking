@@ -1,4 +1,4 @@
-from . import rss, html, json_adapter, json_embedded, github  # noqa: F401
+from . import rss, html, json_adapter, json_embedded, github, markdown_list, bulk_xml, devpost_api  # noqa: F401
 
 DISPATCH = {
     "rss": rss.fetch,
@@ -6,6 +6,9 @@ DISPATCH = {
     "json": json_adapter.fetch,
     "json_embedded": json_embedded.fetch,
     "github": github.fetch,
+    "markdown_list": markdown_list.fetch,
+    "bulk_xml": bulk_xml.fetch,
+    "devpost_api": devpost_api.fetch,
 }
 
 
