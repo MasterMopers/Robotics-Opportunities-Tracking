@@ -9,7 +9,28 @@ import html
 import re
 from datetime import date
 
+from bs4 import BeautifulSoup
 from dateutil import parser as dateutil_parser
+
+_NOISE_TAGS = ("script", "style", "noscript", "nav", "footer", "header")
+
+
+def clean_page_text(raw_html: str) -> str:
+    """Strip markup/script noise out of a fetched page before any regex
+    extractor sees it. Frameworks like Next.js embed a React Server
+    Components JSON stream inside <script> tags (e.g. `["$","$1","c",...]`)
+    that looks exactly like a dollar amount or a numeric id to a naive
+    `\\$\\d+` or `\\d+-person` regex -- this is what produced bogus
+    money_raw values like "$1" and team_size values like "70104-person"
+    on real hackathon pages. Parsing to visible text first removes that
+    class of false match at the source instead of trying to filter it back
+    out downstream."""
+    if not raw_html:
+        return ""
+    soup = BeautifulSoup(raw_html, "html.parser")
+    for tag in soup(_NOISE_TAGS):
+        tag.decompose()
+    return re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).strip()
 
 DATE_FRAGMENT = (
     r"(?:[A-Z][a-z]+\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}"   # March 3, 2027

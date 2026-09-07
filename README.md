@@ -26,7 +26,7 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 77 open contest(s) · 91 grant(s) listed · updated 2026-09-05 16:35 EDT
+### 📡 77 open contest(s) · 91 grant(s) listed · updated 2026-09-06 20:09 EDT
 
 _11 item(s) excluded from the tables below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
 
@@ -37,7 +37,7 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 
 | Contest | Prize | Team size | Format | Participants (last count) | Deadline |
 | --- | --- | --- | --- | --- | --- |
-| [HopHacks](https://www.hophacks.com/) | $1 | individual | In-person (Johns Hopkins University) | Unknown | 2026-09-01 |
+| [HopHacks](https://www.hophacks.com/) | n/a | individual | In-person (Johns Hopkins University) | Unknown | 2026-09-01 |
 | [Modern Java In The Wild](https://www.hackster.io/contests/modern-java-in-the-wild) | $4,000 | n/a | Unknown | 141 | rolling/unknown |
 | [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | $4,000 | n/a | Unknown | 279 | rolling/unknown |
 | [Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
@@ -54,61 +54,61 @@ _Sorted by deadline. "Team size" and "Format" come straight from each contest's 
 | [ZOREX DRIVE 30](https://www.pcbway.com/project/sponsor/ZOREX_DRIVE_30_8800755b.html) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Rainbow Six Siege-Inspired Airsoft Drone](https://www.pcbway.com/project/sponsor/Rainbow_Six_Siege_Inspired_Airsoft_Drone_6f9ff7b0.html) | n/a | individual | Unknown | Unknown | rolling/unknown |
 | [Global Hack Week: Data](https://events.mlh.io/events/14416-global-hack-week-data) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackRice](https://hackrice.com/) | $1 | n/a | In-person (Houston, Texas) | Unknown | rolling/unknown |
+| [HackRice](https://hackrice.com/) | n/a | n/a | In-person (Houston, Texas) | Unknown | rolling/unknown |
 | [HackMTY 2026](https://hackmty.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackWesTX 26](https://hackwestx.gdgttu.com/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [HackHers @GSU](https://hackhers.club/) | $7 | n/a | Unknown | Unknown | rolling/unknown |
-| [VTHacks 14](https://vthacks.com/) | $12K | solo | In-person (Virginia Tech) | 550 | rolling/unknown |
+| [HackWesTX 26](https://hackwestx.gdgttu.com/) | $5,000 | n/a | Unknown | Unknown | rolling/unknown |
+| [HackHers @GSU](https://hackhers.club/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [VTHacks 14](https://vthacks.com/) | n/a | n/a | In-person (Virginia Tech) | 550 | rolling/unknown |
 | [SteelHacks XIII](https://steelhacks.org/) | n/a | n/a | In-person (University of Pittsburgh) | Unknown | rolling/unknown |
 | [&HACKS XII](https://andhacks.cs.wm.edu/) | n/a | solo | Unknown | Unknown | rolling/unknown |
 | [HackGT 13](http://hack.gt/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [ShellHacks](https://shellhacks.net/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack the Hill](https://hackthehill.com/) | n/a | n/a | In-person (Ottawa, ON) | 4 | rolling/unknown |
-| [hackUMBC](https://hackumbc.tech/) | $1 | up to 4 members | In-person (ITE and Engineering Buildings, UMBC, Baltimore, MD) | Unknown | rolling/unknown |
+| [hackUMBC](https://hackumbc.tech/) | n/a | up to 4 members | In-person (ITE and Engineering Buildings, UMBC, Baltimore, MD) | Unknown | rolling/unknown |
 | [BigRed//Hacks 2026](https://www.bigredhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Gator Quant Hacks](https://www.gqhacks.com) | n/a | n/a | In-person (Gainesville, Florida) | Unknown | rolling/unknown |
-| [Rowdy Hacks](https://rowdyhacks.org) | $19 | n/a | Unknown | 4 | rolling/unknown |
-| [Hack Dearborn 5: Conjure Reality](https://www.hackdearborn.org/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [MHacks](https://www.mhacks.org/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
+| [Rowdy Hacks](https://rowdyhacks.org) | n/a | n/a | Unknown | 4 | rolling/unknown |
+| [Hack Dearborn 5: Conjure Reality](https://www.hackdearborn.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [MHacks](https://www.mhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [WolfHacks by ACM at NC State](https://wolfhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [StormHacks](https://www.stormhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [GirlHacks](https://www.njitgirlhacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HackNC](https://hacknc.com/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
+| [HackNC](https://hacknc.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Hack Knight](https://hackknight.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Knight Hacks IX](https://2026.knighthacks.org/) | $60,000 | n/a | In-person (Orlando, Florida) | Unknown | rolling/unknown |
 | [CodeRED Orion](https://uhcode.red/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Innohacks 4.0](https://innohacks.live) | $1 | n/a | Unknown | Unknown | rolling/unknown |
+| [Innohacks 4.0](https://innohacks.live) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [SwampHacks XII](https://swamphacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack the Valley](https://hackthevalley.io/) | $1 | n/a | In-person | Unknown | rolling/unknown |
+| [Hack the Valley](https://hackthevalley.io/) | n/a | n/a | In-person | Unknown | rolling/unknown |
 | [LA Hacks AI Hackathon 2026](https://ai.lahacks.com) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [IKU Womxn in STEM Hackathon](https://ikuwomxninstemhackathon.co.uk/) | n/a | solo | In-person (Bush House, North Wing, King's College London) | Unknown | rolling/unknown |
-| [SBUHacks](https://hack.sbcs.io/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
+| [SBUHacks](https://hack.sbcs.io/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [HackTX 26](https://hacktx.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack at Penn State](https://hackpsu.org) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [HackUTD](https://zeroday.hackutd.co) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [HackRPI 2026](https://hackrpi.com/) | $1 | n/a | In-person (Troy, New York) | Unknown | rolling/unknown |
+| [Hack at Penn State](https://hackpsu.org) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [HackUTD](https://zeroday.hackutd.co) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [HackRPI 2026](https://hackrpi.com/) | n/a | n/a | In-person (Troy, New York) | Unknown | rolling/unknown |
 | [MakeCU](https://v0-curc-makecu.vercel.app/) | n/a | n/a | Unknown | 2,025 | rolling/unknown |
 | [HackUMass](https://www.hackumass.com/) | n/a | n/a | Unknown | 600 | rolling/unknown |
-| [DurHack](https://durhack.com) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [UofTHacks](https://uofthacks.com/) | $1 | individual | In-person | 500 | rolling/unknown |
+| [DurHack](https://durhack.com) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [UofTHacks](https://uofthacks.com/) | n/a | individual | In-person | 500 | rolling/unknown |
 | [uOttaHack 9](https://2027.uottahack.ca/) | n/a | n/a | In-person (University of Ottawa) | Unknown | rolling/unknown |
-| [Hackville 2027](https://hackville.io/) | $390 | n/a | Hybrid | 150 | rolling/unknown |
+| [Hackville 2027](https://hackville.io/) | $3900 | n/a | Hybrid | 150 | rolling/unknown |
 | [Hoya Hacks](https://www.hoyahacks.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hack@Brown 2027](https://hackatbrown.org/) | $1 | n/a | Unknown | Unknown | rolling/unknown |
-| [UGAHacks](https://ugahacks.com/) | $1 | n/a | Hybrid | 200 | rolling/unknown |
-| [SpartaHack](https://www.spartahack.com/) | $2 | n/a | In-person (MSU STEM Building, East Lansing, Michigan) | Unknown | rolling/unknown |
+| [Hack@Brown 2027](https://hackatbrown.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
+| [UGAHacks](https://ugahacks.com/) | n/a | n/a | Hybrid | 200 | rolling/unknown |
+| [SpartaHack](https://www.spartahack.com/) | n/a | n/a | In-person (MSU STEM Building, East Lansing, Michigan) | Unknown | rolling/unknown |
 | [Hack_NCState](https://hackncstate.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [InnovateHer](https://innovateherhacks.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [SF Hacks](https://sfhacks.io) | $1 | n/a | Unknown | Unknown | rolling/unknown |
+| [SF Hacks](https://sfhacks.io) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [CUhackit](https://cuhack.it/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [HackIllinois](https://www.hackillinois.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [Hacklytics 2027](https://hacklytics2027.web.app/) | $1 | n/a | In-person (Atlanta) | 1,000 | rolling/unknown |
+| [Hacklytics 2027](https://hacklytics2027.web.app/) | n/a | n/a | In-person (Atlanta) | 1,000 | rolling/unknown |
 | [WiCHacks](https://wichacks.io/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [HenHacks](https://www.henhackshackathon.com/) | $1 | n/a | In-person | Unknown | rolling/unknown |
+| [HenHacks](https://www.henhackshackathon.com/) | n/a | n/a | In-person | Unknown | rolling/unknown |
 | [Kent Hack Enough](https://khe.io/) | $0.00 | Solo | Unknown | 4 | rolling/unknown |
-| [Diamondhacks](https://diamondhacks.acmucsd.com/) | $500 | n/a | In-person (La Jolla, California) | Unknown | rolling/unknown |
+| [Diamondhacks](https://diamondhacks.acmucsd.com/) | $5000 | n/a | In-person (La Jolla, California) | Unknown | rolling/unknown |
 | [HackKU27](https://www.hackku.org/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
-| [WEHack](https://www.wehackutd.com/) | $1 | up to 4 members | Unknown | Unknown | rolling/unknown |
+| [WEHack](https://www.wehackutd.com/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [LA Hacks 27](https://lahacks.com) | $60,000 | n/a | In-person (Los Angeles, California) | 1,400 | rolling/unknown |
 | [FLOSS Weekly Episode 880: The Two Wolves](https://hackaday.com/2026/09/02/floss-weekly-episode-880-the-two-wolves/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
 | [Creating the Greenest Possible Clothing with Living Fungi](https://hackaday.com/2026/09/02/creating-the-greenest-possible-clothing-with-living-fungi/) | n/a | n/a | Unknown | Unknown | rolling/unknown |
@@ -120,6 +120,7 @@ _Sorted by amount (highest first). Most microgrant programs are rolling, not dea
 
 | Grant | Amount | Format / eligibility area | Deadline |
 | --- | --- | --- | --- |
+| [Disability](https://www.awesomefoundation.org/en/chapters/disability) | $112,000 | Unknown | rolling |
 | [Schmidt Science Fellows](https://sologrants.com/guide/schmidt-science-fellows) | $110k | Unknown | rolling |
 | [776 Fellowship](https://sologrants.com/guide/776) | $100k | Remote | rolling |
 | [OSV Fellowship](https://sologrants.com/guide/osv) | $100k | Remote | rolling |
@@ -133,6 +134,7 @@ _Sorted by amount (highest first). Most microgrant programs are rolling, not dea
 | [Magnificent Grants](https://sologrants.com/guide/magnificent) | $10k | Unknown | rolling |
 | [Non-Trivial Fellowship](https://sologrants.com/guide/nontrivial) | $2k-$10k | Unknown | rolling |
 | [OSV Grants](https://sologrants.com/guide/osv-grants) | $10,000 | Remote | rolling |
+| [Georgetown, MA](https://www.awesomefoundation.org/en/chapters/georgetown) | up to $10,000 | Unknown | rolling |
 | [Dojo Grants](https://sologrants.com/guide/dojo-grants) | $8k | Unknown | rolling |
 | [Time Initiative Fellowship](https://sologrants.com/guide/time-initiative-fellowship) | $8k | Remote | rolling |
 | [Compound Reverie Grants](https://sologrants.com/guide/compound-reverie-grants) | $500 - $7,500 | Unknown | rolling |
@@ -144,66 +146,45 @@ _Sorted by amount (highest first). Most microgrant programs are rolling, not dea
 | [Adamnite Microgrants](https://sologrants.com/guide/adamnite-microgrants) | $1k | Unknown | rolling |
 | [Awesome Foundation Grants](https://sologrants.com/guide/awesome-foundation-grants) | $1,000 | Remote | rolling |
 | [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | $100-$1,000 | Unknown | rolling |
-| [Nautilus](https://sologrants.com/guide/nautilus) | $100 to $1,000 | Unknown | rolling |
 | [Sean's Grant](https://sologrants.com/guide/seangrant) | $1k | Unknown | rolling |
-| [Conservation and Climate](https://www.awesomefoundation.org/en/chapters/conservationandclimate) | $1,000 | Unknown | rolling |
-| [Disability](https://www.awesomefoundation.org/en/chapters/disability) | $1,000 | Unknown | rolling |
-| [Dragon Dreaming](https://www.awesomefoundation.org/en/chapters/dragondreaming) | $1,000 | Unknown | rolling |
-| [On the Water](https://www.awesomefoundation.org/en/chapters/onthewater) | $1,000 | Unknown | rolling |
-| [Javakhk](https://www.awesomefoundation.org/en/chapters/javakhk) | $1,000 | Unknown | rolling |
-| [Yerevan](https://www.awesomefoundation.org/en/chapters/yerevan) | $1,000 | Unknown | rolling |
-| [Fleurieu](https://www.awesomefoundation.org/en/chapters/fleurieu) | $1,000 | Unknown | rolling |
+| [Conservation and Climate](https://www.awesomefoundation.org/en/chapters/conservationandclimate) | $1000 | Unknown | rolling |
+| [On the Water](https://www.awesomefoundation.org/en/chapters/onthewater) | $1000 | Unknown | rolling |
+| [Javakhk](https://www.awesomefoundation.org/en/chapters/javakhk) | $1000 | Unknown | rolling |
+| [Yerevan](https://www.awesomefoundation.org/en/chapters/yerevan) | $1000 | Unknown | rolling |
+| [Fleurieu](https://www.awesomefoundation.org/en/chapters/fleurieu) | $1000 | Unknown | rolling |
 | [Lake Mac](https://www.awesomefoundation.org/en/chapters/lakemac) | $1,000 | Unknown | rolling |
 | [Lower Hunter](https://www.awesomefoundation.org/en/chapters/lowerhunter) | $1,000 | Unknown | rolling |
 | [Sydney](https://www.awesomefoundation.org/en/chapters/sydney) | $1,000 | Unknown | rolling |
-| [Amherstburg](https://www.awesomefoundation.org/en/chapters/amherstburg) | $1,000 | Unknown | rolling |
+| [Amherstburg](https://www.awesomefoundation.org/en/chapters/amherstburg) | $1000 | Unknown | rolling |
 | [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | $1,000 | In-person (the co-working space at 945 Princess St) | rolling |
-| [Kitchener-Waterloo](https://www.awesomefoundation.org/en/chapters/kitchener-waterloo) | $1,000 | Unknown | rolling |
-| [New Glasgow](https://www.awesomefoundation.org/en/chapters/newglasgow) | $1,000 | Unknown | rolling |
-| [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | $1,000 | Unknown | rolling |
+| [Kitchener-Waterloo](https://www.awesomefoundation.org/en/chapters/kitchener-waterloo) | $1000 | Unknown | rolling |
+| [New Glasgow](https://www.awesomefoundation.org/en/chapters/newglasgow) | $1000 | Unknown | rolling |
 | [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | $1,000 | Unknown | rolling |
-| [South Shore](https://www.awesomefoundation.org/en/chapters/southshore) | $1,000 | Unknown | rolling |
-| [Kuala Lumpur](https://www.awesomefoundation.org/en/chapters/kualalumpur) | $1,000 | Unknown | rolling |
-| [Leiden](https://www.awesomefoundation.org/en/chapters/leiden) | $1,000 | Unknown | rolling |
-| [Rotterdam](https://www.awesomefoundation.org/en/chapters/rotterdam) | $1,000 | Unknown | rolling |
-| [Utrecht](https://www.awesomefoundation.org/en/chapters/utrecht) | $1,000 | Unknown | rolling |
-| [Qatar](https://www.awesomefoundation.org/en/chapters/qatar) | $1,000 | Unknown | rolling |
-| [Glasgow](https://www.awesomefoundation.org/en/chapters/glasgow) | $1,000 | Unknown | rolling |
-| [Austin, TX](https://www.awesomefoundation.org/en/chapters/austin) | $1,000 | Unknown | rolling |
-| [Baltimore, MD](https://www.awesomefoundation.org/en/chapters/baltimore) | $1,000 | Unknown | rolling |
+| [Austin, TX](https://www.awesomefoundation.org/en/chapters/austin) | $1000 | Unknown | rolling |
+| [Baltimore, MD](https://www.awesomefoundation.org/en/chapters/baltimore) | $1000 | Unknown | rolling |
 | [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | $1,000 | Unknown | rolling |
-| [Burlingame-San Mateo, CA](https://www.awesomefoundation.org/en/chapters/burlingamesanmateo) | $1,000 | Unknown | rolling |
 | [Chicago, IL](https://www.awesomefoundation.org/en/chapters/chicago) | $1,000 | Unknown | rolling |
 | [Cleveland, OH](https://www.awesomefoundation.org/en/chapters/cleveland) | $1,000 | Unknown | rolling |
-| [Durham, NC](https://www.awesomefoundation.org/en/chapters/durham) | $1,000 | Unknown | rolling |
+| [Durham, NC](https://www.awesomefoundation.org/en/chapters/durham) | $1000 | Unknown | rolling |
 | [Gainesville, FL](https://www.awesomefoundation.org/en/chapters/gainesville) | $1,000 | Unknown | rolling |
-| [Georgetown, MA](https://www.awesomefoundation.org/en/chapters/georgetown) | $1,000 | Unknown | rolling |
 | [Hamilton-Wenham, MA](https://www.awesomefoundation.org/en/chapters/hamilton-wenham) | $1,000 | Unknown | rolling |
-| [Ipswich, MA](https://www.awesomefoundation.org/en/chapters/ipswich) | $1,000 | Unknown | rolling |
-| [Key West, FL](https://www.awesomefoundation.org/en/chapters/keywest) | $1,000 | Unknown | rolling |
-| [Los Angeles, CA](https://www.awesomefoundation.org/en/chapters/los-angeles) | $1,000 | Unknown | rolling |
-| [Miami, FL](https://www.awesomefoundation.org/en/chapters/miami) | $1,000 | Unknown | rolling |
+| [Ipswich, MA](https://www.awesomefoundation.org/en/chapters/ipswich) | $1000 | Unknown | rolling |
+| [Miami, FL](https://www.awesomefoundation.org/en/chapters/miami) | up to $1000 | Unknown | rolling |
 | [New York City, NY](https://www.awesomefoundation.org/en/chapters/nyc) | $1,000 | Unknown | rolling |
 | [Newburgh, NY](https://www.awesomefoundation.org/en/chapters/newburgh) | $1,000 | Unknown | rolling |
-| [Newburyport, MA](https://www.awesomefoundation.org/en/chapters/newburyport) | $1,000 | In-person (Michael's Harborside Restaurant) | rolling |
-| [North Minneapolis, MN](https://www.awesomefoundation.org/en/chapters/northminneapolis) | $1,000 | Unknown | rolling |
-| [Oahu, HI](https://www.awesomefoundation.org/en/chapters/oahu) | $1,000 | Unknown | rolling |
-| [Orlando, FL](https://www.awesomefoundation.org/en/chapters/orlando) | $1,000 | Unknown | rolling |
+| [Newburyport, MA](https://www.awesomefoundation.org/en/chapters/newburyport) | $1000 | In-person (Michael's Harborside Restaurant) | rolling |
+| [Oahu, HI](https://www.awesomefoundation.org/en/chapters/oahu) | $1000 | Unknown | rolling |
 | [Peekskill, NY](https://www.awesomefoundation.org/en/chapters/peekskill) | $1,000 | Unknown | rolling |
 | [Philadelphia, PA](https://www.awesomefoundation.org/en/chapters/philadelphia) | $1,000 | Unknown | rolling |
-| [Rhode Island](https://www.awesomefoundation.org/en/chapters/rhodeisland) | $1,000 | Unknown | rolling |
-| [Rockport, MA](https://www.awesomefoundation.org/en/chapters/rockport) | $1,000 | Unknown | rolling |
-| [San Antonio, TX](https://www.awesomefoundation.org/en/chapters/sanantonio) | $1,000 | Unknown | rolling |
-| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | $1,000 | Unknown | rolling |
+| [Rockport, MA](https://www.awesomefoundation.org/en/chapters/rockport) | $1000 | Unknown | rolling |
+| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | $1000 | Unknown | rolling |
 | [San Jose, CA](https://www.awesomefoundation.org/en/chapters/sanjose) | $1,000 | Unknown | rolling |
 | [Santa Cruz, CA](https://www.awesomefoundation.org/en/chapters/santacruz) | $1,000 | Unknown | rolling |
-| [Seattle, WA](https://www.awesomefoundation.org/en/chapters/seattle) | $1,000 | Unknown | rolling |
-| [South Bend, IN](https://www.awesomefoundation.org/en/chapters/southbend) | $1,000 | Unknown | rolling |
+| [South Bend, IN](https://www.awesomefoundation.org/en/chapters/southbend) | $1000 | Unknown | rolling |
 | [St. Paul, MN](https://www.awesomefoundation.org/en/chapters/stpaul) | $1,000 | Unknown | rolling |
-| [State College, PA](https://www.awesomefoundation.org/en/chapters/statecollege) | $1,000 | Unknown | rolling |
 | [Washington, DC](https://www.awesomefoundation.org/en/chapters/dc) | $1,000 | Unknown | 2026-10-18 |
 | [Westminster, MD](https://www.awesomefoundation.org/en/chapters/westminster) | $1,000 | Unknown | rolling |
-| [Tashkent](https://www.awesomefoundation.org/en/chapters/tashkent) | $1,000 | Unknown | rolling |
+| [Tashkent](https://www.awesomefoundation.org/en/chapters/tashkent) | $1000 | Unknown | rolling |
 | [EVM Capital](https://sologrants.com/guide/evmcapital) | $100-$600 | Unknown | rolling |
 | [Alya Capital](https://sologrants.com/guide/alyacapital) | $100-$500 | Unknown | rolling |
 | [Bagel Fund](https://sologrants.com/guide/bagelfund) | $100-$500 | Unknown | rolling |
@@ -211,6 +192,25 @@ _Sorted by amount (highest first). Most microgrant programs are rolling, not dea
 | [Feather Grants](https://sologrants.com/guide/feather-grants) | $200 | Unknown | rolling |
 | [Cactus Capital](https://sologrants.com/guide/cactuscapital) | $100 | Unknown | rolling |
 | [Lift Off Grant](https://sologrants.com/guide/liftoff) | $100 | Remote | rolling |
+| [San Antonio, TX](https://www.awesomefoundation.org/en/chapters/sanantonio) | $100 | Unknown | rolling |
+| [Nautilus](https://sologrants.com/guide/nautilus) | amount not extracted | Unknown | rolling |
+| [Dragon Dreaming](https://www.awesomefoundation.org/en/chapters/dragondreaming) | amount not extracted | Unknown | rolling |
+| [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | amount not extracted | Unknown | rolling |
+| [South Shore](https://www.awesomefoundation.org/en/chapters/southshore) | amount not extracted | Unknown | rolling |
+| [Kuala Lumpur](https://www.awesomefoundation.org/en/chapters/kualalumpur) | amount not extracted | Unknown | rolling |
+| [Leiden](https://www.awesomefoundation.org/en/chapters/leiden) | amount not extracted | Unknown | rolling |
+| [Rotterdam](https://www.awesomefoundation.org/en/chapters/rotterdam) | amount not extracted | Unknown | rolling |
+| [Utrecht](https://www.awesomefoundation.org/en/chapters/utrecht) | amount not extracted | Unknown | rolling |
+| [Qatar](https://www.awesomefoundation.org/en/chapters/qatar) | amount not extracted | Unknown | rolling |
+| [Glasgow](https://www.awesomefoundation.org/en/chapters/glasgow) | amount not extracted | Unknown | rolling |
+| [Burlingame-San Mateo, CA](https://www.awesomefoundation.org/en/chapters/burlingamesanmateo) | amount not extracted | Unknown | rolling |
+| [Key West, FL](https://www.awesomefoundation.org/en/chapters/keywest) | amount not extracted | Unknown | rolling |
+| [Los Angeles, CA](https://www.awesomefoundation.org/en/chapters/los-angeles) | amount not extracted | Unknown | rolling |
+| [North Minneapolis, MN](https://www.awesomefoundation.org/en/chapters/northminneapolis) | amount not extracted | Unknown | rolling |
+| [Orlando, FL](https://www.awesomefoundation.org/en/chapters/orlando) | amount not extracted | Unknown | rolling |
+| [Rhode Island](https://www.awesomefoundation.org/en/chapters/rhodeisland) | amount not extracted | Unknown | rolling |
+| [Seattle, WA](https://www.awesomefoundation.org/en/chapters/seattle) | amount not extracted | Unknown | rolling |
+| [State College, PA](https://www.awesomefoundation.org/en/chapters/statecollege) | amount not extracted | Unknown | rolling |
 
 ## Closing soon
 _Contests inside 14 days of their deadline._
@@ -222,10 +222,10 @@ _Annual/monthly programs tracked by date instead of scraping a page that's stati
 
 | Program | Next occurrence | Days away | Alert window |
 | --- | --- | --- | --- |
-| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 20 | alert 45d out |
-| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 26 | alert 21d out |
-| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 57 | alert 30d out |
-| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 293 | alert 60d out |
+| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 19 | alert 45d out |
+| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 25 | alert 21d out |
+| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 56 | alert 30d out |
+| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 292 | alert 60d out |
 
 ## Needs review
 _The classifier couldn't confidently call these contest vs. grant vs. neither -- worth a quick human look rather than being silently dropped._

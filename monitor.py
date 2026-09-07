@@ -73,7 +73,7 @@ def process_item(conn, source, raw, rules, init_mode, report, llm_budget):
     snippet = raw.get("snippet", "") or ""
     page_text = ""
     try:
-        page_text = http_get(raw["url"]).text
+        page_text = enrich_lib.clean_page_text(http_get(raw["url"]).text)
     except Exception:
         pass  # enrichment is best-effort; classification still runs off title+snippet
 
@@ -191,7 +191,7 @@ def backfill_location_participants(conn, rules, llm_budget):
     updated, failed, llm_used = 0, 0, 0
     for r in rows:
         try:
-            page_text = http_get(r["url"]).text
+            page_text = enrich_lib.clean_page_text(http_get(r["url"]).text)
         except Exception as e:
             print(f"  backfill fetch failed for {r['url']}: {type(e).__name__}: {e}", file=sys.stderr)
             failed += 1
