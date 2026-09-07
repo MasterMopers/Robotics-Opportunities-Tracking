@@ -26,7 +26,7 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 15 actionable opportunities right now · 46 accepted total · updated 2026-09-07 00:03 EDT
+### 📡 15 actionable opportunities right now · 46 accepted total · updated 2026-09-07 14:03 EDT
 
 _1 item(s) excluded below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
 
@@ -38,7 +38,6 @@ _The 15 highest-fit opportunities that aren't confirmed ineligible, ranked by re
 | [Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353) | Contest | $250 | Unknown | rolling/unknown | Unknown | 0.58 |
 | [Many Small Steps for Robots, One Giant Leap for Mankind](https://www.notboring.co/p/robot-steps) | Contest | $25 | Unknown | rolling/unknown | Unknown | 0.43 |
 | [Knight Neuronix Ryxen](https://www.pcbway.com/project/sponsor/Knight_Neuronix_Ryxen_d002a8c3.html) | Contest | $3,500 | Unknown | rolling/unknown | Unknown | 0.40 |
-| [Magnificent Grants](https://sologrants.com/guide/magnificent) | Grant | $10k | Unknown | 2024-10-31 | Unknown | 0.39 |
 | [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | Contest | $4,000 | Unknown | 2026-09-07 | Unknown | 0.36 |
 | [Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship) | Grant | $100k | Remote (Worldwide) | rolling/unknown | Unknown | 0.34 |
 | [Trelis AI Grants](https://trelis.com/trelis-ai-grants/) | Grant | $500 | Unknown | rolling/unknown | Unknown | 0.34 |
@@ -50,6 +49,7 @@ _The 15 highest-fit opportunities that aren't confirmed ineligible, ranked by re
 | [4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html) | Contest | $2,500 | Unknown | rolling/unknown | Unknown | 0.30 |
 | [Bay Hacks](https://bayhacks-2026.devpost.com/) | Contest | $500 | In-person (USF Hall of Flags) | 2026-09-19 | Unknown | 0.30 |
 | [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | Grant | $1,000 | In-person (the co-working space at 945 Princess St) | rolling/unknown | Unknown | 0.29 |
+| [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.29 |
 
 ## Closing soon
 _Contests inside 14 days of their deadline (regardless of Act-now rank)._
@@ -96,7 +96,6 @@ _Relevant and not confirmed ineligible, but at least one eligibility fact is sti
 
 | Item | Class | Fit |
 | --- | --- | --- |
-| [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | grant | 0.29 |
 | [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | grant | 0.28 |
 | [Since AI 2026](https://sinceai2026.devpost.com/) | contest | 0.27 |
 | [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | grant | 0.27 |
@@ -104,6 +103,7 @@ _Relevant and not confirmed ineligible, but at least one eligibility fact is sti
 | [Xor Grant](https://www.mechaelephant.com/microgrant) | grant | 0.26 |
 | [HackStorm 3.0: Sense, Think and Act](https://hackstorm3.devpost.com/) | contest | 0.25 |
 | [Custom Gearbox \| SAE Baja \| CCNY Racing](https://www.pcbway.com/project/sponsor/Custom_Gearbox_SAE_Baja_CCNY_Racing_36a9712c.html) | contest | 0.25 |
+| [Magnificent Grants](https://sologrants.com/guide/magnificent) | grant | 0.24 |
 | [Sheridan Datathon 2026](https://sheridandatathon2026.devpost.com/) | contest | 0.24 |
 | [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | grant | 0.22 |
 | [Nexara – Edge-AI Animatronic Physical Avatar Head](https://www.pcbway.com/project/sponsor/Nexara_Edge_AI_Animatronic_Physical_Avatar_Head_5c94782b.html) | contest | 0.21 |

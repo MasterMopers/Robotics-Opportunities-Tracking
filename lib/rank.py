@@ -29,7 +29,10 @@ change how actionable it is) so render_readme.py can build a single
   deadline there is either an extraction gap or -- verified against a
   real case, PCBWay's "sponsored project" pages, which are OTHER
   builders' already-submitted projects, not a call for entries with a due
-  date -- not really a time-boxed opportunity at all. See _urgency().
+  date -- not really a time-boxed opportunity at all. A deadline that has
+  already passed gets u=0.0 regardless of class -- it's a confirmed-closed
+  opportunity, not the same ambiguous case as no deadline being stated at
+  all. See _urgency().
 
 The four weights live in rules.yaml's `ranking:` block, not here -- tuning
 the formula's balance should be a YAML edit, matching every other scoring
@@ -87,7 +90,17 @@ def _urgency(deadline_date, final_class, today):
         d_date = date.fromisoformat(deadline_date)
     except (ValueError, TypeError):
         return NO_DEADLINE_URGENCY if final_class == "grant" else 0.0
-    days_remaining = max(0, (d_date - today).days)
+    days_remaining = (d_date - today).days
+    if days_remaining < 0:
+        # A deadline that has already passed is not the same ambiguous
+        # case as "no deadline stated" -- it's a confirmed-closed
+        # opportunity, for a contest or a grant alike. Clamping
+        # days_remaining to 0 here would score it exp(0) = 1.0, the
+        # single highest urgency in the whole set (tied with "due
+        # today") -- verified against a real case: "Magnificent Grants"
+        # (deadline_date 2024-10-31) ranked #4 in "Act now" under that
+        # clamp, on 2026-09-07, nearly two years after it closed.
+        return 0.0
     return math.exp(-days_remaining / 30)
 
 

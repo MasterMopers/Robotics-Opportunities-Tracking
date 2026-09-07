@@ -86,6 +86,26 @@ class TestComputeFitScores(unittest.TestCase):
         self.assertAlmostEqual(scored["No-deadline contest"], expected_no_deadline_fit, places=9)
         self.assertLess(scored["No-deadline contest"], scored["Near-deadline contest"])
 
+    def test_past_deadline_scores_zero_urgency_not_max(self):
+        # Regression: days_remaining used to be clamped to 0 for a past
+        # deadline, which scored exp(0)=1.0 -- the single highest urgency
+        # possible, tied with "due today". A closed opportunity must not
+        # outrank a genuinely near-term one. Verified against a real case:
+        # a grant with deadline_date 2024-10-31 ranked #4 in "Act now" on
+        # 2026-09-07 under the old clamp.
+        expired = _row("Expired", deadline_date="2024-10-31", final_class="grant")
+        near = _row("Near deadline", deadline_date="2026-01-08", final_class="grant")  # 7 days out
+        rolling = _row("Rolling grant", deadline_date=None, final_class="grant")
+
+        scored = {r["title"]: fit for r, fit in compute_fit_scores([expired, near, rolling], WEIGHTS, today=TODAY)}
+
+        expected_expired_fit = (
+            WEIGHTS["relevance_weight"] * 1.0 + WEIGHTS["eligibility_weight"] * 1.0
+        )
+        self.assertAlmostEqual(scored["Expired"], expected_expired_fit, places=9)
+        self.assertLess(scored["Expired"], scored["Rolling grant"])
+        self.assertLess(scored["Expired"], scored["Near deadline"])
+
     def test_missing_money_scores_zero_not_average(self):
         no_money = _row("No money stated", money_raw=None)
         some_money = _row("Some money", money_raw="$100")
