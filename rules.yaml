@@ -315,7 +315,12 @@ deadline_patterns:
     - 'closes in (\d+)\s+days?'
     - '(\d+)\s+days? (?:left|remaining)'
 
-money_pattern: '(?:up to\s+)?\$\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?(?:\s*(?:to|-|–)\s*\$?\d{1,3}(?:,\d{3})*(?:\.\d+)?[kK]?)?'
+# \d{1,3}(?:,\d{3})* alone silently truncates an uncommaed 4+ digit amount
+# (e.g. "$1000" matched as "$100", the leftover "0" left dangling) since it
+# caps at 3 digits before requiring a comma group. The `|\d+` branch covers
+# amounts written without thousands separators. Ported from main, found by
+# live-testing this branch's money extraction against real pages.
+money_pattern: '(?:up to\s+)?\$(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?[kK]?(?:\s*(?:to|-|–)\s*\$?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?[kK]?)?'
 
 team_size_patterns:
   - 'team of\s+(\d+)'
