@@ -26,7 +26,7 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 15 actionable opportunities right now · 43 accepted total · updated 2026-09-05 19:11 EDT
+### 📡 15 actionable opportunities right now · 46 accepted total · updated 2026-09-07 00:03 EDT
 
 _1 item(s) excluded below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
 
@@ -35,58 +35,59 @@ _The 15 highest-fit opportunities that aren't confirmed ineligible, ranked by re
 
 | Opportunity | Type | Prize/Amount | Format (location) | Deadline | Eligibility | Fit |
 | --- | --- | --- | --- | --- | --- | --- |
-| [Many Small Steps for Robots, One Giant Leap for Mankind](https://www.notboring.co/p/robot-steps) | Contest | $25 | Unknown | rolling/unknown | Unknown | 0.56 |
-| [Knight Neuronix Ryxen](https://www.pcbway.com/project/sponsor/Knight_Neuronix_Ryxen_d002a8c3.html) | Contest | $3,500 | Unknown | rolling/unknown | Unknown | 0.49 |
-| [Trelis AI Grants](https://trelis.com/trelis-ai-grants/) | Grant | $500 | Unknown | rolling/unknown | Unknown | 0.37 |
-| [Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship) | Grant | $100k | Unknown | rolling/unknown | Unknown | 0.35 |
-| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | Contest | $4,000 | Unknown | 2026-09-07 | Unknown | 0.35 |
-| [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.35 |
-| [AlphaPilot – Lockheed Martin AI Drone Racing Innovation Challenge](https://www.herox.com/alphapilot) | Contest | $1,000,000 | Unknown | rolling/unknown | Unknown | 0.35 |
-| [4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html) | Contest | $2,500 | Unknown | rolling/unknown | Unknown | 0.34 |
-| [Protostars](https://sologrants.com/guide/blackbird) | Grant | $50k | Unknown | rolling/unknown | Unknown | 0.34 |
-| [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/) | Contest | $50,000 | Remote | 2026-10-30 | Unknown | 0.34 |
-| [Magnificent Grants](https://sologrants.com/guide/magnificent) | Grant | $10k | Unknown | rolling/unknown | Unknown | 0.33 |
-| [Bagel Fund](https://sologrants.com/guide/bagelfund) | Grant | $100-$500 | Unknown | rolling/unknown | Unknown | 0.32 |
-| [Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html) | Contest | $110 | Unknown | rolling/unknown | Unknown | 0.31 |
-| [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | Grant | $1,000 | In-person (the co-working space at 945 Princess St) | rolling/unknown | Unknown | 0.30 |
-| [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.30 |
+| [Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353) | Contest | $250 | Unknown | rolling/unknown | Unknown | 0.58 |
+| [Many Small Steps for Robots, One Giant Leap for Mankind](https://www.notboring.co/p/robot-steps) | Contest | $25 | Unknown | rolling/unknown | Unknown | 0.43 |
+| [Knight Neuronix Ryxen](https://www.pcbway.com/project/sponsor/Knight_Neuronix_Ryxen_d002a8c3.html) | Contest | $3,500 | Unknown | rolling/unknown | Unknown | 0.40 |
+| [Magnificent Grants](https://sologrants.com/guide/magnificent) | Grant | $10k | Unknown | 2024-10-31 | Unknown | 0.39 |
+| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | Contest | $4,000 | Unknown | 2026-09-07 | Unknown | 0.36 |
+| [Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship) | Grant | $100k | Remote (Worldwide) | rolling/unknown | Unknown | 0.34 |
+| [Trelis AI Grants](https://trelis.com/trelis-ai-grants/) | Grant | $500 | Unknown | rolling/unknown | Unknown | 0.34 |
+| [Protostars](https://sologrants.com/guide/blackbird) | Grant | $50k | Remote (Brisbane, Sydney, Melbourne) | rolling/unknown | Unknown | 0.33 |
+| [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.32 |
+| [AlphaPilot – Lockheed Martin AI Drone Racing Innovation Challenge](https://www.herox.com/alphapilot) | Contest | $1,000,000 | Remote | rolling/unknown | Unknown | 0.32 |
+| [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/) | Contest | $50,000 | Remote | 2026-10-30 | Unknown | 0.32 |
+| [Bagel Fund](https://sologrants.com/guide/bagelfund) | Grant | $100-$500 | Unknown | rolling/unknown | Unknown | 0.30 |
+| [4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html) | Contest | $2,500 | Unknown | rolling/unknown | Unknown | 0.30 |
+| [Bay Hacks](https://bayhacks-2026.devpost.com/) | Contest | $500 | In-person (USF Hall of Flags) | 2026-09-19 | Unknown | 0.30 |
+| [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | Grant | $1,000 | In-person (the co-working space at 945 Princess St) | rolling/unknown | Unknown | 0.29 |
 
 ## Closing soon
 _Contests inside 14 days of their deadline (regardless of Act-now rank)._
 
 | Contest | Deadline | Days left |
 | --- | --- | --- |
-| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | 2026-09-07 | 2 |
-| [Bay Hacks](https://bayhacks-2026.devpost.com/) | 2026-09-19 | 14 |
+| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | 2026-09-07 | 0 |
+| [Bay Hacks](https://bayhacks-2026.devpost.com/) | 2026-09-19 | 12 |
+| [STEMinate Wildcard Hack](https://steminate-texas-wildcard-hack.devpost.com/) | 2026-09-19 | 12 |
 
 ## Watch calendar
 _Annual/monthly programs tracked by date instead of scraping a page that's static for 11 months._
 
 | Program | Next occurrence | Days away | Alert window |
 | --- | --- | --- | --- |
-| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 20 | alert 45d out |
-| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 26 | alert 21d out |
-| [Z Fellows](https://www.zfellows.com/) | 2026-10-01 | 26 | alert 14d out |
-| [Atomic Fellowship (gradCapital)](https://www.gradcapital.in/atomicfellow/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 26 | alert 14d out |
-| [Adafruit (seasonal contests)](https://blog.adafruit.com/tag/contest/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 26 | alert 14d out |
-| [SparkFun (design challenges)](https://www.sparkfun.com/news) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 26 | alert 14d out |
-| [Elephant Robotics (contests/exhibitions)](https://www.elephantrobotics.com/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 26 | alert 14d out |
-| [CMU Undergraduate Research Office: SURG](https://www.cmu.edu/uro/academic-research/SURG/index.html) | 2026-10-01 | 26 | alert 14d out |
-| [CMU Swartz Center: Project Olympus Spark Grants](https://www.cmu.edu/swartz-center-for-entrepreneurship/resources-funding-and-talent/project-olympus-spark-grants/index.html) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 26 | alert 30d out |
-| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 57 | alert 30d out |
-| [IEEE-RAS Humanoids 2026](https://2026.ieee-humanoids.org/) | 2026-12-06 | 92 | alert 30d out |
-| [RSS 2026 (Robotics: Science and Systems)](https://roboticsconference.org/information/cfp/) | 2027-01-23 | 140 | alert 30d out |
-| [Interact Fellowship](https://joininteract.com/) | 2027-02-09 | 157 | alert 30d out |
-| [CMU Undergraduate Research Office: SURF](https://www.cmu.edu/uro/summer%20research%20fellowships/SURF/) | 2027-02-18 | 166 | alert 30d out |
-| [IROS 2027 (IEEE/RSJ Intelligent Robots and Systems)](https://www.ieee-ras.org/event/call-for-papers-paper-submission-deadline-iros-2027-ieee-rsj-international-conference-on-intelligent-robots-and-systems-iros-27403-0/) | 2027-03-01 | 177 | alert 30d out |
-| [Emergent Ventures](https://www.mercatus.org/emergent-ventures) | 2027-03-15 | 191 | alert 30d out |
-| [Astera Residency](https://astera.org/first-residency-cohort/) | 2027-04-19 | 226 | alert 30d out |
-| [CoRL 2026 (Conference on Robot Learning)](https://www.corl.org/contributions/call-for-papers) | 2027-05-26 | 263 | alert 30d out |
-| [RoboCup 2027](https://2027.robocup.org/) | 2027-06-17 | 285 | alert 30d out |
-| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 293 | alert 60d out |
-| [Neo Scholars](https://neo.com/scholars) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 298 | alert 30d out |
-| [Seeed Studio (design contests)](https://www.seeedstudio.com/) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 298 | alert 30d out |
-| [Bambu Lab / MakerWorld (design challenges)](https://blog.bambulab.com/) | 2027-07-10 *(date unconfirmed, inferred from prior years)* | 308 | alert 30d out |
+| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 18 | alert 45d out |
+| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 24 | alert 21d out |
+| [Z Fellows](https://www.zfellows.com/) | 2026-10-01 | 24 | alert 14d out |
+| [Atomic Fellowship (gradCapital)](https://www.gradcapital.in/atomicfellow/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [Adafruit (seasonal contests)](https://blog.adafruit.com/tag/contest/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [SparkFun (design challenges)](https://www.sparkfun.com/news) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [Elephant Robotics (contests/exhibitions)](https://www.elephantrobotics.com/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
+| [CMU Undergraduate Research Office: SURG](https://www.cmu.edu/uro/academic-research/SURG/index.html) | 2026-10-01 | 24 | alert 14d out |
+| [CMU Swartz Center: Project Olympus Spark Grants](https://www.cmu.edu/swartz-center-for-entrepreneurship/resources-funding-and-talent/project-olympus-spark-grants/index.html) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 30d out |
+| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 55 | alert 30d out |
+| [IEEE-RAS Humanoids 2026](https://2026.ieee-humanoids.org/) | 2026-12-06 | 90 | alert 30d out |
+| [RSS 2026 (Robotics: Science and Systems)](https://roboticsconference.org/information/cfp/) | 2027-01-23 | 138 | alert 30d out |
+| [Interact Fellowship](https://joininteract.com/) | 2027-02-09 | 155 | alert 30d out |
+| [CMU Undergraduate Research Office: SURF](https://www.cmu.edu/uro/summer%20research%20fellowships/SURF/) | 2027-02-18 | 164 | alert 30d out |
+| [IROS 2027 (IEEE/RSJ Intelligent Robots and Systems)](https://www.ieee-ras.org/event/call-for-papers-paper-submission-deadline-iros-2027-ieee-rsj-international-conference-on-intelligent-robots-and-systems-iros-27403-0/) | 2027-03-01 | 175 | alert 30d out |
+| [Emergent Ventures](https://www.mercatus.org/emergent-ventures) | 2027-03-15 | 189 | alert 30d out |
+| [Astera Residency](https://astera.org/first-residency-cohort/) | 2027-04-19 | 224 | alert 30d out |
+| [CoRL 2026 (Conference on Robot Learning)](https://www.corl.org/contributions/call-for-papers) | 2027-05-26 | 261 | alert 30d out |
+| [RoboCup 2027](https://2027.robocup.org/) | 2027-06-17 | 283 | alert 30d out |
+| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 291 | alert 60d out |
+| [Neo Scholars](https://neo.com/scholars) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 296 | alert 30d out |
+| [Seeed Studio (design contests)](https://www.seeedstudio.com/) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 296 | alert 30d out |
+| [Bambu Lab / MakerWorld (design challenges)](https://blog.bambulab.com/) | 2027-07-10 *(date unconfirmed, inferred from prior years)* | 306 | alert 30d out |
 
 ## Needs review
 
@@ -95,35 +96,53 @@ _Relevant and not confirmed ineligible, but at least one eligibility fact is sti
 
 | Item | Class | Fit |
 | --- | --- | --- |
-| [Bay Hacks](https://bayhacks-2026.devpost.com/) | contest | 0.30 |
-| [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | grant | 0.29 |
-| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | grant | 0.28 |
+| [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | grant | 0.29 |
+| [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | grant | 0.28 |
 | [Since AI 2026](https://sinceai2026.devpost.com/) | contest | 0.27 |
-| [Custom Gearbox \| SAE Baja \| CCNY Racing](https://www.pcbway.com/project/sponsor/Custom_Gearbox_SAE_Baja_CCNY_Racing_36a9712c.html) | contest | 0.27 |
-| [HackStorm 3.0: Sense, Think and Act](https://hackstorm3.devpost.com/) | contest | 0.26 |
+| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | grant | 0.27 |
+| [Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html) | contest | 0.27 |
 | [Xor Grant](https://www.mechaelephant.com/microgrant) | grant | 0.26 |
-| [Nexara – Edge-AI Animatronic Physical Avatar Head](https://www.pcbway.com/project/sponsor/Nexara_Edge_AI_Animatronic_Physical_Avatar_Head_5c94782b.html) | contest | 0.26 |
-| [Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html) | contest | 0.26 |
-| [The cheetah bot - fastest line follower](https://www.pcbway.com/project/sponsor/The_cheetah_bot_fastest_line_follower_6aee7654.html) | contest | 0.24 |
+| [HackStorm 3.0: Sense, Think and Act](https://hackstorm3.devpost.com/) | contest | 0.25 |
+| [Custom Gearbox \| SAE Baja \| CCNY Racing](https://www.pcbway.com/project/sponsor/Custom_Gearbox_SAE_Baja_CCNY_Racing_36a9712c.html) | contest | 0.25 |
 | [Sheridan Datathon 2026](https://sheridandatathon2026.devpost.com/) | contest | 0.24 |
-| [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | grant | 0.23 |
-| [24.15 Ghz RF Transceiver Prototype](https://www.pcbway.com/project/sponsor/24_15_Ghz_RF_Transceiver_Prototype_9a81275b.html) | contest | 0.21 |
-| [Safety seat](https://www.pcbway.com/project/sponsor/Safety_seat_230399c0.html) | contest | 0.21 |
-| [CACIQUE – Student-Developed Solid Rocket Motor](https://www.pcbway.com/project/sponsor/CACIQUE_Solid_Combustion_Motor_c581dbc3.html) | contest | 0.21 |
-| [ARMduino UNO (PY32F030) – Ultra Low-Cost 32-Bit ARM Development Board](https://www.pcbway.com/project/sponsor/ARMduino_UNO_PY32F030_Ultra_Low_Cost_32_Bit_ARM_Development_Board_f340c903.html) | contest | 0.21 |
-| [Rocket Avionics STM32H743ZIT6](https://www.pcbway.com/project/sponsor/Rocket_Avionics_STM32H743ZIT6_d8cb6f80.html) | contest | 0.21 |
-| [NERVA Ring](https://www.pcbway.com/project/sponsor/NERVA_Ring_b0359f0c.html) | contest | 0.21 |
-| [BB1 Prototype 3 (BB1-3)](https://www.pcbway.com/project/sponsor/BB1_Prototype_3_BB1_3_e796da89.html) | contest | 0.21 |
-| [Action Space](https://action-space-hacks.devpost.com/) | contest | 0.21 |
-| [HTCJ × PROOF Aviation Futures Challenge](https://htcj-aviation-futures.devpost.com/) | contest | 0.21 |
-| [MakeCU](https://v0-curc-makecu.vercel.app/) | contest | 0.18 |
-| [Syntax Summit](https://syntax-summit.devpost.com/) | contest | 0.15 |
+| [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | grant | 0.22 |
+| [Nexara – Edge-AI Animatronic Physical Avatar Head](https://www.pcbway.com/project/sponsor/Nexara_Edge_AI_Animatronic_Physical_Avatar_Head_5c94782b.html) | contest | 0.21 |
+| [Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html) | contest | 0.21 |
+| [The cheetah bot - fastest line follower](https://www.pcbway.com/project/sponsor/The_cheetah_bot_fastest_line_follower_6aee7654.html) | contest | 0.20 |
+| [PIP Phase 1](https://www.pcbway.com/project/sponsor/PIP_Phase_1_f3167c2a.html) | contest | 0.20 |
+| [Action Space](https://action-space-hacks.devpost.com/) | contest | 0.19 |
+| [HTCJ × PROOF Aviation Futures Challenge](https://htcj-aviation-futures.devpost.com/) | contest | 0.19 |
+| [24.15 Ghz RF Transceiver Prototype](https://www.pcbway.com/project/sponsor/24_15_Ghz_RF_Transceiver_Prototype_9a81275b.html) | contest | 0.18 |
+| [Safety seat](https://www.pcbway.com/project/sponsor/Safety_seat_230399c0.html) | contest | 0.18 |
+| [CACIQUE – Student-Developed Solid Rocket Motor](https://www.pcbway.com/project/sponsor/CACIQUE_Solid_Combustion_Motor_c581dbc3.html) | contest | 0.18 |
+| [ARMduino UNO (PY32F030) – Ultra Low-Cost 32-Bit ARM Development Board](https://www.pcbway.com/project/sponsor/ARMduino_UNO_PY32F030_Ultra_Low_Cost_32_Bit_ARM_Development_Board_f340c903.html) | contest | 0.18 |
+| [Rocket Avionics STM32H743ZIT6](https://www.pcbway.com/project/sponsor/Rocket_Avionics_STM32H743ZIT6_d8cb6f80.html) | contest | 0.18 |
+| [NERVA Ring](https://www.pcbway.com/project/sponsor/NERVA_Ring_b0359f0c.html) | contest | 0.18 |
+| [BB1 Prototype 3 (BB1-3)](https://www.pcbway.com/project/sponsor/BB1_Prototype_3_BB1_3_e796da89.html) | contest | 0.18 |
+| [MakeCU](https://v0-curc-makecu.vercel.app/) | contest | 0.16 |
+| [Syntax Summit](https://syntax-summit.devpost.com/) | contest | 0.14 |
 
 ### Classification unclear
 _The classifier couldn't confidently call these contest vs. grant vs. neither -- worth a quick human look rather than being silently dropped._
 
 | Item | Source | Contest score | Grant score |
 | --- | --- | --- | --- |
+| [WordStar Lives Again (and Again)](https://hackaday.com/2026/09/06/wordstar-lives-again-and-again/) | hackaday | 0.0 | 1.0 |
+| [Printing Micron-Scale Benchies With Resin and Turmeric](https://hackaday.com/2026/09/06/printing-micron-scale-benchies-with-resin-and-turmeric/) | hackaday | 0.0 | 1.0 |
+| [This Clavichord is a Well-Tempered Project](https://hackaday.com/2026/09/06/this-clavichord-is-a-well-tempered-project/) | hackaday | 0.0 | 1.0 |
+| [Is This the Year of The Linux… Television?](https://hackaday.com/2026/09/06/is-this-the-year-of-the-linux-television/) | hackaday | 0.0 | 1.0 |
+| [Saturn’s South Pole is Apparently Decagon-Shaped](https://hackaday.com/2026/09/06/saturns-south-pole-is-apparently-decagon-shaped/) | hackaday | 0.0 | 1.0 |
+| [Hackaday Links: September 6, 2026](https://hackaday.com/2026/09/06/hackaday-links-september-6-2026/) | hackaday | 1.0 | 1.0 |
+| [How Charged Water Drops Induce Corrosion](https://hackaday.com/2026/09/06/how-charged-water-drops-induce-corrosion/) | hackaday | 0.0 | 1.0 |
+| [Ask HN: Protecting the elderly from scam callers with GPT AI?](https://news.ycombinator.com/item?id=35174337) | hn-robotics-grant | 0.0 | 0.0 |
+| [Furby: Toy giant Hasbro brings back iconic robotic creature](https://www.bbc.com/news/business-65994859) | hn-robotics-grant | 0.0 | 0.0 |
+| [Ask HN: Is front end a dead-end career track?](https://news.ycombinator.com/item?id=37310591) | hn-robotics-grant | 0.0 | 0.0 |
+| [Korean internet giant Naver explores robotics, AI and autonomous driving](https://techcrunch.com/2023/09/01/korean-internet-giant-naver-explores-robotics-ai-and-autonomous-driving/) | hn-robotics-grant | 0.0 | 0.0 |
+| [Bionic Woman Makes History Merging Robotic Limb with Bone and Her Mind](https://www.giantfreakinrobot.com/sci/bionic-woman-karin-sweden.html) | hn-robotics-grant | 0.0 | 0.0 |
+| [Why Should Founders Team Up to Raise Money from Investors](https://news.ycombinator.com/item?id=40695978) | hn-robotics-grant | 0.0 | 0.0 |
+| [SpaceX launches Starship rocket and catches booster in giant metal arms](https://www.theguardian.com/science/2024/oct/13/spacex-elon-musk-launches-and-lands-starship-rocket-in-first-test-of-giant-robotic-arms) | hn-robotics-grant | 0.0 | 0.0 |
+| [Human-Computer Symbiosis](https://news.ycombinator.com/item?id=42082369) | hn-robotics-grant | 0.0 | 0.0 |
+| [Robotics News 03-05-2025](https://news.ycombinator.com/item?id=43265804) | hn-robotics-grant | 0.0 | 0.0 |
 | [Expeditions in Computing (Expeditions)](https://www.grants.gov/search-results-detail/363623) | grants_gov | 0.0 | 0.0 |
 | [Precision Inertial Navigation &amp; Positioning On an Integrated Tesseract (PINPOINT)](https://www.grants.gov/search-results-detail/363489) | grants_gov | 0.0 | 0.0 |
 | [AI Partnership &amp; Exchange for Tech Leaders (APEX)](https://www.grants.gov/search-results-detail/363315) | grants_gov | 0.0 | 0.0 |
@@ -172,7 +191,6 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Tell HN: TIL Notion's TOS makes using it for MCP illegal](https://news.ycombinator.com/item?id=43325133) | hn-robotics-grant | 0.0 | 1.0 |
 | [Determinism, Free Will, and Computational Irreducibility](https://news.ycombinator.com/item?id=43526818) | hn-robotics-grant | 0.0 | 0.0 |
 | [Lessons Learned Writing a Book Collaboratively with LLMs](https://news.ycombinator.com/item?id=43758459) | hn-robotics-grant | 0.0 | 0.0 |
-| [Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353) | hn-robotics-grant | 0.0 | 0.0 |
 | [Giant Robotic Bugs Are Headed to Farms](https://spectrum.ieee.org/ground-control-robot-insects) | hn-robotics-grant | 1.0 | 0.0 |
 | [Show HN: Aura – Like robots.txt, but for AI actions](https://github.com/osmandkitay/aura) | hn-robotics-grant | 0.0 | 1.0 |
 | [Tell HN: Out the door price for Unitree R1 ($5900) Robot to USA](https://news.ycombinator.com/item?id=45021743) | hn-robotics-grant | 0.0 | 0.0 |
@@ -184,7 +202,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Robots, Grannies and Meaning-Adjusted Work Days](https://twitter.com/notevenwrongg/status/2025656572458746156) | hn-robotics-grant | 0.0 | 0.0 |
 | [Show HN: A Hacker News–style site focused on European tech](https://techposts.eu) | hn-robotics-grant | 0.0 | 0.0 |
 | [OpenClaw stats don't add up](https://news.ycombinator.com/item?id=47859207) | hn-robotics-grant | 0.0 | 0.0 |
-| [Robotics giant Figure AI demonstrates its robots to the world](https://forgeglobal.com/insights/figure-ai-robotics-growth-2026/) | hn-robotics-grant | 0.0 | 0.0 |
+| [Robotics giant Figure AI demonstrates its robots to the world](https://forgeglobal.com/insights/figure-ai-robotics-growth-2026/) | hn-robotics-grant | 0.0 | 1.0 |
 | [Show HN: Modeloop – A modern model-based design tool](https://www.modeloop.app/) | hn-robotics-grant | 0.0 | 0.0 |
 | [Robots will replace 700K delivery workers, warns head of e-commerce giant](https://www.computerworld.com/article/4188535/robots-will-replace-700000-delivery-workers-warns-head-of-e-commerce-giant.html) | hn-robotics-grant | 0.0 | 0.0 |
 | [COSMAC Elf Turns 50](https://hackaday.com/2026/09/04/cosmac-elf-turns-50/) | hackaday | 0.0 | 1.0 |
@@ -345,7 +363,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Hackville 2027](https://hackville.io/) | mlh | 2.0 | 0.0 |
 | [nwHacks](https://nwhacks.io/) | mlh | 2.0 | 0.0 |
 | [uOttaHack 9](https://2027.uottahack.ca/) | mlh | 0.0 | 0.0 |
-| [UofTHacks](https://uofthacks.com/) | mlh | 3.0 | 0.0 |
+| [UofTHacks](https://uofthacks.com/) | mlh | 0.0 | 0.0 |
 | [DeltaHacks](https://www.deltahacks.com/) | mlh | 4.0 | 0.0 |
 | [DurHack](https://durhack.com) | mlh | 2.0 | 0.0 |
 | [HackUMass](https://www.hackumass.com/) | mlh | 4.0 | 0.0 |
@@ -372,7 +390,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Hack Dearborn 5: Conjure Reality](https://www.hackdearborn.org/) | mlh | 2.0 | 0.0 |
 | [Gator Quant Hacks](https://www.gqhacks.com) | mlh | 1.0 | 0.0 |
 | [BigRed//Hacks 2026](https://www.bigredhacks.com/) | mlh | 0.0 | 0.0 |
-| [hackUMBC](https://hackumbc.tech/) | mlh | 3.0 | 0.0 |
+| [hackUMBC](https://hackumbc.tech/) | mlh | 4.0 | 0.0 |
 | [OwlHacks](https://www.owlhacks.com/) | mlh | 2.0 | 0.0 |
 | [DivHacks](https://www.columbiadivhacks.org/) | mlh | 3.0 | 0.0 |
 | [Hack the Hill](https://hackthehill.com/) | mlh | 3.0 | 0.0 |
@@ -421,11 +439,11 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [HACK47: OFFGRID](https://hack47-offgrid.devpost.com/) | devpost | 5.0 | 0.0 |
 
 ## Ineligible
-_5 accepted item(s) are confirmed ineligible for this operator's profile (profile.yaml) and are not listed individually -- but the failing reasons are tallied below so a bad eligibility extractor would be visible here, not silent._
+_6 accepted item(s) are confirmed ineligible for this operator's profile (profile.yaml) and are not listed individually -- but the failing reasons are tallied below so a bad eligibility extractor would be visible here, not silent._
 
 | Failing field | Count |
 | --- | --- |
-| requires_incorporation | 2 |
+| requires_incorporation | 3 |
 | max_age | 2 |
 | equity_required | 1 |
 
