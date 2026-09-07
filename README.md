@@ -26,7 +26,7 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 15 actionable opportunities right now · 46 accepted total · updated 2026-09-07 14:03 EDT
+### 📡 15 actionable opportunities right now · 46 accepted total · updated 2026-09-07 14:53 EDT
 
 _1 item(s) excluded below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
 
@@ -41,15 +41,15 @@ _The 15 highest-fit opportunities that aren't confirmed ineligible, ranked by re
 | [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | Contest | $4,000 | Unknown | 2026-09-07 | Unknown | 0.36 |
 | [Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship) | Grant | $100k | Remote (Worldwide) | rolling/unknown | Unknown | 0.34 |
 | [Trelis AI Grants](https://trelis.com/trelis-ai-grants/) | Grant | $500 | Unknown | rolling/unknown | Unknown | 0.34 |
-| [Protostars](https://sologrants.com/guide/blackbird) | Grant | $50k | Remote (Brisbane, Sydney, Melbourne) | rolling/unknown | Unknown | 0.33 |
+| [Protostars](https://sologrants.com/guide/blackbird) | Grant | $50k | Unknown | rolling/unknown | Unknown | 0.33 |
 | [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.32 |
 | [AlphaPilot – Lockheed Martin AI Drone Racing Innovation Challenge](https://www.herox.com/alphapilot) | Contest | $1,000,000 | Remote | rolling/unknown | Unknown | 0.32 |
 | [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/) | Contest | $50,000 | Remote | 2026-10-30 | Unknown | 0.32 |
-| [Bagel Fund](https://sologrants.com/guide/bagelfund) | Grant | $100-$500 | Unknown | rolling/unknown | Unknown | 0.30 |
 | [4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html) | Contest | $2,500 | Unknown | rolling/unknown | Unknown | 0.30 |
 | [Bay Hacks](https://bayhacks-2026.devpost.com/) | Contest | $500 | In-person (USF Hall of Flags) | 2026-09-19 | Unknown | 0.30 |
 | [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | Grant | $1,000 | In-person (the co-working space at 945 Princess St) | rolling/unknown | Unknown | 0.29 |
 | [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.29 |
+| [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | Grant | $100-$1,000 | Remote | rolling/unknown | Unknown | 0.28 |
 
 ## Closing soon
 _Contests inside 14 days of their deadline (regardless of Act-now rank)._
@@ -96,7 +96,6 @@ _Relevant and not confirmed ineligible, but at least one eligibility fact is sti
 
 | Item | Class | Fit |
 | --- | --- | --- |
-| [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | grant | 0.28 |
 | [Since AI 2026](https://sinceai2026.devpost.com/) | contest | 0.27 |
 | [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | grant | 0.27 |
 | [Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html) | contest | 0.27 |
@@ -127,6 +126,11 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 
 | Item | Source | Contest score | Grant score |
 | --- | --- | --- | --- |
+| [NES Radar Tracks Flights at 9600 Baud](https://hackaday.com/2026/09/06/nes-radar-tracks-flights-at-9600-baud/) | hackaday | 0.0 | 1.0 |
+| [Comparing PETG and PCTG Filaments](https://hackaday.com/2026/09/07/comparing-petg-and-pctg-filaments/) | hackaday | 0.0 | 1.0 |
+| [The First Spacecraft Launched To Orbit From Europe](https://hackaday.com/2026/09/07/the-first-spacecraft-launched-to-orbit-from-europe/) | hackaday | 1.0 | 1.0 |
+| [How To Talk To A Machine Without Anthropomorphising It](https://hackaday.com/2026/09/07/how-to-talk-to-a-machine-without-anthropomorphising-it/) | hackaday | 1.0 | 1.0 |
+| [The Helicopter with Radioactive Blades](https://hackaday.com/2026/09/07/the-helicopter-with-radioactive-blades/) | hackaday | 0.0 | 1.0 |
 | [WordStar Lives Again (and Again)](https://hackaday.com/2026/09/06/wordstar-lives-again-and-again/) | hackaday | 0.0 | 1.0 |
 | [Printing Micron-Scale Benchies With Resin and Turmeric](https://hackaday.com/2026/09/06/printing-micron-scale-benchies-with-resin-and-turmeric/) | hackaday | 0.0 | 1.0 |
 | [This Clavichord is a Well-Tempered Project](https://hackaday.com/2026/09/06/this-clavichord-is-a-well-tempered-project/) | hackaday | 0.0 | 1.0 |
@@ -188,8 +192,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Component Abuse Challenge by Lutetium](https://hackaday.io/contest/204037-component-abuse-challenge) | hackaday_prize | 3.0 | 0.0 |
 | [Green Powered Challenge by Lutetium](https://hackaday.io/contest/205085-green-powered-challenge) | hackaday_prize | 3.0 | 0.0 |
 | [Retrocomputing Contest by Lutetium](https://hackaday.io/contest/206399-retrocomputing-contest) | hackaday_prize | 2.0 | 0.0 |
-| [Tell HN: TIL Notion's TOS makes using it for MCP illegal](https://news.ycombinator.com/item?id=43325133) | hn-robotics-grant | 0.0 | 1.0 |
-| [Determinism, Free Will, and Computational Irreducibility](https://news.ycombinator.com/item?id=43526818) | hn-robotics-grant | 0.0 | 0.0 |
+| [Tell HN: TIL Notion's TOS makes using it for MCP illegal](https://news.ycombinator.com/item?id=43325133) | hn-robotics-grant | 0.0 | 0.0 |
 | [Lessons Learned Writing a Book Collaboratively with LLMs](https://news.ycombinator.com/item?id=43758459) | hn-robotics-grant | 0.0 | 0.0 |
 | [Giant Robotic Bugs Are Headed to Farms](https://spectrum.ieee.org/ground-control-robot-insects) | hn-robotics-grant | 1.0 | 0.0 |
 | [Show HN: Aura – Like robots.txt, but for AI actions](https://github.com/osmandkitay/aura) | hn-robotics-grant | 0.0 | 1.0 |
@@ -381,7 +384,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [CodeRED Orion](https://uhcode.red/) | mlh | 2.0 | 0.0 |
 | [Knight Hacks IX](https://2026.knighthacks.org/) | mlh | 2.0 | 0.0 |
 | [Hack Knight](https://hackknight.org/) | mlh | 0.0 | 0.0 |
-| [HackNC](https://hacknc.com/) | mlh | 3.0 | 0.0 |
+| [HackNC](https://hacknc.com/) | mlh | 3.0 | 1.0 |
 | [GirlHacks](https://www.njitgirlhacks.com/) | mlh | 2.0 | 0.0 |
 | [MHacks](https://www.mhacks.org/) | mlh | 2.0 | 0.0 |
 | [WolfHacks by ACM at NC State](https://wolfhacks.org/) | mlh | 2.0 | 0.0 |
@@ -439,12 +442,12 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [HACK47: OFFGRID](https://hack47-offgrid.devpost.com/) | devpost | 5.0 | 0.0 |
 
 ## Ineligible
-_6 accepted item(s) are confirmed ineligible for this operator's profile (profile.yaml) and are not listed individually -- but the failing reasons are tallied below so a bad eligibility extractor would be visible here, not silent._
+_7 accepted item(s) are confirmed ineligible for this operator's profile (profile.yaml) and are not listed individually -- but the failing reasons are tallied below so a bad eligibility extractor would be visible here, not silent._
 
 | Failing field | Count |
 | --- | --- |
 | requires_incorporation | 3 |
-| max_age | 2 |
+| max_age | 3 |
 | equity_required | 1 |
 
 ## Sources needing attention
