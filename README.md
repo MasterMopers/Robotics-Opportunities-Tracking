@@ -26,7 +26,7 @@ This repo is public, so its GitHub Actions minutes are unlimited (a private repo
 
 <!-- BEGIN AUTOGEN -->
 
-### 📡 15 actionable opportunities right now · 46 accepted total · updated 2026-09-07 14:53 EDT
+### 📡 15 actionable opportunities right now · 42 accepted total · updated 2026-10-01 15:00 EDT
 
 _1 item(s) excluded below as confidently non-US (location text names a specific non-US place). Items whose location is still Unknown are kept visible, not excluded -- this filter only removes what we can actually tell is outside the US, never a guess._
 
@@ -38,56 +38,54 @@ _The 15 highest-fit opportunities that aren't confirmed ineligible, ranked by re
 | [Ask HN: How do I learn robotics in 2025?](https://news.ycombinator.com/item?id=44158353) | Contest | $250 | Unknown | rolling/unknown | Unknown | 0.58 |
 | [Many Small Steps for Robots, One Giant Leap for Mankind](https://www.notboring.co/p/robot-steps) | Contest | $25 | Unknown | rolling/unknown | Unknown | 0.43 |
 | [Knight Neuronix Ryxen](https://www.pcbway.com/project/sponsor/Knight_Neuronix_Ryxen_d002a8c3.html) | Contest | $3,500 | Unknown | rolling/unknown | Unknown | 0.40 |
-| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | Contest | $4,000 | Unknown | 2026-09-07 | Unknown | 0.36 |
+| [INDUX 5.0-2026](https://indux-5-0-2026.devpost.com/) | Contest | ₹ 225,000 | In-person (Vikrant University , Gwalior) | 2026-10-15 | Unknown | 0.39 |
+| [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/) | Contest | $50,000 | Remote | 2026-10-30 | Unknown | 0.35 |
 | [Thiel Fellowship](https://sologrants.com/guide/thiel-fellowship) | Grant | $100k | Remote (Worldwide) | rolling/unknown | Unknown | 0.34 |
-| [Trelis AI Grants](https://trelis.com/trelis-ai-grants/) | Grant | $500 | Unknown | rolling/unknown | Unknown | 0.34 |
 | [Protostars](https://sologrants.com/guide/blackbird) | Grant | $50k | Unknown | rolling/unknown | Unknown | 0.33 |
 | [Ottawa](https://www.awesomefoundation.org/en/chapters/ottawa) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.32 |
 | [AlphaPilot – Lockheed Martin AI Drone Racing Innovation Challenge](https://www.herox.com/alphapilot) | Contest | $1,000,000 | Remote | rolling/unknown | Unknown | 0.32 |
-| [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/) | Contest | $50,000 | Remote | 2026-10-30 | Unknown | 0.32 |
 | [4588G Vex v5 HS team](https://www.pcbway.com/project/sponsor/4588G_Vex_v5_HS_team_c322c25f.html) | Contest | $2,500 | Unknown | rolling/unknown | Unknown | 0.30 |
-| [Bay Hacks](https://bayhacks-2026.devpost.com/) | Contest | $500 | In-person (USF Hall of Flags) | 2026-09-19 | Unknown | 0.30 |
 | [Kingston](https://www.awesomefoundation.org/en/chapters/kingston-on) | Grant | $1,000 | In-person (the co-working space at 945 Princess St) | rolling/unknown | Unknown | 0.29 |
 | [Boston, MA](https://www.awesomefoundation.org/en/chapters/boston) | Grant | $1,000 | Unknown | rolling/unknown | Unknown | 0.29 |
 | [Narisetti Grants](https://sologrants.com/guide/narisettigrants) | Grant | $100-$1,000 | Remote | rolling/unknown | Unknown | 0.28 |
+| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | Grant | $100 | Unknown | rolling/unknown | Unknown | 0.27 |
+| [Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html) | Contest | $110 | Unknown | rolling/unknown | Unknown | 0.27 |
 
 ## Closing soon
 _Contests inside 14 days of their deadline (regardless of Act-now rank)._
 
 | Contest | Deadline | Days left |
 | --- | --- | --- |
-| [Autodesk University 2027 Product](https://www.hackster.io/contests/autodesk-university-2027-product) | 2026-09-07 | 0 |
-| [Bay Hacks](https://bayhacks-2026.devpost.com/) | 2026-09-19 | 12 |
-| [STEMinate Wildcard Hack](https://steminate-texas-wildcard-hack.devpost.com/) | 2026-09-19 | 12 |
+| [INDUX 5.0-2026](https://indux-5-0-2026.devpost.com/) | 2026-10-15 | 14 |
 
 ## Watch calendar
 _Annual/monthly programs tracked by date instead of scraping a page that's static for 11 months._
 
 | Program | Next occurrence | Days away | Alert window |
 | --- | --- | --- | --- |
-| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2026-09-25 *(date unconfirmed, inferred from prior years)* | 18 | alert 45d out |
-| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 24 | alert 21d out |
-| [Z Fellows](https://www.zfellows.com/) | 2026-10-01 | 24 | alert 14d out |
-| [Atomic Fellowship (gradCapital)](https://www.gradcapital.in/atomicfellow/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
-| [Adafruit (seasonal contests)](https://blog.adafruit.com/tag/contest/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
-| [SparkFun (design challenges)](https://www.sparkfun.com/news) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
-| [Elephant Robotics (contests/exhibitions)](https://www.elephantrobotics.com/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 14d out |
-| [CMU Undergraduate Research Office: SURG](https://www.cmu.edu/uro/academic-research/SURG/index.html) | 2026-10-01 | 24 | alert 14d out |
-| [CMU Swartz Center: Project Olympus Spark Grants](https://www.cmu.edu/swartz-center-for-entrepreneurship/resources-funding-and-talent/project-olympus-spark-grants/index.html) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 24 | alert 30d out |
-| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 55 | alert 30d out |
-| [IEEE-RAS Humanoids 2026](https://2026.ieee-humanoids.org/) | 2026-12-06 | 90 | alert 30d out |
-| [RSS 2026 (Robotics: Science and Systems)](https://roboticsconference.org/information/cfp/) | 2027-01-23 | 138 | alert 30d out |
-| [Interact Fellowship](https://joininteract.com/) | 2027-02-09 | 155 | alert 30d out |
-| [CMU Undergraduate Research Office: SURF](https://www.cmu.edu/uro/summer%20research%20fellowships/SURF/) | 2027-02-18 | 164 | alert 30d out |
-| [IROS 2027 (IEEE/RSJ Intelligent Robots and Systems)](https://www.ieee-ras.org/event/call-for-papers-paper-submission-deadline-iros-2027-ieee-rsj-international-conference-on-intelligent-robots-and-systems-iros-27403-0/) | 2027-03-01 | 175 | alert 30d out |
-| [Emergent Ventures](https://www.mercatus.org/emergent-ventures) | 2027-03-15 | 189 | alert 30d out |
-| [Astera Residency](https://astera.org/first-residency-cohort/) | 2027-04-19 | 224 | alert 30d out |
-| [CoRL 2026 (Conference on Robot Learning)](https://www.corl.org/contributions/call-for-papers) | 2027-05-26 | 261 | alert 30d out |
-| [RoboCup 2027](https://2027.robocup.org/) | 2027-06-17 | 283 | alert 30d out |
-| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 291 | alert 60d out |
-| [Neo Scholars](https://neo.com/scholars) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 296 | alert 30d out |
-| [Seeed Studio (design contests)](https://www.seeedstudio.com/) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 296 | alert 30d out |
-| [Bambu Lab / MakerWorld (design challenges)](https://blog.bambulab.com/) | 2027-07-10 *(date unconfirmed, inferred from prior years)* | 306 | alert 30d out |
+| [NHRL Open Registration](https://www.nhrl.io/) | 2026-10-01 | 0 | alert 21d out |
+| [Z Fellows](https://www.zfellows.com/) | 2026-10-01 | 0 | alert 14d out |
+| [Atomic Fellowship (gradCapital)](https://www.gradcapital.in/atomicfellow/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 0 | alert 14d out |
+| [Adafruit (seasonal contests)](https://blog.adafruit.com/tag/contest/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 0 | alert 14d out |
+| [SparkFun (design challenges)](https://www.sparkfun.com/news) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 0 | alert 14d out |
+| [Elephant Robotics (contests/exhibitions)](https://www.elephantrobotics.com/) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 0 | alert 14d out |
+| [CMU Undergraduate Research Office: SURG](https://www.cmu.edu/uro/academic-research/SURG/index.html) | 2026-10-01 | 0 | alert 14d out |
+| [CMU Swartz Center: Project Olympus Spark Grants](https://www.cmu.edu/swartz-center-for-entrepreneurship/resources-funding-and-talent/project-olympus-spark-grants/index.html) | 2026-10-01 *(date unconfirmed, inferred from prior years)* | 0 | alert 30d out |
+| [ICRA Competition Track Announcements](https://www.ieee-ras.org/conferences-workshops) | 2026-11-01 *(date unconfirmed, inferred from prior years)* | 31 | alert 30d out |
+| [IEEE-RAS Humanoids 2026](https://2026.ieee-humanoids.org/) | 2026-12-06 | 66 | alert 30d out |
+| [RSS 2026 (Robotics: Science and Systems)](https://roboticsconference.org/information/cfp/) | 2027-01-23 | 114 | alert 30d out |
+| [Interact Fellowship](https://joininteract.com/) | 2027-02-09 | 131 | alert 30d out |
+| [CMU Undergraduate Research Office: SURF](https://www.cmu.edu/uro/summer%20research%20fellowships/SURF/) | 2027-02-18 | 140 | alert 30d out |
+| [IROS 2027 (IEEE/RSJ Intelligent Robots and Systems)](https://www.ieee-ras.org/event/call-for-papers-paper-submission-deadline-iros-2027-ieee-rsj-international-conference-on-intelligent-robots-and-systems-iros-27403-0/) | 2027-03-01 | 151 | alert 30d out |
+| [Emergent Ventures](https://www.mercatus.org/emergent-ventures) | 2027-03-15 | 165 | alert 30d out |
+| [Astera Residency](https://astera.org/first-residency-cohort/) | 2027-04-19 | 200 | alert 30d out |
+| [CoRL 2026 (Conference on Robot Learning)](https://www.corl.org/contributions/call-for-papers) | 2027-05-26 | 237 | alert 30d out |
+| [RoboCup 2027](https://2027.robocup.org/) | 2027-06-17 | 259 | alert 30d out |
+| [Collegiate Inventors Competition](https://www.invent.org/collegiate-inventors) | 2027-06-25 *(date unconfirmed, inferred from prior years)* | 267 | alert 60d out |
+| [Neo Scholars](https://neo.com/scholars) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 272 | alert 30d out |
+| [Seeed Studio (design contests)](https://www.seeedstudio.com/) | 2027-06-30 *(date unconfirmed, inferred from prior years)* | 272 | alert 30d out |
+| [Bambu Lab / MakerWorld (design challenges)](https://blog.bambulab.com/) | 2027-07-10 *(date unconfirmed, inferred from prior years)* | 282 | alert 30d out |
+| [Lemelson-MIT Student Prize](https://lemelson.mit.edu/) | 2027-09-25 *(date unconfirmed, inferred from prior years)* | 359 | alert 45d out |
 
 ## Needs review
 
@@ -96,21 +94,18 @@ _Relevant and not confirmed ineligible, but at least one eligibility fact is sti
 
 | Item | Class | Fit |
 | --- | --- | --- |
-| [Since AI 2026](https://sinceai2026.devpost.com/) | contest | 0.27 |
-| [San Francisco, CA](https://www.awesomefoundation.org/en/chapters/sf) | grant | 0.27 |
-| [Raiden S0-1](https://www.pcbway.com/project/sponsor/Raiden_S0_1_6851c36f.html) | contest | 0.27 |
+| [Sheridan Datathon 2026](https://sheridandatathon2026.devpost.com/) | contest | 0.26 |
 | [Xor Grant](https://www.mechaelephant.com/microgrant) | grant | 0.26 |
-| [HackStorm 3.0: Sense, Think and Act](https://hackstorm3.devpost.com/) | contest | 0.25 |
 | [Custom Gearbox \| SAE Baja \| CCNY Racing](https://www.pcbway.com/project/sponsor/Custom_Gearbox_SAE_Baja_CCNY_Racing_36a9712c.html) | contest | 0.25 |
 | [Magnificent Grants](https://sologrants.com/guide/magnificent) | grant | 0.24 |
-| [Sheridan Datathon 2026](https://sheridandatathon2026.devpost.com/) | contest | 0.24 |
+| [Action Space](https://action-space-hacks.devpost.com/) | contest | 0.23 |
+| [HTCJ × PROOF Aviation Futures Challenge](https://htcj-aviation-futures.devpost.com/) | contest | 0.23 |
 | [Newmarket](https://www.awesomefoundation.org/en/chapters/newmarket-ontario) | grant | 0.22 |
 | [Nexara – Edge-AI Animatronic Physical Avatar Head](https://www.pcbway.com/project/sponsor/Nexara_Edge_AI_Animatronic_Physical_Avatar_Head_5c94782b.html) | contest | 0.21 |
 | [Modular Hardware Development & MCU Prototyping Platform](https://www.pcbway.com/project/sponsor/Modular_Hardware_Development_MCU_Prototyping_Platform_d21436c0.html) | contest | 0.21 |
+| [Arm + ExecuTorch: Edge AI Challenge](https://arm-executorch.devpost.com/) | contest | 0.21 |
 | [The cheetah bot - fastest line follower](https://www.pcbway.com/project/sponsor/The_cheetah_bot_fastest_line_follower_6aee7654.html) | contest | 0.20 |
 | [PIP Phase 1](https://www.pcbway.com/project/sponsor/PIP_Phase_1_f3167c2a.html) | contest | 0.20 |
-| [Action Space](https://action-space-hacks.devpost.com/) | contest | 0.19 |
-| [HTCJ × PROOF Aviation Futures Challenge](https://htcj-aviation-futures.devpost.com/) | contest | 0.19 |
 | [24.15 Ghz RF Transceiver Prototype](https://www.pcbway.com/project/sponsor/24_15_Ghz_RF_Transceiver_Prototype_9a81275b.html) | contest | 0.18 |
 | [Safety seat](https://www.pcbway.com/project/sponsor/Safety_seat_230399c0.html) | contest | 0.18 |
 | [CACIQUE – Student-Developed Solid Rocket Motor](https://www.pcbway.com/project/sponsor/CACIQUE_Solid_Combustion_Motor_c581dbc3.html) | contest | 0.18 |
@@ -118,14 +113,70 @@ _Relevant and not confirmed ineligible, but at least one eligibility fact is sti
 | [Rocket Avionics STM32H743ZIT6](https://www.pcbway.com/project/sponsor/Rocket_Avionics_STM32H743ZIT6_d8cb6f80.html) | contest | 0.18 |
 | [NERVA Ring](https://www.pcbway.com/project/sponsor/NERVA_Ring_b0359f0c.html) | contest | 0.18 |
 | [BB1 Prototype 3 (BB1-3)](https://www.pcbway.com/project/sponsor/BB1_Prototype_3_BB1_3_e796da89.html) | contest | 0.18 |
+| [HackUMass](https://www.hackumass.com/) | contest | 0.17 |
 | [MakeCU](https://v0-curc-makecu.vercel.app/) | contest | 0.16 |
-| [Syntax Summit](https://syntax-summit.devpost.com/) | contest | 0.14 |
+| [Syntax Summit](https://syntax-summit.devpost.com/) | contest | 0.15 |
 
 ### Classification unclear
 _The classifier couldn't confidently call these contest vs. grant vs. neither -- worth a quick human look rather than being silently dropped._
 
 | Item | Source | Contest score | Grant score |
 | --- | --- | --- | --- |
+| [UniHack](https://unihack.eu/) | mlh | 4.0 | 2.0 |
+| [TAMU Datathon](https://tamudatathon.com/) | mlh | 0.0 | 0.0 |
+| [Startup Speedrun Hackathon](https://brainbase-startup-speedrun.devpost.com/) | devpost | 2.0 | 0.0 |
+| [Hack Western 13](https://hack-western-13.devpost.com/) | devpost | 0.0 | 0.0 |
+| [NSH @RPI 2027](https://nsh-rpi-2027.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Hack Atlantic](https://hack-atlantic-2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [FormulaTech Hacks](https://formulatech-hacks.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Jewel City Hacks 5.0](https://jewel-city-hacks-5-0.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Badger Build Fest 2026](https://badger-build-fest-2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Latinos x AI Hackathon - NYC](https://latinos-x-ai-hackathon-nyc.devpost.com/) | devpost | 2.0 | 0.0 |
+| [StormHacks 2026](https://stormhacks2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [MakeUC](https://makeuc.io/) | mlh | 2.0 | 0.0 |
+| [Sheridan Datathon 2026](https://sheridandatathon.com/) | mlh | 4.0 | 0.0 |
+| [Blank Page](https://blankpage.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Gator Quant Hacks](https://gqhacks.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Hyperbloom September - Beginer Freindly](https://hyperbloom-september2.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Emory Hacks](https://emoryhacks.com/) | mlh | 0.0 | 0.0 |
+| [YCP Hacks](https://ycphacks.io/) | mlh | 0.0 | 0.0 |
+| [Cal Hacks 13.0](https://calhacks.io/) | mlh | 5.0 | 1.0 |
+| [2026-2027 Fall ESE Senior Design](https://ese4500f26.devpost.com/) | devpost | 0.0 | 0.0 |
+| [DivHacks 2026](https://divhacks-2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [CommuniHacks](https://www.communihacks.ca) | mlh | 3.0 | 0.0 |
+| [OwlHacks 2026](https://owlhacks-2026.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Emberhacks 2026](https://emberhacks-2026.devpost.com/) | devpost | 4.0 | 0.0 |
+| [SASEhack 2026](https://sasehack-2026.devpost.com/) | devpost | 6.0 | 0.0 |
+| [DevFest Münster 2026: Agentic AI Hackathon](https://devfest-ai-hackathon.devpost.com/) | devpost | 5.0 | 0.0 |
+| [China's electric vehicle giants are betting big on humanoid robots](https://www.technologyreview.com/2025/02/14/1111920/chinas-electric-vehicle-giants-pivot-humanoid-robots/) | hn-robotics-grant | 1.0 | 0.0 |
+| [Hackathon TecNM Campus Saltillo 2026](https://www.road2tech.com/) | mlh | 2.0 | 0.0 |
+| [TigerHacks](https://tigerhacks.dev) | mlh | 0.0 | 0.0 |
+| [The Devin Mixer London](https://devin-mixer-london.devpost.com/) | devpost | 4.0 | 0.0 |
+| [305 HackShells Edition September 2026](https://305hackshellssep2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Palmetto Hacks](https://palmettohacks.ktpusc.com) | mlh | 3.0 | 0.0 |
+| [LovHack Season 3](https://lovhack-season-3.devpost.com/) | devpost | 0.0 | 0.0 |
+| [OxHack '26](https://26.oxhack.net/) | mlh | 2.0 | 0.0 |
+| [Smart City Hackathon Lahore](https://smart-city-hackathon-lahore.devpost.com/) | devpost | 5.0 | 0.0 |
+| [WarriorHacks 2.0](https://warriorhacks-2-0.devpost.com/) | devpost | 5.0 | 0.0 |
+| [LOCALHOST 2.0](https://localhost2.devpost.com/) | devpost | 0.0 | 0.0 |
+| [AI 4 Infra Challenge – Advanced Track](https://ai-4-infra-advanced-track.devpost.com/) | devpost | 1.0 | 0.0 |
+| [HackWesTX VII](https://hackwestx-vii.devpost.com/) | devpost | 0.0 | 0.0 |
+| [WORLDS London](https://worlds.devpost.com/) | devpost | 0.0 | 0.0 |
+| [HackCamp](https://hackcamp.nwplus.io/) | mlh | 2.0 | 0.0 |
+| [DubHacks](https://dh26.dubhacks.co/) | mlh | 3.0 | 1.0 |
+| [Technica Hacks](https://gotechnica.org/) | mlh | 2.0 | 0.0 |
+| [HackRU](https://www.hackru.org/) | mlh | 3.0 | 0.0 |
+| [HackBIOS](https://hackbios.xyz/) | mlh | 0.0 | 0.0 |
+| [Build with Gemma - Innovate in Windsor](https://innovate-in-windsor-hackathon.devpost.com/) | devpost | 0.0 | 0.0 |
+| [SC Quantathon v3](https://sc-quantathon-v3.devpost.com/) | devpost | 5.0 | 0.0 |
+| [GenZ Can Hack 2026](https://genz-can-hack-2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [HackGB](https://hackgb.com/) | mlh | 0.0 | 0.0 |
+| [Hacklanta](https://hacklanta.dev) | mlh | 0.0 | 0.0 |
+| [HackCMU](https://www.acmatcmu.com/hackcmu2026/) | mlh | 0.0 | 0.0 |
+| [UGAHacks CADathon](https://ugahacks-cadathon.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Girls Hoo Hack 2026](https://www.girlshoohack.com/) | mlh | 0.0 | 0.0 |
+| [HackKentucky](https://hackkentucky.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Frontier Cascadia](https://frontier-cascadia-2026.devpost.com/) | devpost | 6.0 | 0.0 |
 | [NES Radar Tracks Flights at 9600 Baud](https://hackaday.com/2026/09/06/nes-radar-tracks-flights-at-9600-baud/) | hackaday | 0.0 | 1.0 |
 | [Comparing PETG and PCTG Filaments](https://hackaday.com/2026/09/07/comparing-petg-and-pctg-filaments/) | hackaday | 0.0 | 1.0 |
 | [The First Spacecraft Launched To Orbit From Europe](https://hackaday.com/2026/09/07/the-first-spacecraft-launched-to-orbit-from-europe/) | hackaday | 1.0 | 1.0 |
@@ -140,10 +191,9 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [How Charged Water Drops Induce Corrosion](https://hackaday.com/2026/09/06/how-charged-water-drops-induce-corrosion/) | hackaday | 0.0 | 1.0 |
 | [Ask HN: Protecting the elderly from scam callers with GPT AI?](https://news.ycombinator.com/item?id=35174337) | hn-robotics-grant | 0.0 | 0.0 |
 | [Furby: Toy giant Hasbro brings back iconic robotic creature](https://www.bbc.com/news/business-65994859) | hn-robotics-grant | 0.0 | 0.0 |
-| [Ask HN: Is front end a dead-end career track?](https://news.ycombinator.com/item?id=37310591) | hn-robotics-grant | 0.0 | 0.0 |
+| [Ask HN: Is front end a dead-end career track?](https://news.ycombinator.com/item?id=37310591) | hn-robotics-grant | 2.0 | 0.0 |
 | [Korean internet giant Naver explores robotics, AI and autonomous driving](https://techcrunch.com/2023/09/01/korean-internet-giant-naver-explores-robotics-ai-and-autonomous-driving/) | hn-robotics-grant | 0.0 | 0.0 |
 | [Bionic Woman Makes History Merging Robotic Limb with Bone and Her Mind](https://www.giantfreakinrobot.com/sci/bionic-woman-karin-sweden.html) | hn-robotics-grant | 0.0 | 0.0 |
-| [Why Should Founders Team Up to Raise Money from Investors](https://news.ycombinator.com/item?id=40695978) | hn-robotics-grant | 0.0 | 0.0 |
 | [SpaceX launches Starship rocket and catches booster in giant metal arms](https://www.theguardian.com/science/2024/oct/13/spacex-elon-musk-launches-and-lands-starship-rocket-in-first-test-of-giant-robotic-arms) | hn-robotics-grant | 0.0 | 0.0 |
 | [Human-Computer Symbiosis](https://news.ycombinator.com/item?id=42082369) | hn-robotics-grant | 0.0 | 0.0 |
 | [Robotics News 03-05-2025](https://news.ycombinator.com/item?id=43265804) | hn-robotics-grant | 0.0 | 0.0 |
@@ -161,7 +211,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Centers of Research Excellence in Science and Technology - Research Infrastructure for Science and Engineering](https://www.grants.gov/search-results-detail/359061) | grants_gov | 0.0 | 0.0 |
 | [Mind, Machine and Motor Nexus (M3X)](https://www.grants.gov/search-results-detail/358682) | grants_gov | 0.0 | 0.0 |
 | [Disability and Rehabilitation Engineering (DARE)](https://www.grants.gov/search-results-detail/348795) | grants_gov | 0.0 | 0.0 |
-| [Energy, Power, Control, and Networks](https://www.grants.gov/search-results-detail/348258) | grants_gov | 0.0 | 0.0 |
+| [Energy, Power, Control, and Networks (EPCN)](https://www.grants.gov/search-results-detail/348258) | grants_gov | 0.0 | 0.0 |
 | [Tactical Behaviors for Autonomous Maneuver](https://www.grants.gov/search-results-detail/339728) | grants_gov | 0.0 | 0.0 |
 | [National Robotics Initiative](https://www.grants.gov/search-results-detail/200793) | grants_gov | 0.0 | 0.0 |
 | [UNITED STATES MILITARY ACADEMY Broad Agency Announcement](https://www.grants.gov/search-results-detail/325932) | grants_gov | 0.0 | 0.0 |
@@ -311,6 +361,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Emergent Ventures](https://sologrants.com/guide/emergentventures) | sologrants | 0.0 | 6.0 |
 | [VitaDAO Fellowship](https://www.vitadao.com/fellowship) | nayafia_microgrants | 1.0 | 2.0 |
 | [Unitary Fund](http://unitary.fund/) | nayafia_microgrants | 0.0 | 2.0 |
+| [Trelis AI Grants](https://trelis.com/trelis-ai-grants/) | nayafia_microgrants | 0.0 | 0.0 |
 | [Thiel Fellowship](https://thielfellowship.org/) | nayafia_microgrants | 0.0 | 3.0 |
 | [Sisters of Perpetual Indulgence](https://www.thesisters.org/grants) | nayafia_microgrants | 0.0 | 2.0 |
 | [SciFounders](https://scifounders.com/) | nayafia_microgrants | 0.0 | 1.0 |
@@ -354,7 +405,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [HackIllinois](https://www.hackillinois.org/) | mlh | 0.0 | 0.0 |
 | [Hacklytics 2027](https://hacklytics2027.web.app/) | mlh | 2.0 | 0.0 |
 | [CUhackit](https://cuhack.it/) | mlh | 0.0 | 0.0 |
-| [SF Hacks](https://sfhacks.io) | mlh | 0.0 | 0.0 |
+| [SF Hacks](https://sfhacks.io) | mlh | 3.0 | 0.0 |
 | [MakeUofT](http://makeuoft.ca/) | mlh | 3.0 | 0.0 |
 | [InnovateHer](https://innovateherhacks.org/) | mlh | 3.0 | 0.0 |
 | [Hack_NCState](https://hackncstate.org/) | mlh | 4.0 | 0.0 |
@@ -368,14 +419,13 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [uOttaHack 9](https://2027.uottahack.ca/) | mlh | 0.0 | 0.0 |
 | [UofTHacks](https://uofthacks.com/) | mlh | 0.0 | 0.0 |
 | [DeltaHacks](https://www.deltahacks.com/) | mlh | 4.0 | 0.0 |
-| [DurHack](https://durhack.com) | mlh | 2.0 | 0.0 |
-| [HackUMass](https://www.hackumass.com/) | mlh | 4.0 | 0.0 |
+| [DurHack](https://durhack.com) | mlh | 3.0 | 0.0 |
 | [HackRPI 2026](https://hackrpi.com/) | mlh | 3.0 | 0.0 |
-| [HackUTD](https://zeroday.hackutd.co) | mlh | 0.0 | 0.0 |
+| [HackUTD](https://zeroday.hackutd.co) | mlh | 5.0 | 0.0 |
 | [hackCBS 9.O](https://hackcbs.tech) | mlh | 2.0 | 0.0 |
 | [Hack at Penn State](https://hackpsu.org) | mlh | 2.0 | 0.0 |
 | [HackTX 26](https://hacktx.com/) | mlh | 0.0 | 0.0 |
-| [SBUHacks](https://hack.sbcs.io/) | mlh | 3.0 | 0.0 |
+| [SBUHacks](https://hack.sbcs.io/) | mlh | 4.0 | 0.0 |
 | [LA Hacks AI Hackathon 2026](https://ai.lahacks.com) | mlh | 2.0 | 0.0 |
 | [IKU Womxn in STEM Hackathon](https://ikuwomxninstemhackathon.co.uk/) | mlh | 3.0 | 0.0 |
 | [Hack the Valley](https://hackthevalley.io/) | mlh | 2.0 | 0.0 |
@@ -394,7 +444,7 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [Gator Quant Hacks](https://www.gqhacks.com) | mlh | 1.0 | 0.0 |
 | [BigRed//Hacks 2026](https://www.bigredhacks.com/) | mlh | 0.0 | 0.0 |
 | [hackUMBC](https://hackumbc.tech/) | mlh | 4.0 | 0.0 |
-| [OwlHacks](https://www.owlhacks.com/) | mlh | 2.0 | 0.0 |
+| [OwlHacks](https://www.owlhacks.com/) | mlh | 3.0 | 0.0 |
 | [DivHacks](https://www.columbiadivhacks.org/) | mlh | 3.0 | 0.0 |
 | [Hack the Hill](https://hackthehill.com/) | mlh | 3.0 | 0.0 |
 | [ShellHacks](https://shellhacks.net/) | mlh | 0.0 | 0.0 |
@@ -402,52 +452,55 @@ _The classifier couldn't confidently call these contest vs. grant vs. neither --
 | [HackNex Season 2](https://innovocon.online/events/hacknex) | mlh | 0.0 | 0.0 |
 | [&HACKS XII](https://andhacks.cs.wm.edu/) | mlh | 2.0 | 0.0 |
 | [SteelHacks XIII](https://steelhacks.org/) | mlh | 2.0 | 0.0 |
-| [HopHacks](https://www.hophacks.com/) | mlh | 3.0 | 0.0 |
-| [VTHacks 14](https://vthacks.com/) | mlh | 3.0 | 0.0 |
+| [HopHacks](https://www.hophacks.com/) | mlh | 0.0 | 0.0 |
+| [VTHacks 14](https://vthacks.com/) | mlh | 2.0 | 0.0 |
 | [Hack the North](https://hackthenorth.com/) | mlh | 0.0 | 0.0 |
 | [HackHers @GSU](https://hackhers.club/) | mlh | 4.0 | 0.0 |
 | [HackWesTX 26](https://hackwestx.gdgttu.com/) | mlh | 3.0 | 0.0 |
 | [HackMTY 2026](https://hackmty.com/) | mlh | 0.0 | 0.0 |
 | [HackRice](https://hackrice.com/) | mlh | 3.0 | 0.0 |
 | [Global Hack Week: Data](https://events.mlh.io/events/14416-global-hack-week-data) | mlh | 1.0 | 0.0 |
-| [Hack the Change 2026](https://hack-the-change-2026.devpost.com/) | devpost | 7.0 | 0.0 |
+| [Hack the Change 2026](https://hack-the-change-2026.devpost.com/) | devpost | 0.0 | 0.0 |
 | [The CAD Challenge 2026](https://the-cad-challenge-2026.devpost.com/) | devpost | 5.0 | 0.0 |
-| [Brewing Codes 4.0](https://brewing-codes-4-0.devpost.com/) | devpost | 4.0 | 0.0 |
-| [Galuxium Nexus V2](https://galuxium-nexus-v2-29411.devpost.com/) | devpost | 6.0 | 1.0 |
+| [Brewing Codes 4.0](https://brewing-codes-4-0.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Evorozen Apex: NextGen AI Buildathon](https://evorozen-apex.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Galuxium Nexus V2](https://galuxium-nexus-v2-29411.devpost.com/) | devpost | 0.0 | 0.0 |
 | [Syndicate by Maximor](https://syndicate-by-maximor.devpost.com/) | devpost | 4.0 | 0.0 |
 | [Agentic Cinema: The Blockbuster Hackathon](https://agentic-cinema.devpost.com/) | devpost | 4.0 | 0.0 |
-| [Hack The Weather](https://hack-the-weather.devpost.com/) | devpost | 5.0 | 0.0 |
+| [Hack The Weather](https://hack-the-weather.devpost.com/) | devpost | 0.0 | 0.0 |
 | [AnimalHack 2026](https://animalhack2026.devpost.com/) | devpost | 4.0 | 0.0 |
-| [Gear Up Hacks 2026](https://gear-up-hacks-2026.devpost.com/) | devpost | 4.0 | 0.0 |
-| [COMMA_HACK 7](https://comma-hack-7.devpost.com/) | devpost | 6.0 | 0.0 |
-| [ImpactHack 2026](https://impacthack26.devpost.com/) | devpost | 5.0 | 0.0 |
-| [Meow](https://makeuc-2026-30881.devpost.com/) | devpost | 5.0 | 0.0 |
-| [MakeUC 2026](https://makeuc-2026-30884.devpost.com/) | devpost | 5.0 | 0.0 |
-| [CityCamp Gainesville Hack Day](https://citycamp-hack-day.devpost.com/) | devpost | 4.0 | 0.0 |
+| [Gear Up Hacks 2026](https://gear-up-hacks-2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [COMMA_HACK 7](https://comma-hack-7.devpost.com/) | devpost | 0.0 | 0.0 |
+| [ImpactHack 2026](https://impacthack26.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Meow](https://makeuc-2026-30881.devpost.com/) | devpost | 0.0 | 0.0 |
+| [MakeUC 2026](https://makeuc-2026-30884.devpost.com/) | devpost | 0.0 | 0.0 |
+| [CityCamp Gainesville Hack Day](https://citycamp-hack-day.devpost.com/) | devpost | 0.0 | 0.0 |
 | [HopHacks Fall 2026](https://hophacks-fall-2026.devpost.com/) | devpost | 4.0 | 0.0 |
-| [BioHacks](https://biohacksmcmaster.devpost.com/) | devpost | 5.0 | 0.0 |
-| [SourceHacks V1](https://sourcehacksv1.devpost.com/) | devpost | 4.0 | 0.0 |
-| [Arbiter Hacks V1](https://arbiter-hacks-v1.devpost.com/) | devpost | 5.0 | 0.0 |
-| [Hyphen-Hacks](https://hyphen-hacks26.devpost.com/) | devpost | 5.0 | 0.0 |
-| [TigerHacks 2026](https://tigerhacks-2026.devpost.com/) | devpost | 5.0 | 0.0 |
-| [Revolution](https://revolution-mty2026.devpost.com/) | devpost | 4.0 | 0.0 |
-| [H.A.R.D. Hack 2027](https://h-a-r-d-hack-2027.devpost.com/) | devpost | 4.0 | 0.0 |
-| [InnovArt 2027: Art and Technology Hack Day](https://innovart2027.devpost.com/) | devpost | 4.0 | 0.0 |
-| [Global Innovation Build Challenge V2](https://gibc-v2.devpost.com/) | devpost | 6.0 | 0.0 |
+| [BioHacks](https://biohacksmcmaster.devpost.com/) | devpost | 0.0 | 0.0 |
+| [SourceHacks V1](https://sourcehacksv1.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Arbiter Hacks V1](https://arbiter-hacks-v1.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Hyphen-Hacks](https://hyphen-hacks26.devpost.com/) | devpost | 0.0 | 0.0 |
+| [TigerHacks 2026](https://tigerhacks-2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Revolution](https://revolution-mty2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [H.A.R.D. Hack 2027](https://h-a-r-d-hack-2027.devpost.com/) | devpost | 0.0 | 0.0 |
+| [InnovArt 2027: Art and Technology Hack Day](https://innovart2027.devpost.com/) | devpost | 0.0 | 0.0 |
+| [Global Innovation Build Challenge V2](https://gibc-v2.devpost.com/) | devpost | 1.0 | 0.0 |
 | [GatewayHacks 2026 \| Software & AI](https://gatewayhacks-2026.devpost.com/) | devpost | 5.0 | 0.0 |
-| [OpenCV AI Competition 2026, powered by AWS](https://opencv26.devpost.com/) | devpost | 5.0 | 1.0 |
+| [OpenCV AI Competition 2026, powered by AWS](https://opencv26.devpost.com/) | devpost | 1.0 | 0.0 |
+| [Since AI 2026](https://sinceai2026.devpost.com/) | devpost | 0.0 | 0.0 |
+| [HackStorm 3.0: Sense, Think and Act](https://hackstorm3.devpost.com/) | devpost | 0.0 | 0.0 |
 | [VoltHacks](https://volthacks.devpost.com/) | devpost | 5.0 | 0.0 |
 | [HarborHack 2026 - Agent In The Loop](https://harborhack-2026.devpost.com/) | devpost | 6.0 | 0.0 |
 | [CrownHacks](https://crownhacks.devpost.com/) | devpost | 4.0 | 0.0 |
 | [HACK47: OFFGRID](https://hack47-offgrid.devpost.com/) | devpost | 5.0 | 0.0 |
 
 ## Ineligible
-_7 accepted item(s) are confirmed ineligible for this operator's profile (profile.yaml) and are not listed individually -- but the failing reasons are tallied below so a bad eligibility extractor would be visible here, not silent._
+_5 accepted item(s) are confirmed ineligible for this operator's profile (profile.yaml) and are not listed individually -- but the failing reasons are tallied below so a bad eligibility extractor would be visible here, not silent._
 
 | Failing field | Count |
 | --- | --- |
-| requires_incorporation | 3 |
-| max_age | 3 |
+| requires_incorporation | 2 |
+| max_age | 2 |
 | equity_required | 1 |
 
 ## Sources needing attention
